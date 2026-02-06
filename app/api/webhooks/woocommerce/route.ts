@@ -129,15 +129,23 @@ async function handleProductWebhook(event: string, payload: any) {
             break
 
         case "updated":
+            // Invalider les tags de cache pour le produit et ses variations
+            revalidateTag(`product-${productId}`)
+            revalidateTag(`variations-${productId}`)
+            
             // Revalider la page produit spécifique et les listings
             revalidatePath(`/product/${productId}`)
             revalidatePath("/products")
             revalidatePath("/")
-            console.log(`[WooCommerce Webhook] ✅ Updated product ${productId} - Revalidated`)
+            console.log(`[WooCommerce Webhook] ✅ Updated product ${productId} - Revalidated tags and paths`)
             break
 
         case "deleted":
         case "trashed":
+            // Invalider les tags de cache
+            revalidateTag(`product-${productId}`)
+            revalidateTag(`variations-${productId}`)
+            
             // Invalider le layout de la route pour supprimer le cache de la page
             revalidatePath("/product/[id]", "layout")
             revalidatePath("/products")
@@ -147,6 +155,9 @@ async function handleProductWebhook(event: string, payload: any) {
 
         case "restored":
             // Produit restauré depuis la corbeille - traiter comme un nouveau produit
+            revalidateTag(`product-${productId}`)
+            revalidateTag(`variations-${productId}`)
+            
             revalidatePath("/product/[id]", "layout")
             revalidatePath(`/product/${productId}`)
             revalidatePath("/products")

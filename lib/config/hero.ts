@@ -22,24 +22,28 @@ export const heroConfig = {
     // Slides
     slides: [
         {
-            image: "/images/hero.jpeg",
+            image: "/cover.jpeg",
             title: "Neyla Collection",
-            subtitle: "",
+            subtitle: "Mode féminine raffinée, robes d'hôtesse et pièces traditionnelles. Des créations élégantes avec tissus de qualité et broderie professionnelle.",
             overlay: 30,
         },
         {
-            image: "/images/hero.jpeg",
+            image: "/cover.jpeg",
             title: "Collection 2026",
-            subtitle: "",
+            subtitle: "Chaque pièce est confectionnée avec soin pour que chaque femme se sente belle, confiante et unique.",
             overlay: 30,
         },
     ] as HeroSlide[],
 
     // Hero height
     height: {
-        mobile: "65vh",
-        desktop: "1000px",
+        mobile: "70vh",
+        desktop: "90vh", // ou "100vh" pour plein écran
     },
+
+    // Image position (CSS object-position value)
+    // Options: "center center", "center top", "center bottom", "top", "bottom"
+    imagePosition: "center top", // ou "center center", "center bottom"
 
     // Typography styles
     typography: {

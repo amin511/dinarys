@@ -24,7 +24,7 @@ async function getProduct(id: string) {
       headers: {
         Authorization: authHeader,
       },
-      cache: "force-cache", // SSG: Cache au build time
+      next: { tags: [`product-${id}`] }, // Tag pour revalidation
     })
 
     if (!response.ok) {
@@ -105,7 +105,7 @@ async function getProductVariations(productId: string, productType?: string) {
       headers: {
         Authorization: authHeader,
       },
-      cache: "force-cache", // SSG: Cache au build time
+      next: { tags: [`product-${productId}`, `variations-${productId}`] }, // Tags pour revalidation
     })
 
     if (!response.ok) {

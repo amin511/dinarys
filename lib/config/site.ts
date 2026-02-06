@@ -24,7 +24,7 @@ export const siteConfig = {
 
     // Contact Information
     contact: {
-        email: "neylacollection@gmail.com",
+        email: "neylacollections@gmail.com",
         phone: "+213557084431",
         phoneDisplay: "0557 08 44 31",
         address: "Algiers, Algeria",

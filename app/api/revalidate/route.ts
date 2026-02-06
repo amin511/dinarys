@@ -1,4 +1,4 @@
-import { revalidatePath } from "next/cache"
+import { revalidatePath, revalidateTag } from "next/cache"
 import { NextRequest, NextResponse } from "next/server"
 import { getWooCredentials } from "@/lib/config"
 
@@ -54,10 +54,17 @@ export async function POST(request: NextRequest) {
         // Revalider le path spécifique
         revalidatePath(path)
 
-        // Si c'est une page produit, aussi revalider les listings
+        // Si c'est une page produit, aussi revalider les tags de cache et les listings
         if (path.startsWith("/product/")) {
-            revalidatePath("/products")
-            revalidatePath("/")
+            const productId = path.replace("/product/", "")
+            // Invalider les tags de cache pour le produit et ses variations
+            revalidateTag(`product-${productId}`, "page")
+            revalidateTag(`variations-${productId}`, "page")
+
+            revalidatePath("/products", "page")
+            revalidatePath("/", "page")
+
+            console.log(`[Revalidate API] Revalidated product ${productId} with tags`)
         }
 
         return NextResponse.json({
@@ -99,8 +106,10 @@ async function revalidateAllProducts() {
         // Revalider le layout de la route dynamique
         revalidatePath("/product/[id]", "layout")
 
-        // Revalider chaque page produit
+        // Revalider chaque page produit avec ses tags
         for (const product of products) {
+            revalidateTag(`product-${product.id}`, "page")
+            revalidateTag(`variations-${product.id}`, "page")
             revalidatePath(`/product/${product.id}`)
         }
 
@@ -108,7 +117,7 @@ async function revalidateAllProducts() {
         revalidatePath("/products")
         revalidatePath("/")
 
-        console.log(`[Revalidate API] Revalidated ${products.length} product pages`)
+        console.log(`[Revalidate API] Revalidated ${products.length} product pages with tags`)
     } catch (error) {
         console.error("[Revalidate API] Error revalidating all products:", error)
         throw error

@@ -35,7 +35,7 @@ export const navigationConfig = {
         support: {
             title: "Support",
             links: [
-                { label: "Contactez-nous", href: "https://www.instagram.com/naalasbrand/", external: true },
+                { label: "Contactez-nous", href: "https://www.instagram.com/neyla_collection_/", external: true },
                 { label: "Appelez-nous", href: "tel:+213770499357" },
             ],
         },
