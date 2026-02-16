@@ -637,8 +637,8 @@ export default function ProductDetailClient({ product, relatedProducts = [], cat
                     </div>
                   )}
 
-                  {/* Inline Checkout Form - shown for "form" and "both" modes */}
-                  {showForm && (
+                  {/* Inline Checkout Form - shown for "form" and "both" modes, hidden when out of stock */}
+                  {showForm && (selectedVariation?.stock_status || product.stock_status) !== "outofstock" && (
                     <ProductCheckoutForm
                       product={{
                         id: product.id,
