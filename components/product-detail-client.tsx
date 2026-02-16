@@ -603,11 +603,14 @@ export default function ProductDetailClient({ product, relatedProducts = [], cat
                         variant={checkoutMode === "both" ? "outline" : "default"}
                         className="w-full rounded-full py-6 text-base"
                         onClick={handleAddToCart}
+                        disabled={(selectedVariation?.stock_status || product.stock_status) === "outofstock"}
                       >
                         {addedToCart ? (
                           <>
                             <span className="text-green-600">✓</span> Ajouté au panier
                           </>
+                        ) : (selectedVariation?.stock_status || product.stock_status) === "outofstock" ? (
+                          "Rupture de stock"
                         ) : (
                           "Ajouter au panier"
                         )}
