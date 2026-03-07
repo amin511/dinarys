@@ -107,12 +107,20 @@ function ThankYouContent() {
       const orderData = JSON.parse(savedOrder)
       setOrderDetails(orderData)
 
-      // Track Purchase event
-      fbEvent("Purchase", {
-        content_ids: orderData.items?.map((item: any) => item.id.toString()) || [orderData.product?.id?.toString()],
-        content_type: "product",
-        num_items: orderData.quantity || 1,
-      })
+      // Eviter le double tracking en cas de refresh
+      const purchaseTracked = sessionStorage.getItem("purchase_tracked")
+      if (!purchaseTracked) {
+        // Track Purchase event avec value et currency (obligatoires pour Facebook)
+        fbEvent("Purchase", {
+          value: orderData.total || 0,
+          currency: "DZD",
+          content_ids: orderData.items?.map((item: any) => item.id.toString()) || [orderData.product?.id?.toString()],
+          content_name: orderData.product?.name || "",
+          content_type: "product",
+          num_items: orderData.quantity || 1,
+        })
+        sessionStorage.setItem("purchase_tracked", "true")
+      }
     }
 
     // Animation d'entrée

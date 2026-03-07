@@ -173,6 +173,9 @@ export default function CheckoutForm() {
       }
       localStorage.setItem("lastOrder", JSON.stringify(orderDetailsForThankYou))
 
+      // Reset purchase tracking flag pour permettre le tracking de cette nouvelle commande
+      sessionStorage.removeItem("purchase_tracked")
+
       // Clear cart
       localStorage.removeItem("cartItem")
       localStorage.removeItem("cartItems")

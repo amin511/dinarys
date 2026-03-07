@@ -108,6 +108,44 @@ export default function ProductCheckoutForm({ product }: ProductCheckoutFormProp
       if (!response.ok) throw new Error("Failed to create order")
 
       const result = await response.json()
+
+      // Sauvegarder les détails de la commande pour la page de remerciement
+      const orderDetailsForThankYou = {
+        product: {
+          id: product.id,
+          name: product.name,
+          price: product.price,
+          image: product.image || "",
+          size: product.size || null,
+          color: product.color || null,
+        },
+        quantity,
+        items: [{
+          id: product.id,
+          name: product.name,
+          price: product.price,
+          image: product.image || "",
+          size: product.size || null,
+          color: product.color || null,
+          quantity,
+        }],
+        billing: {
+          prenom: formData.prenom,
+          telephone: formData.telephone,
+          wilaya,
+          commune,
+          adresse: formData.adresse || "",
+        },
+        delivery_method: deliveryMethod,
+        shipping_cost: livraison,
+        subtotal: sousTotal,
+        total,
+      }
+      localStorage.setItem("lastOrder", JSON.stringify(orderDetailsForThankYou))
+
+      // Reset purchase tracking flag pour permettre le tracking de cette nouvelle commande
+      sessionStorage.removeItem("purchase_tracked")
+
       router.push(`/thank-you?order=${result.order_number || result.order_id}`)
     } catch (error) {
       console.error("Order submission error:", error)
