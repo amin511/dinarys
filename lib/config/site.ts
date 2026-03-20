@@ -6,12 +6,12 @@
 
 export const siteConfig = {
     // Brand Information
-    name: "NEYLA COLLECTION",
-    tagline: "Fashion & Lifestyle",
-    description: "Discover elegant fashion and lifestyle collections from NEYLA COLLECTION. New collection 2026 featuring traditional and contemporary designs.",
+    name: "NOUR CONFECTION",
+    tagline: "Élégance & Tradition",
+    description: "Nour Confection propose des créations élégantes pour mariées et bébés, inspirées du patrimoine algérien et réalisées avec un savoir-faire artisanal pour sublimer les moments les plus précieux.",
 
     // URLs
-    url: process.env.NEXT_PUBLIC_SITE_URL || "https://neylacollection.com",
+    url: process.env.NEXT_PUBLIC_SITE_URL || "https://nourconfection.com",
 
     // Logo & Branding
     logo: {
@@ -24,34 +24,34 @@ export const siteConfig = {
 
     // Contact Information
     contact: {
-        email: "neylacollections@gmail.com",
-        phone: "+213557084431",
-        phoneDisplay: "0557 08 44 31",
-        address: "Algiers, Algeria",
-        mapUrl: "",
+        email: "nour.t.confection@gmail.com",
+        phone: "+2137995339100",
+        phoneDisplay: "+2137995339100",
+        address: "rue Ammara Youcef Blida 00009",
+        mapUrl: "https://maps.app.goo.gl/WMA2iAvKLS5z2caC7",
     },
 
     // Social Media
     social: {
         instagram: {
-            url: "https://www.instagram.com/neyla_collection_/",
-            handle: "@neyla_collection_",
+            url: "https://www.instagram.com/nour.confection/",
+            handle: "@nour.confection",
         },
         facebook: {
-            url: "https://www.facebook.com/p/Neyla-Collection-61570652681294/",
-            handle: "Neyla collection",
+            url: "https://www.facebook.com/p/Nour-confection-100076232980561/",
+            handle: "Nour confection",
         },
         twitter: {
             url: "",
             handle: "",
         },
         tiktok: {
-            url: "https://www.tiktok.com/@neyla.collection",
-            handle: "@neyla.collection",
+            url: "https://www.tiktok.com/@nour.confection",
+            handle: "@nour.confection",
         },
         whatsapp: {
-            url: "https://wa.me/213557084431",
-            phone: "+213557084431",
+            url: "https://wa.me/213799533910",
+            phone: "+213799533910",
         },
     },
 
@@ -60,18 +60,18 @@ export const siteConfig = {
     currency: {
         code: "DZD",
         symbol: "DA",
-        position: "before" as const, // "before" or "after"
+        position: "before" as const,
     },
     country: "DZ",
 
     // SEO
     seo: {
-        titleTemplate: "%s | NEYLA COLLECTION",
-        defaultTitle: "NEYLA COLLECTION - Fashion & Lifestyle",
+        titleTemplate: "%s | NOUR CONFECTION",
+        defaultTitle: "NOUR CONFECTION - Élégance & Tradition",
         openGraph: {
             type: "website",
             locale: "fr_DZ",
-            siteName: "NEYLA COLLECTION",
+            siteName: "NOUR CONFECTION",
         },
     },
 
@@ -89,35 +89,24 @@ export const siteConfig = {
     // Analytics & Tracking
     analytics: {
         facebookPixelId: process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID || "",
-        // googleAnalyticsId: "", // Ready for future use
     },
 
     /**
      * Checkout Mode Configuration
-     * Defines how users can purchase products
-     * 
-     * Options:
-     * - "form"  : Only inline form on product page (direct order)
-     * - "cart"  : Only add to cart button (redirect to cart/checkout)
-     * - "both"  : Both options available (form + add to cart button)
+     * Options: "form" | "cart" | "both"
      */
     checkoutMode: "both" as "form" | "cart" | "both",
 
     /**
      * Add to Cart Redirect Configuration
-     * Defines where the user is redirected after adding to cart
-     * 
-     * Options:
-     * - "cart"     : Redirect to the cart page (/cart)
-     * - "checkout" : Redirect directly to checkout page (/checkout)
-     * - "stay"     : Stay on the current page (no redirect)
+     * Options: "cart" | "checkout" | "stay"
      */
     addToCartRedirect: "cart" as "cart" | "checkout" | "stay",
 
     // Video Section
     video: {
         url: "https://sienna-yak-396748.hostingersite.com/wp-content/uploads/2026/03/snaptik_7409755669982760198_v3.mp4",
-        poster: "/hero.jpeg", // Change to your preferred thumbnail
+        poster: "/hero.jpeg",
     },
 
     // Copyright

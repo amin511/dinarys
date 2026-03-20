@@ -18,25 +18,39 @@ export const navigationConfig = {
             href: "/",
         },
         {
-            label: "Produits",
+            label: "Boutique",
             href: "/products",
+        },
+        {
+            label: "À Propos",
+            href: "/a-propos",
         },
     ] as NavItem[],
 
     // Footer navigation sections
     footerNav: {
         shop: {
-            title: "Shop",
+            title: "Boutique",
             links: [
                 { label: "Tous les Produits", href: "/products" },
                 { label: "Nouveautés", href: "/#products" },
             ],
         },
-        support: {
-            title: "Support",
+        about: {
+            title: "Nour Confection",
             links: [
-                { label: "Contactez-nous", href: "https://www.instagram.com/neyla_collection_/", external: true },
-                { label: "Appelez-nous", href: "tel:+213770499357" },
+                { label: "Qui sommes-nous", href: "/a-propos" },
+                { label: "Notre savoir-faire", href: "/a-propos#savoir-faire" },
+            ],
+        },
+        support: {
+            title: "Contact",
+            links: [
+                { label: "Instagram", href: "https://www.instagram.com/nour.confection/", external: true },
+                { label: "Facebook", href: "https://www.facebook.com/p/Nour-confection-100076232980561/", external: true },
+                { label: "TikTok", href: "https://www.tiktok.com/@nour.confection", external: true },
+                { label: "Appelez-nous", href: "tel:+213799533910" },
+                { label: "Localisation", href: "https://maps.app.goo.gl/WMA2iAvKLS5z2caC7", external: true },
             ],
         },
     },
@@ -49,11 +63,9 @@ export const navigationConfig = {
     },
 
     // Category ordering for menus
-    // Categories will be sorted in this order
     categoryOrder: [
-        "collection",
-        "caftans",
-        "ensembles-abayas",
+        "mariees",
+        "bebes",
         "accessoires",
     ],
 
