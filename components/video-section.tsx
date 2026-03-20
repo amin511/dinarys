@@ -94,7 +94,7 @@ export default function VideoSection({ embedded = false }: VideoSectionProps) {
       {/* Progress bar */}
       <div className="absolute bottom-0 left-0 right-0 h-1 bg-white/20">
         <div
-          className="h-full bg-[#C9A96E] transition-all duration-200"
+          className="h-full bg-secondary transition-all duration-200"
           style={{ width: `${progress}%` }}
         />
       </div>
@@ -141,8 +141,8 @@ export default function VideoSection({ embedded = false }: VideoSectionProps) {
   return (
     <section className="w-full py-16 md:py-24 bg-white relative overflow-hidden">
       {/* Subtle decorative elements with brand colors */}
-      <div className="absolute top-0 left-0 w-72 h-72 rounded-full opacity-[0.04] -translate-x-1/2 -translate-y-1/2" style={{ background: "radial-gradient(circle, #C9A96E, transparent)" }} />
-      <div className="absolute bottom-0 right-0 w-96 h-96 rounded-full opacity-[0.04] translate-x-1/3 translate-y-1/3" style={{ background: "radial-gradient(circle, #C9A96E, transparent)" }} />
+      <div className="absolute top-0 left-0 w-72 h-72 rounded-full opacity-[0.04] -translate-x-1/2 -translate-y-1/2" style={{ background: "radial-gradient(circle, var(--secondary), transparent)" }} />
+      <div className="absolute bottom-0 right-0 w-96 h-96 rounded-full opacity-[0.04] translate-x-1/3 translate-y-1/3" style={{ background: "radial-gradient(circle, var(--secondary), transparent)" }} />
 
       <div className="max-w-6xl mx-auto px-6">
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
@@ -150,15 +150,15 @@ export default function VideoSection({ embedded = false }: VideoSectionProps) {
           <div className="flex-1 text-center lg:text-left space-y-6 max-w-lg">
             {/* Decorative line */}
             <div className="flex items-center gap-3 justify-center lg:justify-start">
-              <span className="w-10 h-[2px] bg-[#C9A96E]" />
-              <span className="text-xs font-semibold tracking-[0.25em] uppercase text-[#C9A96E]">
+              <span className="w-10 h-[2px] bg-secondary" />
+              <span className="text-xs font-semibold tracking-[0.25em] uppercase text-secondary">
                 Découvrez notre univers
               </span>
             </div>
 
             <h2 className="font-playfair text-3xl md:text-4xl lg:text-5xl font-semibold text-[#2D2D2D] leading-tight">
               L&apos;Art de la <br />
-              <span className="text-[#C9A96E]">Confection</span>
+              <span className="text-secondary">Confection</span>
             </h2>
 
             <p className="text-[#5A5A5A] leading-relaxed text-sm md:text-base">
@@ -169,15 +169,15 @@ export default function VideoSection({ embedded = false }: VideoSectionProps) {
 
             <div className="flex items-center gap-4 justify-center lg:justify-start pt-2">
               <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-[#C9A96E]" />
+                <span className="w-2 h-2 rounded-full bg-secondary" />
                 <span className="text-xs text-[#6B6B6B] font-medium">Fait main</span>
               </div>
               <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-[#C9A96E]" />
+                <span className="w-2 h-2 rounded-full bg-secondary" />
                 <span className="text-xs text-[#6B6B6B] font-medium">Tissu premium</span>
               </div>
               <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-[#C9A96E]" />
+                <span className="w-2 h-2 rounded-full bg-secondary" />
                 <span className="text-xs text-[#6B6B6B] font-medium">Broderie fine</span>
               </div>
             </div>
@@ -186,7 +186,7 @@ export default function VideoSection({ embedded = false }: VideoSectionProps) {
           {/* Video */}
           <div className="relative flex-shrink-0">
             {/* Decorative border behind video */}
-            <div className="absolute -inset-3 rounded-2xl border-2 border-[#C9A96E]/20 -z-10" />
+            <div className="absolute -inset-3 rounded-2xl border-2 border-secondary/20 -z-10" />
             <div className="absolute -inset-6 rounded-3xl border border-[#E5DDD3]/40 -z-20" />
             {videoPlayer}
           </div>
