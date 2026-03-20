@@ -1,8 +1,6 @@
-"use client"
-
-export default function HeroSection() {
+export default function BrandBanner() {
   return (
-    <section className="relative w-full h-[90vh] overflow-hidden">
+    <section className="relative w-full h-[60vh] md:h-[70vh] overflow-hidden">
       {/* Background Image */}
       <div
         className="absolute inset-0"
@@ -14,13 +12,13 @@ export default function HeroSection() {
         }}
       />
 
-      {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-black/40" />
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black/30" />
 
-      {/* Text Content */}
+      {/* Brand Text */}
       <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
         <h2
-          className="font-playfair text-[110px] md:text-7xl lg:text-8xl font-bold tracking-wider text-white drop-shadow-2xl"
+          className="font-playfair text-5xl md:text-7xl lg:text-8xl font-bold tracking-wider text-white drop-shadow-2xl"
         >
           NOUR
         </h2>

@@ -1,3 +1,4 @@
+import Link from "next/link"
 import ProductCard from "./product-card"
 import { getWooCredentials } from "@/lib/config"
 
@@ -41,7 +42,10 @@ export default async function ProductsSectionServer() {
     if (products.length === 0) {
         return (
             <section id="products" className="max-w-7xl mx-auto px-4 py-16 border-t border-border scroll-mt-20">
-                <h2 className="text-xl font-light mb-8 text-foreground">Meilleurs ventes 2026</h2>
+                <div className="flex items-center justify-between mb-8">
+                    <h2 className="text-xl font-light text-foreground">Nos Produits</h2>
+                    <Link href="/products" className="text-sm text-[#4A4A4A] underline underline-offset-4 uppercase tracking-wider hover:text-[#2D2D2D] transition">VOIR TOUT</Link>
+                </div>
                 <div className="p-8 bg-muted/50 border border-border rounded-sm">
                     <p className="text-muted-foreground">Aucun produit disponible pour le moment.</p>
                 </div>
@@ -51,7 +55,10 @@ export default async function ProductsSectionServer() {
 
     return (
         <section id="products" className="max-w-7xl mx-auto border-t border-border text-3xl py-16 px-4 scroll-mt-20">
-            <h2 className="font-light mb-8 text-foreground mt-0 text-xl">Meilleurs ventes 2026</h2>
+            <div className="flex items-center justify-between mb-8">
+                <h2 className="font-light text-foreground mt-0 text-xl">Nos Produits</h2>
+                <Link href="/products" className="text-sm text-[#4A4A4A] underline underline-offset-4 uppercase tracking-wider hover:text-[#2D2D2D] transition">VOIR TOUT</Link>
+            </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
                 {products.map((product: Product) => (
                     <ProductCard
@@ -59,7 +66,7 @@ export default async function ProductsSectionServer() {
                         id={product.id}
                         name={product.name}
                         price={typeof product.price === "string" ? Number.parseFloat(product.price) : product.price}
-                        image={product.images?.[0]?.src}
+                        image={product.images?.[0]?.src || ""}
                         stockStatus={product.stock_status}
                     />
                 ))}

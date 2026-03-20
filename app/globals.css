@@ -13,7 +13,7 @@
   --popover-foreground: oklch(0.15 0 0);
   --primary: oklch(0.15 0 0);
   --primary-foreground: oklch(0.985 0 0);
-  --secondary: #d681a0;
+  --secondary: #8c3b7b;
   --secondary-foreground: oklch(0.15 0 0);
   --muted: oklch(0.88 0 0);
   --muted-foreground: oklch(0.5 0 0);
@@ -79,6 +79,7 @@
   --font-sans: "Assistant", sans-serif;
   --font-mono: "Geist Mono", "Geist Mono Fallback";
   --font-playfair: var(--font-playfair), "Playfair Display", serif;
+  --font-cormorant: var(--font-cormorant), "Cormorant Garamond", serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);

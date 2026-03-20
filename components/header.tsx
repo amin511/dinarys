@@ -3,7 +3,8 @@
 import Link from "next/link"
 import Image from "next/image"
 import { useState, useEffect } from "react"
-import { Menu, Search, ShoppingBag, X, ChevronDown, ChevronRight } from "lucide-react"
+import { useRouter } from "next/navigation"
+import { Menu, Search, ShoppingBag, X, ChevronRight } from "lucide-react"
 import { siteConfig, navigationConfig } from "@/lib/config"
 
 interface Category {
@@ -19,8 +20,20 @@ export default function Header() {
   const [isSearchOpen, setIsSearchOpen] = useState(false)
   const [cartCount, setCartCount] = useState(0)
   const [categories, setCategories] = useState<Category[]>([])
-  const [expandedCategories, setExpandedCategories] = useState<number[]>([])
   const [loadingCategories, setLoadingCategories] = useState(false)
+  const [activeTab, setActiveTab] = useState<"menu" | "categories">("menu")
+  const [searchTerm, setSearchTerm] = useState("")
+  const router = useRouter()
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (searchTerm.trim()) {
+      router.push(`/products?search=${encodeURIComponent(searchTerm.trim())}`)
+      setSearchTerm("")
+      setIsMenuOpen(false)
+      setIsSearchOpen(false)
+    }
+  }
 
   useEffect(() => {
     const checkCart = () => {
@@ -64,19 +77,7 @@ export default function Header() {
   // Get primary categories (parent = 0)
   const primaryCategories = categories.filter((cat) => cat.parent === 0)
 
-  // Get child categories for a parent
-  const getChildCategories = (parentId: number) => {
-    return categories.filter((cat) => cat.parent === parentId)
-  }
-
-  // Toggle category expansion
-  const toggleCategory = (categoryId: number) => {
-    setExpandedCategories((prev) =>
-      prev.includes(categoryId)
-        ? prev.filter((id) => id !== categoryId)
-        : [...prev, categoryId]
-    )
-  }
+  const closeMenu = () => setIsMenuOpen(false)
 
   return (
     <header className="border-b bg-white border-border bg-background sticky top-0 z-40">
@@ -127,17 +128,19 @@ export default function Header() {
       </div>
 
       {isSearchOpen && (
-        <div className="border-t border-border px-4 py-4 animate-in slide-in-from-top-2 duration-200">
+        <form onSubmit={handleSearch} className="border-t border-border px-4 py-4 animate-in slide-in-from-top-2 duration-200">
           <div className="max-w-2xl mx-auto relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
             <input
               type="text"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
               placeholder="Rechercher des produits..."
               autoFocus
               className="w-full pl-10 pr-4 py-3 border border-border rounded-sm bg-background text-foreground text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/20"
             />
           </div>
-        </div>
+        </form>
       )}
 
       {isMenuOpen && (
@@ -145,157 +148,154 @@ export default function Header() {
           {/* Overlay */}
           <div
             className="fixed inset-0 bg-black/40 z-40 animate-in fade-in duration-200"
-            onClick={() => setIsMenuOpen(false)}
+            onClick={closeMenu}
           />
 
           {/* Sidebar */}
-          <nav className="fixed top-0 left-0 h-full w-72 bg-background border-r border-border z-50 animate-in slide-in-from-left duration-300 overflow-y-auto">
-            <div className="p-6">
-              {/* Close button */}
+          <nav className="fixed top-0 left-0 h-full w-80 bg-white z-50 animate-in slide-in-from-left duration-300 overflow-y-auto flex flex-col">
+
+            {/* Close button */}
+            <div className="flex justify-end p-4">
               <button
-                onClick={() => setIsMenuOpen(false)}
-                className="mb-8 text-foreground hover:text-accent transition-colors animate-fade-in-up"
-                style={{ animationDelay: '100ms' }}
+                onClick={closeMenu}
+                className="text-[#2D2D2D] hover:text-secondary transition-colors"
                 aria-label="Close menu"
               >
-                <X className="w-6 h-6" />
+                <X className="w-5 h-5" />
               </button>
+            </div>
 
-              {/* Menu items */}
-              <div className="space-y-4">
-                <Link
-                  href="/"
-                  className="block text-base font-light hover:text-accent transition-colors animate-fade-in-up opacity-0"
-                  style={{ animationDelay: '150ms', animationFillMode: 'forwards' }}
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Accueil
-                </Link>
-                <Link
-                  href="/#products"
-                  className="block text-base font-light hover:text-accent transition-colors animate-fade-in-up opacity-0"
-                  style={{ animationDelay: '200ms', animationFillMode: 'forwards' }}
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Nouvelle Collection
-                </Link>
-                <Link
-                  href="/products"
-                  className="block text-base font-light hover:text-accent transition-colors animate-fade-in-up opacity-0"
-                  style={{ animationDelay: '250ms', animationFillMode: 'forwards' }}
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Tous les Produits
-                </Link>
+            {/* Search bar */}
+            <form onSubmit={handleSearch} className="px-5 pb-4">
+              <div className="relative">
+                <input
+                  type="text"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  placeholder="Rechercher des produits"
+                  className="w-full pr-10 pl-4 py-2.5 border border-[#E5DDD3] text-sm text-[#2D2D2D] placeholder:text-[#999] focus:outline-none focus:border-[#2D2D2D] transition-colors"
+                />
+                <button type="submit" className="absolute right-3 top-1/2 -translate-y-1/2">
+                  <Search className="w-4 h-4 text-[#999] hover:text-[#2D2D2D] transition-colors" />
+                </button>
+              </div>
+            </form>
 
-                {/* Divider */}
-                <div className="border-t border-border my-4 animate-fade-in-up opacity-0" style={{ animationDelay: '300ms', animationFillMode: 'forwards' }} />
+            {/* Tabs: MENU / CATÉGORIES */}
+            <div className="flex border-b border-[#E5DDD3]">
+              <button
+                onClick={() => setActiveTab("menu")}
+                className={`flex-1 py-3 text-xs font-bold tracking-widest uppercase text-center transition-colors ${
+                  activeTab === "menu"
+                    ? "text-[#2D2D2D] border-b-2 border-[#2D2D2D]"
+                    : "text-[#999] hover:text-[#2D2D2D]"
+                }`}
+              >
+                Menu
+              </button>
+              <button
+                onClick={() => setActiveTab("categories")}
+                className={`flex-1 py-3 text-xs font-bold tracking-widest uppercase text-center transition-colors ${
+                  activeTab === "categories"
+                    ? "text-[#2D2D2D] border-b-2 border-[#2D2D2D]"
+                    : "text-[#999] hover:text-[#2D2D2D]"
+                }`}
+              >
+                Catégories
+              </button>
+            </div>
 
-                {/* Categories Section */}
-                <div className="animate-fade-in-up opacity-0" style={{ animationDelay: '350ms', animationFillMode: 'forwards' }}>
-                  <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3">
-                    Catégories
-                  </h3>
+            {/* Tab content */}
+            <div className="flex-1 overflow-y-auto">
+              {activeTab === "menu" ? (
+                /* ── MENU TAB ─────────────────────────── */
+                <div>
+                  <SidebarLink href="/" label="ACCUEIL" onClick={closeMenu} />
+                  <SidebarLink href="/a-propos" label="QUI EST NOUR" onClick={closeMenu} />
+                  <SidebarLink href="/products" label="BOUTIQUE" onClick={closeMenu} hasArrow />
+                  <SidebarLink href="/products" label="NOUVELLE COLLECTION" onClick={closeMenu} />
+                  <SidebarLink href="#about-contact" label="NOUS CONTACTER" onClick={closeMenu} />
 
+                  {/* Social link */}
+                  {siteConfig.social.instagram.url && (
+                    <a
+                      href={siteConfig.social.instagram.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-between px-5 py-4 text-xs font-bold tracking-wider text-[#2D2D2D] uppercase border-b border-[#E5DDD3] hover:text-secondary transition-colors"
+                      onClick={closeMenu}
+                    >
+                      INSTAGRAM
+                    </a>
+                  )}
+                </div>
+              ) : (
+                /* ── CATÉGORIES TAB ───────────────────── */
+                <div>
                   {loadingCategories ? (
-                    <div className="space-y-2">
-                      {[...Array(4)].map((_, i) => (
-                        <div key={i} className="h-6 bg-muted animate-pulse rounded" />
+                    <div className="p-5 space-y-3">
+                      {[...Array(5)].map((_, i) => (
+                        <div key={i} className="h-5 bg-[#F0EBE4] animate-pulse rounded" />
                       ))}
                     </div>
                   ) : primaryCategories.length > 0 ? (
-                    <div className="space-y-1">
-                      {primaryCategories.map((category) => {
-                        const children = getChildCategories(category.id)
-                        const hasChildren = children.length > 0
-                        const isExpanded = expandedCategories.includes(category.id)
+                    <>
+                      {/* All products */}
+                      <Link
+                        href="/products"
+                        className="flex items-center justify-between px-5 py-4 text-xs font-bold tracking-wider text-[#2D2D2D] uppercase border-b border-[#E5DDD3] hover:text-secondary transition-colors"
+                        onClick={closeMenu}
+                      >
+                        TOUS LES PRODUITS
+                      </Link>
 
-                        return (
-                          <div key={category.id}>
-                            <div className="flex items-center">
-                              {hasChildren ? (
-                                <button
-                                  onClick={() => toggleCategory(category.id)}
-                                  className="flex items-center justify-between w-full py-2 text-sm font-medium text-foreground hover:text-accent transition-colors"
-                                >
-                                  <span>{category.name}</span>
-                                  {isExpanded ? (
-                                    <ChevronDown className="w-4 h-4 text-muted-foreground" />
-                                  ) : (
-                                    <ChevronRight className="w-4 h-4 text-muted-foreground" />
-                                  )}
-                                </button>
-                              ) : (
-                                <Link
-                                  href={`/products?category=${category.slug}`}
-                                  className="block w-full py-2 text-sm font-medium text-foreground hover:text-accent transition-colors"
-                                  onClick={() => setIsMenuOpen(false)}
-                                >
-                                  {category.name}
-                                </Link>
-                              )}
-                            </div>
-
-                            {/* Child Categories */}
-                            {hasChildren && isExpanded && (
-                              <div className="ml-4 border-l border-border pl-3 space-y-1 animate-in slide-in-from-top-2 duration-200">
-                                {/* Link to view all in parent category */}
-                                <Link
-                                  href={`/products?category=${category.slug}`}
-                                  className="block py-1.5 text-sm text-muted-foreground hover:text-accent transition-colors"
-                                  onClick={() => setIsMenuOpen(false)}
-                                >
-                                  Voir tout
-                                </Link>
-                                {children.map((child) => (
-                                  <Link
-                                    key={child.id}
-                                    href={`/products?category=${child.slug}`}
-                                    className="block py-1.5 text-sm text-muted-foreground hover:text-accent transition-colors"
-                                    onClick={() => setIsMenuOpen(false)}
-                                  >
-                                    {child.name}
-                                  </Link>
-                                ))}
-                              </div>
-                            )}
-                          </div>
-                        )
-                      })}
-                    </div>
+                      {primaryCategories.map((category) => (
+                        <Link
+                          key={category.id}
+                          href={`/products?category=${category.slug}`}
+                          className="flex items-center justify-between px-5 py-4 text-xs font-bold tracking-wider text-[#2D2D2D] uppercase border-b border-[#E5DDD3] hover:text-secondary transition-colors"
+                          onClick={closeMenu}
+                        >
+                          <span>{category.name}</span>
+                          <ChevronRight className="w-4 h-4 text-[#B0A8A0]" />
+                        </Link>
+                      ))}
+                    </>
                   ) : (
-                    <p className="text-sm text-muted-foreground">Aucune catégorie</p>
+                    <p className="px-5 py-4 text-sm text-[#999]">
+                      Aucune catégorie disponible
+                    </p>
                   )}
                 </div>
-
-                {/* Divider */}
-                <div className="border-t border-border my-4 animate-fade-in-up opacity-0" style={{ animationDelay: '400ms', animationFillMode: 'forwards' }} />
-
-                <a
-                  href="https://www.instagram.com/naalasbrand/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block text-base font-light hover:text-accent transition-colors animate-fade-in-up opacity-0"
-                  style={{ animationDelay: '450ms', animationFillMode: 'forwards' }}
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  À Propos
-                </a>
-                <a
-                  href="https://www.instagram.com/naalasbrand/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block text-base font-light hover:text-accent transition-colors animate-fade-in-up opacity-0"
-                  style={{ animationDelay: '500ms', animationFillMode: 'forwards' }}
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Contact
-                </a>
-              </div>
+              )}
             </div>
           </nav>
         </>
       )}
     </header>
+  )
+}
+
+/* ── Sidebar Menu Link ───────────────────────── */
+function SidebarLink({
+  href,
+  label,
+  onClick,
+  hasArrow,
+}: {
+  href: string
+  label: string
+  onClick: () => void
+  hasArrow?: boolean
+}) {
+  return (
+    <Link
+      href={href}
+      className="flex items-center justify-between px-5 py-4 text-xs font-bold tracking-wider text-[#2D2D2D] uppercase border-b border-[#E5DDD3] hover:text-secondary transition-colors"
+      onClick={onClick}
+    >
+      <span>{label}</span>
+      {hasArrow && <ChevronRight className="w-4 h-4 text-[#B0A8A0]" />}
+    </Link>
   )
 }

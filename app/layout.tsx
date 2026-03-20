@@ -1,6 +1,6 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Assistant, Playfair_Display } from "next/font/google"
+import { Assistant, Playfair_Display, Cormorant_Garamond } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { siteConfig } from "@/lib/config"
 import { ShippingPreloader } from "@/components/shipping-preloader"
@@ -14,6 +14,12 @@ const assistant = Assistant({
 const playfair = Playfair_Display({
   subsets: ["latin"],
   variable: "--font-playfair",
+})
+
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["300", "400", "500"],
+  variable: "--font-cormorant",
 })
 
 export const metadata: Metadata = {
@@ -32,7 +38,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`antialiased ${assistant.className} ${playfair.variable}`}>
+      <body className={`antialiased ${assistant.className} ${playfair.variable} ${cormorant.variable}`}>
         <ShippingPreloader />
         {children}
         <Analytics />

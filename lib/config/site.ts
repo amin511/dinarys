@@ -15,12 +15,12 @@ export const siteConfig = {
 
     // Logo & Branding
     logo: {
-        src: "/images/neylalogo2.png",
-        alt: "NEYLA COLLECTION",
+        src: "/logo.png",
+        alt: "NOUR CONFECTION",
         width: 120,
         height: 60,
     },
-    favicon: "/images/neylalogo2.png",
+    favicon: "/logo.png",
 
     // Contact Information
     contact: {
@@ -113,6 +113,12 @@ export const siteConfig = {
      * - "stay"     : Stay on the current page (no redirect)
      */
     addToCartRedirect: "cart" as "cart" | "checkout" | "stay",
+
+    // Video Section
+    video: {
+        url: "https://sienna-yak-396748.hostingersite.com/wp-content/uploads/2026/03/snaptik_7409755669982760198_v3.mp4",
+        poster: "/hero.jpeg", // Change to your preferred thumbnail
+    },
 
     // Copyright
     copyright: {
