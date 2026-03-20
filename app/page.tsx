@@ -41,8 +41,8 @@ export default function Home() {
       <Suspense fallback={<ProductsLoading />}>
         <ProductsSectionServer />
       </Suspense>
-      <BrandBanner />
-      <AboutContactSection />
+      {/* <BrandBanner /> */}
+      {/* <AboutContactSection /> */}
       <Footer />
     </main>
   )

@@ -2,9 +2,9 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { useRouter } from "next/navigation"
-import { Menu, Search, ShoppingBag, X, ChevronRight } from "lucide-react"
+import { Menu, Search, ShoppingBag, X, ChevronRight, ChevronDown } from "lucide-react"
 import { siteConfig, navigationConfig } from "@/lib/config"
 
 interface Category {
@@ -23,6 +23,9 @@ export default function Header() {
   const [loadingCategories, setLoadingCategories] = useState(false)
   const [activeTab, setActiveTab] = useState<"menu" | "categories">("menu")
   const [searchTerm, setSearchTerm] = useState("")
+  const [isCategoriesOpen, setIsCategoriesOpen] = useState(false)
+  const categoriesRef = useRef<HTMLDivElement>(null)
+  const categoriesTimeoutRef = useRef<NodeJS.Timeout | null>(null)
   const router = useRouter()
 
   const handleSearch = (e: React.FormEvent) => {
@@ -58,9 +61,9 @@ export default function Header() {
     }
   }, [])
 
-  // Fetch categories when menu opens
+  // Fetch categories on mount (needed for desktop dropdown)
   useEffect(() => {
-    if (isMenuOpen && categories.length === 0 && !loadingCategories) {
+    if (categories.length === 0 && !loadingCategories) {
       setLoadingCategories(true)
       fetch("/api/categories")
         .then((res) => res.json())
@@ -72,12 +75,34 @@ export default function Header() {
         .catch((err) => console.error("Error fetching categories:", err))
         .finally(() => setLoadingCategories(false))
     }
-  }, [isMenuOpen, categories.length, loadingCategories])
+  }, [categories.length, loadingCategories])
+
+  // Close categories dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (categoriesRef.current && !categoriesRef.current.contains(e.target as Node)) {
+        setIsCategoriesOpen(false)
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside)
+    return () => document.removeEventListener("mousedown", handleClickOutside)
+  }, [])
 
   // Get primary categories (parent = 0)
   const primaryCategories = categories.filter((cat) => cat.parent === 0)
 
   const closeMenu = () => setIsMenuOpen(false)
+
+  const handleCategoriesEnter = () => {
+    if (categoriesTimeoutRef.current) clearTimeout(categoriesTimeoutRef.current)
+    setIsCategoriesOpen(true)
+  }
+
+  const handleCategoriesLeave = () => {
+    categoriesTimeoutRef.current = setTimeout(() => {
+      setIsCategoriesOpen(false)
+    }, 150)
+  }
 
   return (
     <header className="border-b bg-white border-border bg-background sticky top-0 z-40">
@@ -87,28 +112,97 @@ export default function Header() {
         </div>
       )}
 
-      <div className="max-w-7xl mx-auto px-4 h-[80px] py-4 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 h-[80px] py-4 flex items-center justify-between lg:grid lg:grid-cols-[1fr_auto_1fr]">
+        {/* Mobile hamburger — hidden on lg */}
         <button
-          className="text-foreground hover:text-accent transition-colors"
+          className="text-foreground hover:text-accent transition-colors lg:hidden"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           aria-label="Toggle menu"
         >
           <Menu className="w-6 h-6" />
         </button>
 
-        {/* Logo (centered) */}
-        <Link href="/" className="absolute left-1/2 -translate-x-1/2">
+        {/* ── Desktop Navigation (left column) ──────── */}
+        <nav className="hidden lg:flex items-center gap-1">
+          <DesktopNavLink href="/" label="Accueil" />
+          <DesktopNavLink href="/a-propos" label="Qui est Nour" />
+
+          {/* Categories dropdown */}
+          <div
+            ref={categoriesRef}
+            className="relative"
+            onMouseEnter={handleCategoriesEnter}
+            onMouseLeave={handleCategoriesLeave}
+          >
+            <button
+              onClick={() => setIsCategoriesOpen(!isCategoriesOpen)}
+              className={`flex items-center gap-1.5 px-4 py-2 text-sm font-medium tracking-wide text-[#2D2D2D] rounded-lg transition-all duration-200 hover:bg-[#F8F6F3] hover:text-[#1a1a1a] ${
+                isCategoriesOpen ? "bg-[#F8F6F3] text-[#1a1a1a]" : ""
+              }`}
+            >
+              Catégories
+              <ChevronDown
+                className={`w-4 h-4 transition-transform duration-200 ${
+                  isCategoriesOpen ? "rotate-180" : ""
+                }`}
+              />
+            </button>
+
+            {/* Dropdown panel — scrollable & responsive */}
+            {isCategoriesOpen && (
+              <div className="absolute top-full left-0 mt-1 w-56 max-h-[60vh] overflow-y-auto bg-white rounded-xl shadow-lg border border-[#E5DDD3]/60 py-2 animate-in fade-in slide-in-from-top-2 duration-200 z-50">
+                <Link
+                  href="/products"
+                  className="flex items-center gap-3 px-4 py-2.5 text-sm text-[#2D2D2D] hover:bg-[#F8F6F3] transition-colors"
+                  onClick={() => setIsCategoriesOpen(false)}
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#2D2D2D]" />
+                  Tous les Produits
+                </Link>
+
+                {loadingCategories ? (
+                  <div className="px-4 py-3 space-y-2">
+                    {[...Array(3)].map((_, i) => (
+                      <div key={i} className="h-4 bg-[#F0EBE4] animate-pulse rounded" />
+                    ))}
+                  </div>
+                ) : (
+                  primaryCategories.map((category) => (
+                    <Link
+                      key={category.id}
+                      href={`/products?category=${category.slug}`}
+                      className="flex items-center justify-between px-4 py-2.5 text-sm text-[#4A4A4A] hover:bg-[#F8F6F3] hover:text-[#2D2D2D] transition-colors group"
+                      onClick={() => setIsCategoriesOpen(false)}
+                    >
+                      <span className="flex items-center gap-3">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#B0A8A0] group-hover:bg-[#2D2D2D] transition-colors" />
+                        {category.name}
+                      </span>
+                      <ChevronRight className="w-3.5 h-3.5 text-[#B0A8A0] opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </Link>
+                  ))
+                )}
+              </div>
+            )}
+          </div>
+
+          <DesktopNavLink href="/products" label="Nos Produits" />
+        </nav>
+
+        {/* Logo (center column — always centered) */}
+        <Link href="/" className="absolute left-1/2 -translate-x-1/2 lg:relative lg:left-auto lg:translate-x-0 lg:justify-self-center">
           <Image
             src={siteConfig.logo.src}
             alt={siteConfig.logo.alt}
             width={siteConfig.logo.width}
             height={siteConfig.logo.height}
-            className="h-19 w-auto object-contain mix-blend-multiply dark:mix-blend-screen dark:invert"
+            className="h-12 w-auto object-contain mix-blend-multiply dark:mix-blend-screen dark:invert"
             priority
           />
         </Link>
 
-        <div className="flex items-center gap-4">
+        {/* Actions (right column) */}
+        <div className="flex items-center gap-4 lg:justify-self-end">
           <button
             className="text-foreground hover:text-accent transition-colors"
             onClick={() => setIsSearchOpen(!isSearchOpen)}
@@ -143,16 +237,17 @@ export default function Header() {
         </form>
       )}
 
+      {/* ── Mobile Sidebar (unchanged) ───────────────── */}
       {isMenuOpen && (
         <>
           {/* Overlay */}
           <div
-            className="fixed inset-0 bg-black/40 z-40 animate-in fade-in duration-200"
+            className="fixed inset-0 bg-black/40 z-40 animate-in fade-in duration-200 lg:hidden"
             onClick={closeMenu}
           />
 
           {/* Sidebar */}
-          <nav className="fixed top-0 left-0 h-full w-80 bg-white z-50 animate-in slide-in-from-left duration-300 overflow-y-auto flex flex-col">
+          <nav className="fixed top-0 left-0 h-full w-80 bg-white z-50 animate-in slide-in-from-left duration-300 overflow-y-auto flex flex-col lg:hidden">
 
             {/* Close button */}
             <div className="flex justify-end p-4">
@@ -212,7 +307,7 @@ export default function Header() {
                 <div>
                   <SidebarLink href="/" label="ACCUEIL" onClick={closeMenu} />
                   <SidebarLink href="/a-propos" label="QUI EST NOUR" onClick={closeMenu} />
-                  <SidebarLink href="/products" label="BOUTIQUE" onClick={closeMenu} hasArrow />
+                  <SidebarLink href="/products" label="NOS PRODUITS" onClick={closeMenu} hasArrow />
                   <SidebarLink href="/products" label="NOUVELLE COLLECTION" onClick={closeMenu} />
                   <SidebarLink href="#about-contact" label="NOUS CONTACTER" onClick={closeMenu} />
 
@@ -276,7 +371,19 @@ export default function Header() {
   )
 }
 
-/* ── Sidebar Menu Link ───────────────────────── */
+/* ── Desktop Nav Link ────────────────────────────── */
+function DesktopNavLink({ href, label }: { href: string; label: string }) {
+  return (
+    <Link
+      href={href}
+      className="px-4 py-2 text-sm font-medium tracking-wide text-[#2D2D2D] rounded-lg transition-all duration-200 hover:bg-[#F8F6F3] hover:text-[#1a1a1a]"
+    >
+      {label}
+    </Link>
+  )
+}
+
+/* ── Sidebar Menu Link (Mobile) ──────────────────── */
 function SidebarLink({
   href,
   label,

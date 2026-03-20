@@ -105,7 +105,7 @@ export const siteConfig = {
 
     // Video Section
     video: {
-        url: "https://sienna-yak-396748.hostingersite.com/wp-content/uploads/2026/03/snaptik_7409755669982760198_v3.mp4",
+        url: "https://midnightblue-trout-887851.hostingersite.com/wp-content/uploads/2026/03/snaptik_7409755669982760198_v3.mp4",
         poster: "/hero.jpeg",
     },
 
