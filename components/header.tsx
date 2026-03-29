@@ -26,6 +26,7 @@ export default function Header() {
   const [isCategoriesOpen, setIsCategoriesOpen] = useState(false)
   const categoriesRef = useRef<HTMLDivElement>(null)
   const categoriesTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+  const hasFetchedCategoriesRef = useRef(false)
   const router = useRouter()
 
   const handleSearch = (e: React.FormEvent) => {
@@ -61,21 +62,46 @@ export default function Header() {
     }
   }, [])
 
-  // Fetch categories on mount (needed for desktop dropdown)
+  // Fetch categories once on mount for desktop/mobile navigation dropdowns.
   useEffect(() => {
-    if (categories.length === 0 && !loadingCategories) {
+    if (hasFetchedCategoriesRef.current) return
+    hasFetchedCategoriesRef.current = true
+
+    const controller = new AbortController()
+
+    const fetchCategories = async () => {
       setLoadingCategories(true)
-      fetch("/api/categories")
-        .then((res) => res.json())
-        .then((data) => {
-          if (Array.isArray(data)) {
-            setCategories(data)
-          }
-        })
-        .catch((err) => console.error("Error fetching categories:", err))
-        .finally(() => setLoadingCategories(false))
+
+      try {
+        const response = await fetch("/api/categories", { signal: controller.signal })
+
+        if (!response.ok) {
+          throw new Error(`Categories API returned ${response.status}`)
+        }
+
+        const data = await response.json()
+
+        if (Array.isArray(data)) {
+          setCategories(data)
+        } else {
+          console.error("Unexpected categories payload:", data)
+          setCategories([])
+        }
+      } catch (err) {
+        if ((err as Error).name !== "AbortError") {
+          console.error("Error fetching categories:", err)
+        }
+      } finally {
+        setLoadingCategories(false)
+      }
     }
-  }, [categories.length, loadingCategories])
+
+    fetchCategories()
+
+    return () => {
+      controller.abort()
+    }
+  }, [])
 
   // Close categories dropdown when clicking outside
   useEffect(() => {
@@ -136,15 +162,13 @@ export default function Header() {
           >
             <button
               onClick={() => setIsCategoriesOpen(!isCategoriesOpen)}
-              className={`flex items-center gap-1.5 px-4 py-2 text-sm font-medium tracking-wide text-[#2D2D2D] rounded-lg transition-all duration-200 hover:bg-[#F8F6F3] hover:text-[#1a1a1a] ${
-                isCategoriesOpen ? "bg-[#F8F6F3] text-[#1a1a1a]" : ""
-              }`}
+              className={`flex items-center gap-1.5 px-4 py-2 text-sm font-medium tracking-wide text-[#2D2D2D] rounded-lg transition-all duration-200 hover:bg-[#F8F6F3] hover:text-[#1a1a1a] ${isCategoriesOpen ? "bg-[#F8F6F3] text-[#1a1a1a]" : ""
+                }`}
             >
               Catégories
               <ChevronDown
-                className={`w-4 h-4 transition-transform duration-200 ${
-                  isCategoriesOpen ? "rotate-180" : ""
-                }`}
+                className={`w-4 h-4 transition-transform duration-200 ${isCategoriesOpen ? "rotate-180" : ""
+                  }`}
               />
             </button>
 
@@ -280,21 +304,19 @@ export default function Header() {
             <div className="flex border-b border-[#E5DDD3]">
               <button
                 onClick={() => setActiveTab("menu")}
-                className={`flex-1 py-3 text-xs font-bold tracking-widest uppercase text-center transition-colors ${
-                  activeTab === "menu"
+                className={`flex-1 py-3 text-xs font-bold tracking-widest uppercase text-center transition-colors ${activeTab === "menu"
                     ? "text-[#2D2D2D] border-b-2 border-[#2D2D2D]"
                     : "text-[#999] hover:text-[#2D2D2D]"
-                }`}
+                  }`}
               >
                 Menu
               </button>
               <button
                 onClick={() => setActiveTab("categories")}
-                className={`flex-1 py-3 text-xs font-bold tracking-widest uppercase text-center transition-colors ${
-                  activeTab === "categories"
+                className={`flex-1 py-3 text-xs font-bold tracking-widest uppercase text-center transition-colors ${activeTab === "categories"
                     ? "text-[#2D2D2D] border-b-2 border-[#2D2D2D]"
                     : "text-[#999] hover:text-[#2D2D2D]"
-                }`}
+                  }`}
               >
                 Catégories
               </button>
