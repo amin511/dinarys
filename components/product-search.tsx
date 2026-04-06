@@ -1,7 +1,7 @@
 "use client"
 
 import { useRouter, useSearchParams } from "next/navigation"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Search } from "lucide-react"
 
 interface ProductSearchProps {
@@ -12,6 +12,10 @@ export default function ProductSearch({ initialQuery = "" }: ProductSearchProps)
   const [query, setQuery] = useState(initialQuery)
   const router = useRouter()
   const searchParams = useSearchParams()
+
+  useEffect(() => {
+    setQuery(initialQuery)
+  }, [initialQuery])
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()

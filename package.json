@@ -6,7 +6,8 @@
     "build": "next build",
     "dev": "next dev",
     "lint": "eslint .",
-    "start": "next start"
+    "start": "next start",
+    "export:shipping-zones": "node scripts/fetch-shipping-zones-prices.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
