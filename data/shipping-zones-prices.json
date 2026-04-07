@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-04-06T03:00:13.909Z",
+  "generatedAt": "2026-04-07T10:55:07.412Z",
   "storeUrl": "https://mediumturquoise-seal-882397.hostingersite.com",
   "totalZones": 55,
-  "failedZones": 18,
+  "failedZones": 5,
   "zones": [
     {
       "id": 0,
@@ -178,8 +178,31 @@
           }
         }
       ],
-      "methods": [],
-      "error": "Request failed (504) for https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/41/methods: <html>\r\n<head><title>504 Gateway Time-out</title></head>\r\n<body>\r\n<center><h1>504 Gateway Time-out</h1></center>\r\n<hr><center>nginx</center>\r\n</body>\r\n</html>\r\n"
+      "methods": [
+        {
+          "instance_id": 79,
+          "method_id": "flat_rate_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 800,
+          "rawCost": "800",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 80,
+          "method_id": "local_pickup_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 450,
+          "rawCost": "450",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
     },
     {
       "id": 17,
@@ -491,8 +514,31 @@
           }
         }
       ],
-      "methods": [],
-      "error": "Request failed (504) for https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/42/methods: <html>\r\n<head><title>504 Gateway Time-out</title></head>\r\n<body>\r\n<center><h1>504 Gateway Time-out</h1></center>\r\n<hr><center>nginx</center>\r\n</body>\r\n</html>\r\n"
+      "methods": [
+        {
+          "instance_id": 81,
+          "method_id": "flat_rate_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 1600,
+          "rawCost": "1600",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 82,
+          "method_id": "local_pickup_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 1050,
+          "rawCost": "1050",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
     },
     {
       "id": 25,
@@ -516,8 +562,31 @@
           }
         }
       ],
-      "methods": [],
-      "error": "Request failed (504) for https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/25/methods: <html>\r\n<head><title>504 Gateway Time-out</title></head>\r\n<body>\r\n<center><h1>504 Gateway Time-out</h1></center>\r\n<hr><center>nginx</center>\r\n</body>\r\n</html>\r\n"
+      "methods": [
+        {
+          "instance_id": 47,
+          "method_id": "flat_rate_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 850,
+          "rawCost": "850",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 48,
+          "method_id": "local_pickup_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 450,
+          "rawCost": "450",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
     },
     {
       "id": 21,
@@ -571,7 +640,24 @@
       "id": 13,
       "name": "Tiaret",
       "order": 14,
-      "locations": [],
+      "locations": [
+        {
+          "code": "DZ:DZ-14",
+          "type": "state",
+          "_links": {
+            "collection": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/13/locations"
+              }
+            ],
+            "describes": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/13"
+              }
+            ]
+          }
+        }
+      ],
       "methods": [
         {
           "instance_id": 25,
@@ -596,7 +682,7 @@
           "requires": null
         }
       ],
-      "error": "Request failed (504) for https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/13/locations: <html>\r\n<head><title>504 Gateway Time-out</title></head>\r\n<body>\r\n<center><h1>504 Gateway Time-out</h1></center>\r\n<hr><center>nginx</center>\r\n</body>\r\n</html>\r\n"
+      "error": null
     },
     {
       "id": 37,
@@ -812,8 +898,31 @@
           }
         }
       ],
-      "methods": [],
-      "error": "Request failed (504) for https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/15/methods: <html>\r\n<head><title>504 Gateway Time-out</title></head>\r\n<body>\r\n<center><h1>504 Gateway Time-out</h1></center>\r\n<hr><center>nginx</center>\r\n</body>\r\n</html>\r\n"
+      "methods": [
+        {
+          "instance_id": 28,
+          "method_id": "flat_rate_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 750,
+          "rawCost": "750",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 29,
+          "method_id": "local_pickup_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 450,
+          "rawCost": "450",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
     },
     {
       "id": 26,
@@ -867,49 +976,9 @@
       "id": 5,
       "name": "Skikda",
       "order": 21,
-      "locations": [
-        {
-          "code": "DZ:DZ-21",
-          "type": "state",
-          "_links": {
-            "collection": [
-              {
-                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/5/locations"
-              }
-            ],
-            "describes": [
-              {
-                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/5"
-              }
-            ]
-          }
-        }
-      ],
-      "methods": [
-        {
-          "instance_id": 9,
-          "method_id": "flat_rate_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Home Delivery",
-          "title": "التوصيل للمنزل",
-          "enabled": true,
-          "cost": 800,
-          "rawCost": "800",
-          "min_amount": null,
-          "requires": null
-        },
-        {
-          "instance_id": 10,
-          "method_id": "local_pickup_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Hub Pickup",
-          "title": "التوصيل للمكتب",
-          "enabled": true,
-          "cost": 450,
-          "rawCost": "450",
-          "min_amount": null,
-          "requires": null
-        }
-      ],
-      "error": null
+      "locations": [],
+      "methods": [],
+      "error": "Request failed (500) for https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/5/locations: {\"code\":\"wp_die\",\"message\":\"<h1>Error establishing a database connection<\\/h1>\",\"data\":{\"status\":500},\"additional_errors\":[]} | Request failed (500) for https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/5/methods: {\"code\":\"wp_die\",\"message\":\"<h1>Error establishing a database connection<\\/h1>\",\"data\":{\"status\":500},\"additional_errors\":[]}"
     },
     {
       "id": 23,
@@ -1077,45 +1146,20 @@
           }
         }
       ],
-      "methods": [],
-      "error": "Request failed (504) for https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/2/methods: <html>\r\n<head><title>504 Gateway Time-out</title></head>\r\n<body>\r\n<center><h1>504 Gateway Time-out</h1></center>\r\n<hr><center>nginx</center>\r\n</body>\r\n</html>\r\n"
-    },
-    {
-      "id": 4,
-      "name": "Medea",
-      "order": 26,
-      "locations": [
-        {
-          "code": "DZ:DZ-26",
-          "type": "state",
-          "_links": {
-            "collection": [
-              {
-                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/4/locations"
-              }
-            ],
-            "describes": [
-              {
-                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/4"
-              }
-            ]
-          }
-        }
-      ],
       "methods": [
         {
-          "instance_id": 7,
+          "instance_id": 3,
           "method_id": "flat_rate_zrexpress_v2",
           "method_title": "ZR Express 2.0 Home Delivery",
           "title": "التوصيل للمنزل",
           "enabled": true,
-          "cost": 750,
-          "rawCost": "750",
+          "cost": 800,
+          "rawCost": "800",
           "min_amount": null,
           "requires": null
         },
         {
-          "instance_id": 8,
+          "instance_id": 4,
           "method_id": "local_pickup_zrexpress_v2",
           "method_title": "ZR Express 2.0 Hub Pickup",
           "title": "التوصيل للمكتب",
@@ -1127,6 +1171,14 @@
         }
       ],
       "error": null
+    },
+    {
+      "id": 4,
+      "name": "Medea",
+      "order": 26,
+      "locations": [],
+      "methods": [],
+      "error": "Request failed (500) for https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/4/locations: {\"code\":\"wp_die\",\"message\":\"<h1>Error establishing a database connection<\\/h1>\",\"data\":{\"status\":500},\"additional_errors\":[]} | Request failed (500) for https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/4/methods: {\"code\":\"wp_die\",\"message\":\"<h1>Error establishing a database connection<\\/h1>\",\"data\":{\"status\":500},\"additional_errors\":[]}"
     },
     {
       "id": 47,
@@ -1438,8 +1490,31 @@
           }
         }
       ],
-      "methods": [],
-      "error": "Request failed (504) for https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/35/methods: <html>\r\n<head><title>504 Gateway Time-out</title></head>\r\n<body>\r\n<center><h1>504 Gateway Time-out</h1></center>\r\n<hr><center>nginx</center>\r\n</body>\r\n</html>\r\n"
+      "methods": [
+        {
+          "instance_id": 67,
+          "method_id": "flat_rate_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 750,
+          "rawCost": "750",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 68,
+          "method_id": "local_pickup_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 450,
+          "rawCost": "450",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
     },
     {
       "id": 39,
@@ -1541,7 +1616,24 @@
       "id": 33,
       "name": "Tissemsilt",
       "order": 38,
-      "locations": [],
+      "locations": [
+        {
+          "code": "DZ:DZ-38",
+          "type": "state",
+          "_links": {
+            "collection": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/33/locations"
+              }
+            ],
+            "describes": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/33"
+              }
+            ]
+          }
+        }
+      ],
       "methods": [
         {
           "instance_id": 63,
@@ -1566,7 +1658,7 @@
           "requires": null
         }
       ],
-      "error": "Request failed (503) for https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/33/locations: <!DOCTYPE html>\n<html style=\"height:100%\">\n<head>\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\" />\n<title> 503 Service Unavailable\r\n</title><style>@media (prefers-color-scheme:dark){body{background-color:#000!important}}</style></head>\n<body style=\"color: #444; margin:0;font: normal 14px/20px Arial, Helvetica, sans-serif; height:100%; background-color: #fff;\">\n<div style=\"height:auto; min-height:100%; \">     <div style=\"text-align: center; width:800px; margin-left: -400px; position:absolute; top: 30%; left:50%;\">\n        <h1 style=\"margin:0; font-size:150px; line-height:150px; font-weight:bold;\">503</h1>\n<h2 style=\"margin-top:20px;font-size: 30px;\">Service Unavailable\r\n</h2>\n<p>The server is temporarily busy, try again later!</p>\n</div></div></body></html>\n"
+      "error": null
     },
     {
       "id": 11,
@@ -1621,31 +1713,8 @@
       "name": "Khenchela",
       "order": 40,
       "locations": [],
-      "methods": [
-        {
-          "instance_id": 45,
-          "method_id": "flat_rate_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Home Delivery",
-          "title": "التوصيل للمنزل",
-          "enabled": true,
-          "cost": 800,
-          "rawCost": "800",
-          "min_amount": null,
-          "requires": null
-        },
-        {
-          "instance_id": 46,
-          "method_id": "local_pickup_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Hub Pickup",
-          "title": "التوصيل للمكتب",
-          "enabled": true,
-          "cost": 450,
-          "rawCost": "450",
-          "min_amount": null,
-          "requires": null
-        }
-      ],
-      "error": "Request failed (504) for https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/24/locations: <html>\r\n<head><title>504 Gateway Time-out</title></head>\r\n<body>\r\n<center><h1>504 Gateway Time-out</h1></center>\r\n<hr><center>nginx</center>\r\n</body>\r\n</html>\r\n"
+      "methods": [],
+      "error": "Request failed (500) for https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/24/locations: {\"code\":\"wp_die\",\"message\":\"<h1>Error establishing a database connection<\\/h1>\",\"data\":{\"status\":500},\"additional_errors\":[]} | Request failed (500) for https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/24/methods: {\"code\":\"wp_die\",\"message\":\"<h1>Error establishing a database connection<\\/h1>\",\"data\":{\"status\":500},\"additional_errors\":[]}"
     },
     {
       "id": 19,
@@ -1861,37 +1930,31 @@
           }
         }
       ],
-      "methods": [
-        {
-          "instance_id": 15,
-          "method_id": "flat_rate_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Home Delivery",
-          "title": "التوصيل للمنزل",
-          "enabled": true,
-          "cost": 1100,
-          "rawCost": "1100",
-          "min_amount": null,
-          "requires": null
-        },
-        {
-          "instance_id": 16,
-          "method_id": "local_pickup_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Hub Pickup",
-          "title": "التوصيل للمكتب",
-          "enabled": true,
-          "cost": 600,
-          "rawCost": "600",
-          "min_amount": null,
-          "requires": null
-        }
-      ],
-      "error": null
+      "methods": [],
+      "error": "Request failed (500) for https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/8/methods: {\"code\":\"wp_die\",\"message\":\"<h1>Error establishing a database connection<\\/h1>\",\"data\":{\"status\":500},\"additional_errors\":[]}"
     },
     {
       "id": 49,
       "name": "Ain temouchent",
       "order": 46,
-      "locations": [],
+      "locations": [
+        {
+          "code": "DZ:DZ-46",
+          "type": "state",
+          "_links": {
+            "collection": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/49/locations"
+              }
+            ],
+            "describes": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/49"
+              }
+            ]
+          }
+        }
+      ],
       "methods": [
         {
           "instance_id": 95,
@@ -1916,13 +1979,30 @@
           "requires": null
         }
       ],
-      "error": "Request failed (504) for https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/49/locations: <html>\r\n<head><title>504 Gateway Time-out</title></head>\r\n<body>\r\n<center><h1>504 Gateway Time-out</h1></center>\r\n<hr><center>nginx</center>\r\n</body>\r\n</html>\r\n"
+      "error": null
     },
     {
       "id": 6,
       "name": "Ghardaia",
       "order": 47,
-      "locations": [],
+      "locations": [
+        {
+          "code": "DZ:DZ-47",
+          "type": "state",
+          "_links": {
+            "collection": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/6/locations"
+              }
+            ],
+            "describes": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/6"
+              }
+            ]
+          }
+        }
+      ],
       "methods": [
         {
           "instance_id": 11,
@@ -1947,7 +2027,7 @@
           "requires": null
         }
       ],
-      "error": "Request failed (504) for https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/6/locations: <html>\r\n<head><title>504 Gateway Time-out</title></head>\r\n<body>\r\n<center><h1>504 Gateway Time-out</h1></center>\r\n<hr><center>nginx</center>\r\n</body>\r\n</html>\r\n"
+      "error": null
     },
     {
       "id": 20,
@@ -2001,7 +2081,24 @@
       "id": 43,
       "name": "Timimoun",
       "order": 49,
-      "locations": [],
+      "locations": [
+        {
+          "code": "DZ:DZ-49",
+          "type": "state",
+          "_links": {
+            "collection": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/43/locations"
+              }
+            ],
+            "describes": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/43"
+              }
+            ]
+          }
+        }
+      ],
       "methods": [
         {
           "instance_id": 83,
@@ -2026,13 +2123,30 @@
           "requires": null
         }
       ],
-      "error": "Request failed (504) for https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/43/locations: <html>\r\n<head><title>504 Gateway Time-out</title></head>\r\n<body>\r\n<center><h1>504 Gateway Time-out</h1></center>\r\n<hr><center>nginx</center>\r\n</body>\r\n</html>\r\n"
+      "error": null
     },
     {
       "id": 51,
       "name": "Ouled djellal",
       "order": 51,
-      "locations": [],
+      "locations": [
+        {
+          "code": "DZ:DZ-51",
+          "type": "state",
+          "_links": {
+            "collection": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/51/locations"
+              }
+            ],
+            "describes": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/51"
+              }
+            ]
+          }
+        }
+      ],
       "methods": [
         {
           "instance_id": 99,
@@ -2057,13 +2171,30 @@
           "requires": null
         }
       ],
-      "error": "Request failed (504) for https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/51/locations: <html>\r\n<head><title>504 Gateway Time-out</title></head>\r\n<body>\r\n<center><h1>504 Gateway Time-out</h1></center>\r\n<hr><center>nginx</center>\r\n</body>\r\n</html>\r\n"
+      "error": null
     },
     {
       "id": 30,
       "name": "Beni abbes",
       "order": 52,
-      "locations": [],
+      "locations": [
+        {
+          "code": "DZ:DZ-52",
+          "type": "state",
+          "_links": {
+            "collection": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/30/locations"
+              }
+            ],
+            "describes": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/30"
+              }
+            ]
+          }
+        }
+      ],
       "methods": [
         {
           "instance_id": 57,
@@ -2088,44 +2219,38 @@
           "requires": null
         }
       ],
-      "error": "Request failed (504) for https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/30/locations: <html>\r\n<head><title>504 Gateway Time-out</title></head>\r\n<body>\r\n<center><h1>504 Gateway Time-out</h1></center>\r\n<hr><center>nginx</center>\r\n</body>\r\n</html>\r\n"
+      "error": null
     },
     {
       "id": 52,
       "name": "In salah",
       "order": 53,
       "locations": [],
-      "methods": [
-        {
-          "instance_id": 101,
-          "method_id": "flat_rate_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Home Delivery",
-          "title": "التوصيل للمنزل",
-          "enabled": true,
-          "cost": 1600,
-          "rawCost": "1600",
-          "min_amount": null,
-          "requires": null
-        },
-        {
-          "instance_id": 102,
-          "method_id": "local_pickup_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Hub Pickup",
-          "title": "التوصيل للمكتب",
-          "enabled": true,
-          "cost": 1120,
-          "rawCost": "1120",
-          "min_amount": null,
-          "requires": null
-        }
-      ],
-      "error": "Request failed (504) for https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/52/locations: <html>\r\n<head><title>504 Gateway Time-out</title></head>\r\n<body>\r\n<center><h1>504 Gateway Time-out</h1></center>\r\n<hr><center>nginx</center>\r\n</body>\r\n</html>\r\n"
+      "methods": [],
+      "error": "Request failed (500) for https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/52/locations: {\"code\":\"wp_die\",\"message\":\"<h1>Error establishing a database connection<\\/h1>\",\"data\":{\"status\":500},\"additional_errors\":[]} | Request failed (500) for https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/52/methods: {\"code\":\"wp_die\",\"message\":\"<h1>Error establishing a database connection<\\/h1>\",\"data\":{\"status\":500},\"additional_errors\":[]}"
     },
     {
       "id": 14,
       "name": "In guezzam",
       "order": 54,
-      "locations": [],
+      "locations": [
+        {
+          "code": "DZ:DZ-54",
+          "type": "state",
+          "_links": {
+            "collection": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/14/locations"
+              }
+            ],
+            "describes": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/14"
+              }
+            ]
+          }
+        }
+      ],
       "methods": [
         {
           "instance_id": 27,
@@ -2139,13 +2264,30 @@
           "requires": null
         }
       ],
-      "error": "Request failed (504) for https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/14/locations: <html>\r\n<head><title>504 Gateway Time-out</title></head>\r\n<body>\r\n<center><h1>504 Gateway Time-out</h1></center>\r\n<hr><center>nginx</center>\r\n</body>\r\n</html>\r\n"
+      "error": null
     },
     {
       "id": 34,
       "name": "Touggourt",
       "order": 55,
-      "locations": [],
+      "locations": [
+        {
+          "code": "DZ:DZ-55",
+          "type": "state",
+          "_links": {
+            "collection": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/34/locations"
+              }
+            ],
+            "describes": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/34"
+              }
+            ]
+          }
+        }
+      ],
       "methods": [
         {
           "instance_id": 65,
@@ -2170,7 +2312,7 @@
           "requires": null
         }
       ],
-      "error": "Request failed (504) for https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/34/locations: <html>\r\n<head><title>504 Gateway Time-out</title></head>\r\n<body>\r\n<center><h1>504 Gateway Time-out</h1></center>\r\n<hr><center>nginx</center>\r\n</body>\r\n</html>\r\n"
+      "error": null
     },
     {
       "id": 16,
@@ -2213,7 +2355,24 @@
       "id": 50,
       "name": "Menia",
       "order": 58,
-      "locations": [],
+      "locations": [
+        {
+          "code": "DZ:DZ-58",
+          "type": "state",
+          "_links": {
+            "collection": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/50/locations"
+              }
+            ],
+            "describes": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/50"
+              }
+            ]
+          }
+        }
+      ],
       "methods": [
         {
           "instance_id": 97,
@@ -2238,7 +2397,7 @@
           "requires": null
         }
       ],
-      "error": "Request failed (504) for https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/50/locations: <html>\r\n<head><title>504 Gateway Time-out</title></head>\r\n<body>\r\n<center><h1>504 Gateway Time-out</h1></center>\r\n<hr><center>nginx</center>\r\n</body>\r\n</html>\r\n"
+      "error": null
     }
   ]
 }
