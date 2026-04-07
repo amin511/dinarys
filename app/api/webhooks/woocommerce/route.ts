@@ -36,18 +36,31 @@ function verifyWebhookSignature(payload: string, signature: string): boolean {
 export async function POST(request: Request) {
     try {
         const rawBody = await request.text()
+        const trimmedBody = rawBody.trim()
 
         // Get WooCommerce headers
         const signature = request.headers.get("x-wc-webhook-signature") || ""
-        const topic = request.headers.get("x-wc-webhook-topic") || ""
-        const resource = request.headers.get("x-wc-webhook-resource") || ""
-        const event = request.headers.get("x-wc-webhook-event") || ""
+        const headerTopic = request.headers.get("x-wc-webhook-topic") || ""
+        const headerResource = request.headers.get("x-wc-webhook-resource") || ""
+        const headerEvent = request.headers.get("x-wc-webhook-event") || ""
         const deliveryId = request.headers.get("x-wc-webhook-delivery-id") || ""
 
         console.log("[WooCommerce Webhook] Secret configured:", WEBHOOK_SECRET ? "Yes" : "No")
+        console.log("[WooCommerce Webhook] Headers:", {
+            topic: headerTopic,
+            resource: headerResource,
+            event: headerEvent,
+            deliveryId,
+            hasSignature: Boolean(signature),
+        })
+
+        if (!verifyWebhookSignature(rawBody, signature)) {
+            console.error("[WooCommerce Webhook] Invalid signature")
+            return NextResponse.json({ error: "Invalid webhook signature" }, { status: 401 })
+        }
 
         // Handle WooCommerce ping/test requests (not JSON)
-        if (rawBody.startsWith("webhook_id=") || !rawBody.startsWith("{")) {
+        if (trimmedBody.startsWith("webhook_id=")) {
             console.log("[WooCommerce Webhook] Ping request received, responding OK")
             return NextResponse.json({ success: true, message: "Ping received" })
         }
@@ -55,11 +68,17 @@ export async function POST(request: Request) {
         // Parse payload
         let payload
         try {
-            payload = JSON.parse(rawBody)
+            payload = JSON.parse(trimmedBody)
         } catch (e) {
-            console.log("[WooCommerce Webhook] Invalid JSON, ignoring:", rawBody.substring(0, 100))
+            console.log("[WooCommerce Webhook] Invalid JSON, ignoring:", trimmedBody.substring(0, 100))
             return NextResponse.json({ success: true, message: "Non-JSON request ignored" })
         }
+
+        // Fallback: some WooCommerce setups only send x-wc-webhook-topic (e.g. product.created)
+        const topic = headerTopic || ""
+        const [topicResource = "", topicEvent = ""] = topic.split(".")
+        const resource = headerResource || topicResource
+        const event = headerEvent || topicEvent
 
         console.log(`[WooCommerce Webhook] Received: ${topic} (${resource}.${event})`)
         console.log(`[WooCommerce Webhook] Delivery ID: ${deliveryId}`)
@@ -130,9 +149,9 @@ async function handleProductWebhook(event: string, payload: any) {
 
         case "updated":
             // Invalider les tags de cache pour le produit et ses variations
-            revalidateTag(`product-${productId}`)
-            revalidateTag(`variations-${productId}`)
-            
+            revalidateTag(`product-${productId}`, "max")
+            revalidateTag(`variations-${productId}`, "max")
+
             // Revalider la page produit spécifique et les listings
             revalidatePath(`/product/${productId}`)
             revalidatePath("/products")
@@ -143,9 +162,9 @@ async function handleProductWebhook(event: string, payload: any) {
         case "deleted":
         case "trashed":
             // Invalider les tags de cache
-            revalidateTag(`product-${productId}`)
-            revalidateTag(`variations-${productId}`)
-            
+            revalidateTag(`product-${productId}`, "max")
+            revalidateTag(`variations-${productId}`, "max")
+
             // Invalider le layout de la route pour supprimer le cache de la page
             revalidatePath("/product/[id]", "layout")
             revalidatePath("/products")
@@ -155,9 +174,9 @@ async function handleProductWebhook(event: string, payload: any) {
 
         case "restored":
             // Produit restauré depuis la corbeille - traiter comme un nouveau produit
-            revalidateTag(`product-${productId}`)
-            revalidateTag(`variations-${productId}`)
-            
+            revalidateTag(`product-${productId}`, "max")
+            revalidateTag(`variations-${productId}`, "max")
+
             revalidatePath("/product/[id]", "layout")
             revalidatePath(`/product/${productId}`)
             revalidatePath("/products")
