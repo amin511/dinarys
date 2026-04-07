@@ -6,13 +6,13 @@ import ProductDetailClient from "@/components/product-detail-client"
 import { getWooCredentials, wooConfig, siteConfig } from "@/lib/config"
 
 /**
- * Full SSG Configuration - All pages pre-generated at build time
+ * SSG Configuration with on-demand generation for new products
  * 
  * - generateStaticParams() génère toutes les pages produits au build time
- * - dynamicParams = false : Seuls les produits pré-générés sont accessibles
- * - Les nouveaux produits retourneront 404 jusqu'au prochain build
+ * - dynamicParams = true : Les nouveaux produits peuvent être générés à la demande
+ * - Pas de revalidation temporelle (pas d'ISR intervalle)
  */
-export const dynamicParams = false // Full SSG, pas de génération à la demande
+export const dynamicParams = true
 
 function sleep(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms))
@@ -56,18 +56,14 @@ async function getProduct(id: string) {
     const { storeUrl, authHeader } = getWooCredentials()
     const apiUrl = `${storeUrl}/wp-json/wc/v3/products/${id}`
 
-    const response = await fetch(apiUrl, {
-      headers: {
-        Authorization: authHeader,
-      },
-      next: { tags: [`product-${id}`] }, // Tag pour revalidation
-    })
-
-    if (!response.ok) {
+    let product: any = null
+    try {
+      product = await fetchJsonWithRetry(apiUrl, authHeader, `product ${id}`)
+    } catch (error) {
+      console.error(`[v0] Failed to fetch product ${id} after retries:`, error)
       return null
     }
 
-    const product = await response.json()
     return product
   } catch (error) {
     console.error("[v0] Error fetching product:", error)
