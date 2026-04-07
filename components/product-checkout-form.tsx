@@ -26,6 +26,14 @@ interface ProductCheckoutFormProps {
   }
 }
 
+function validatePhoneNumber(phone: string): boolean {
+  // Remove spaces and dashes
+  const cleaned = phone.replace(/[\s-]/g, '')
+  // Algerian phone: 0612345678 (10 digits) or +213612345678 (13 chars)
+  const phoneRegex = /^(0|\+213)\d{9}$/
+  return phoneRegex.test(cleaned)
+}
+
 export default function ProductCheckoutForm({ product }: ProductCheckoutFormProps) {
   const [quantity, setQuantity] = useState(1)
   const [wilaya, setWilaya] = useState("")
@@ -35,6 +43,7 @@ export default function ProductCheckoutForm({ product }: ProductCheckoutFormProp
     prenom: "",
     telephone: "",
   })
+  const [phoneError, setPhoneError] = useState("")
   const router = useRouter()
   const [isSubmitting, setIsSubmitting] = useState(false)
 
@@ -79,6 +88,13 @@ export default function ProductCheckoutForm({ product }: ProductCheckoutFormProp
       alert("Veuillez remplir tous les champs obligatoires")
       return
     }
+
+    if (!validatePhoneNumber(formData.telephone)) {
+      setPhoneError("Numéro de téléphone invalide. Format: 0XXXXXXXXX ou +213XXXXXXXXX")
+      return
+    }
+
+    setPhoneError("")
 
     setIsSubmitting(true)
 
@@ -214,12 +230,19 @@ export default function ProductCheckoutForm({ product }: ProductCheckoutFormProp
             <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-black transition-colors duration-200" />
             <input
               type="tel"
-              placeholder="0X XX XX XX XX"
+              placeholder="0XXXXXXXXX ou +213XXXXXXXXX"
               required
               value={formData.telephone}
-              onChange={(e) => setFormData({ ...formData, telephone: e.target.value })}
-              className="w-full pl-12 pr-4 py-4 border-2 border-gray-200 rounded-xl text-sm font-medium placeholder:text-gray-400 focus:outline-none focus:border-black hover:border-gray-400 transition-all duration-200 ease-out"
+              onChange={(e) => {
+                setFormData({ ...formData, telephone: e.target.value })
+                if (phoneError) setPhoneError("")
+              }}
+              className={`w-full pl-12 pr-4 py-4 border-2 rounded-xl text-sm font-medium placeholder:text-gray-400 focus:outline-none hover:border-gray-400 transition-all duration-200 ease-out ${phoneError
+                  ? "border-red-500 focus:border-red-500"
+                  : "border-gray-200 focus:border-black"
+                }`}
             />
+            {phoneError && <p className="text-red-500 text-xs mt-1 ml-1">{phoneError}</p>}
           </div>
 
           {/* Wilaya */}

@@ -8,8 +8,8 @@ import AboutContactSection from "@/components/about-contact-section"
 import Footer from "@/components/footer"
 import { Suspense } from "react"
 
-// ISR: Revalidate every 5 minutes
-export const revalidate = 300
+// Full SSG: No revalidation, static content only
+export const revalidate = false
 
 function ProductsLoading() {
   return (

@@ -18,6 +18,14 @@ import {
 import { useWilayaShipping, type WilayaShippingMethod } from "@/lib/hooks/useShipping"
 import { fbEvent } from "@/components/facebook-pixel"
 
+function validatePhoneNumber(phone: string): boolean {
+  // Remove spaces and dashes
+  const cleaned = phone.replace(/[\s-]/g, '')
+  // Algerian phone: 0612345678 (10 digits) or +213612345678 (13 chars)
+  const phoneRegex = /^(0|\+213)\d{9}$/
+  return phoneRegex.test(cleaned)
+}
+
 export default function CheckoutForm() {
   const [quantity, setQuantity] = useState(1)
   const [wilaya, setWilaya] = useState("")
@@ -28,6 +36,7 @@ export default function CheckoutForm() {
     telephone: "",
     adresse: "",
   })
+  const [phoneError, setPhoneError] = useState("")
   const [product, setProduct] = useState<any>(null)
   const [cartItems, setCartItems] = useState<any[]>([])
   const router = useRouter()
@@ -106,6 +115,13 @@ export default function CheckoutForm() {
       alert("Veuillez remplir tous les champs obligatoires")
       return
     }
+
+    if (!validatePhoneNumber(formData.telephone)) {
+      setPhoneError("Numéro de téléphone invalide. Format: 0XXXXXXXXX ou +213XXXXXXXXX")
+      return
+    }
+
+    setPhoneError("")
 
     setIsSubmitting(true)
 
@@ -267,13 +283,20 @@ export default function CheckoutForm() {
                   </div>
                   <input
                     type="tel"
-                    placeholder="Téléphone"
+                    placeholder="0XXXXXXXXX ou +213XXXXXXXXX"
                     required
                     value={formData.telephone}
-                    onChange={(e) => setFormData({ ...formData, telephone: e.target.value })}
-                    className="w-full pl-14 pr-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    onChange={(e) => {
+                      setFormData({ ...formData, telephone: e.target.value })
+                      if (phoneError) setPhoneError("")
+                    }}
+                    className={`w-full pl-14 pr-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:border-transparent ${phoneError
+                        ? "border-red-500 focus:ring-red-500"
+                        : "border-gray-300 focus:ring-blue-500"
+                      }`}
                   />
                 </div>
+                {phoneError && <p className="text-red-500 text-xs mt-1">{phoneError}</p>}
               </div>
 
               {/* Wilaya */}

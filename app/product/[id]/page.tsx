@@ -6,14 +6,13 @@ import ProductDetailClient from "@/components/product-detail-client"
 import { getWooCredentials, wooConfig, siteConfig } from "@/lib/config"
 
 /**
- * SSG Configuration avec génération dynamique pour les nouveaux produits
+ * Full SSG Configuration - All pages pre-generated at build time
  * 
  * - generateStaticParams() génère toutes les pages produits au build time
- * - dynamicParams = true permet de générer les NOUVEAUX produits à la demande
- * - Quand WooCommerce envoie un webhook "product.created", le revalidatePath 
- *   invalide le cache et permet la génération de la nouvelle page
+ * - dynamicParams = false : Seuls les produits pré-générés sont accessibles
+ * - Les nouveaux produits retourneront 404 jusqu'au prochain build
  */
-export const dynamicParams = true // Permet la génération des nouveaux produits
+export const dynamicParams = false // Full SSG, pas de génération à la demande
 
 function sleep(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms))
