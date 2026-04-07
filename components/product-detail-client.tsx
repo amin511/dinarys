@@ -6,9 +6,11 @@ import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { Ruler, ChevronLeft, ChevronRight, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { formatPrice, siteConfig, getColorValue } from "@/lib/config"
+import { formatPrice, siteConfig } from "@/lib/config"
 import ProductCheckoutForm from "@/components/product-checkout-form"
 import { fbEvent } from "@/components/facebook-pixel"
+import { useAttributeSelection } from "@/lib/hooks/useAttributeSelection"
+import AttributeSelector from "@/components/product-detail/attributes/attribute-selector"
 
 interface ProductImage {
   id: number
@@ -74,49 +76,49 @@ interface ProductDetailClientProps {
 }
 
 export default function ProductDetailClient({ product, relatedProducts = [], categories = [], variations = [] }: ProductDetailClientProps) {
-  const [selectedSize, setSelectedSize] = useState<string>("")
-  const [selectedColor, setSelectedColor] = useState<string>("")
   const [showSizeGuide, setShowSizeGuide] = useState(false)
   const [selectedImageIndex, setSelectedImageIndex] = useState(0)
   const [showLightbox, setShowLightbox] = useState(false)
   const [addedToCart, setAddedToCart] = useState(false)
-  const [selectedVariation, setSelectedVariation] = useState<ProductVariation | null>(null)
   const router = useRouter();
+
+  const {
+    attributes,
+    selectedAttributes,
+    selectAttribute,
+    matchingVariation,
+    availableOptions,
+    missingRequiredAttributes,
+    combinationError,
+    legacySelection,
+  } = useAttributeSelection({
+    productAttributes: product.attributes,
+    variations,
+  })
+
+  const selectedVariation = matchingVariation as ProductVariation | null
+  const selectedSize = legacySelection.size
+  const selectedColor = legacySelection.color
 
   // Find matching variation when attributes are selected
   useEffect(() => {
     console.log("=== VARIATION DEBUG ===")
     console.log("Available variations:", variations)
-    console.log("Selected Size:", selectedSize)
-    console.log("Selected Color:", selectedColor)
+    console.log("Selected Attributes:", selectedAttributes)
     console.log("Product images:", product.images)
 
     if (variations.length === 0) return
 
-    const matchingVariation = variations.find((variation) => {
-      return variation.attributes.every((attr) => {
-        const attrName = attr.name.toLowerCase()
-        if (attrName === 'size' || attrName === 'taille') {
-          return !selectedSize || attr.option === selectedSize
-        }
-        if (attrName === 'color' || attrName === 'couleur') {
-          return !selectedColor || attr.option === selectedColor
-        }
-        return true
-      })
-    })
-
-    setSelectedVariation(matchingVariation || null)
-    console.log('Matching variation found:', matchingVariation)
-    console.log('Variation image:', matchingVariation?.image)
+    console.log('Matching variation found:', selectedVariation)
+    console.log('Variation image:', selectedVariation?.image)
 
     // Si la variation a une image, naviguer vers elle
-    if (matchingVariation?.image?.src) {
+    if (selectedVariation?.image?.src) {
       console.log("Looking for variation image in gallery...")
 
       // Vérifier si l'image existe dans la galerie du produit
       const variationImageIndex = product.images?.findIndex(
-        (img) => img.src === matchingVariation.image?.src || img.id === matchingVariation.image?.id
+        (img) => img.src === selectedVariation.image?.src || img.id === selectedVariation.image?.id
       )
 
       if (variationImageIndex !== undefined && variationImageIndex >= 0) {
@@ -130,7 +132,7 @@ export default function ProductDetailClient({ product, relatedProducts = [], cat
       }
     }
     console.log("=== END DEBUG ===")
-  }, [selectedSize, selectedColor, variations, product.images])
+  }, [selectedAttributes, variations, product.images, selectedVariation])
 
   // Track ViewContent event on product page load
   useEffect(() => {
@@ -149,13 +151,9 @@ export default function ProductDetailClient({ product, relatedProducts = [], cat
 
   // Function to handle add to cart
   const handleAddToCart = () => {
-    if (sizes.length > 0 && !selectedSize) {
-      alert("Veuillez sélectionner une taille")
-      return
-    }
-
-    if (colors.length > 0 && !selectedColor) {
-      alert("Veuillez sélectionner une couleur")
+    if (missingRequiredAttributes.length > 0) {
+      const names = missingRequiredAttributes.map((attribute) => attribute.name).join(", ")
+      alert(`Veuillez sélectionner: ${names}`)
       return
     }
 
@@ -165,6 +163,7 @@ export default function ProductDetailClient({ product, relatedProducts = [], cat
       price: selectedVariation?.price || product.price,
       size: selectedSize,
       color: selectedColor,
+      attributes: selectedAttributes,
       image: selectedVariation?.image?.src || mainImage,
       quantity: 1,
       variationId: selectedVariation?.id || null,
@@ -254,17 +253,7 @@ export default function ProductDetailClient({ product, relatedProducts = [], cat
   // Maximum thumbnails to show before "+X more"
   const MAX_VISIBLE_THUMBNAILS = 5
 
-  // Get size attribute
-  const sizeAttribute = product.attributes?.find(
-    (attr) => attr.name.toLowerCase() === "size" || attr.name.toLowerCase() === "taille",
-  )
-  const sizes = sizeAttribute?.options || []
-
-  // Get color attribute
-  const colorAttribute = product.attributes?.find(
-    (attr) => attr.name.toLowerCase() === "color" || attr.name.toLowerCase() === "couleur",
-  )
-  const colors = colorAttribute?.options || []
+  const hasRequiredAttributes = missingRequiredAttributes.length > 0
 
   // Get all images - inclure l'image de la variation si elle n'est pas dans la galerie
   const baseImages = product.images?.length > 0 ? product.images : [{ id: 0, src: "/placeholder.svg?height=600&width=600", alt: product.name }]
@@ -477,55 +466,23 @@ export default function ProductDetailClient({ product, relatedProducts = [], cat
                   )}
               </div>
 
-              {/* Color Selection */}
-              {colors.length > 0 && (
+              {/* Dynamic Attribute Selection */}
+              {attributes.map((attribute, index) => (
                 <div
-                  className="space-y-3 opacity-0 animate-fade-in-rise"
-                  style={{ animationDelay: '350ms', animationFillMode: 'forwards' }}
+                  key={attribute.slug}
+                  className="opacity-0 animate-fade-in-rise"
+                  style={{ animationDelay: `${350 + index * 50}ms`, animationFillMode: 'forwards' }}
                 >
-                  <div className="text-sm font-medium">Couleur {selectedColor && <span className="font-normal text-muted-foreground">: {selectedColor}</span>}</div>
-                  <div className="flex flex-wrap gap-2">
-                    {colors.map((color) => (
-                      <button
-                        key={color}
-                        onClick={() => setSelectedColor(color)}
-                        title={color}
-                        className={`w-10 h-10 rounded-full border-2 transition-all ${selectedColor === color
-                          ? "ring-2 ring-offset-2 ring-foreground border-foreground"
-                          : "border-border hover:border-foreground"
-                          }`}
-                        style={{ backgroundColor: getColorValue(color) }}
-                      >
-                        <span className="sr-only">{color}</span>
-                      </button>
-                    ))}
-                  </div>
+                  <AttributeSelector
+                    name={attribute.name}
+                    slug={attribute.slug}
+                    options={attribute.options}
+                    selectedValue={selectedAttributes[attribute.slug] || ""}
+                    availableOptions={availableOptions[attribute.slug] || attribute.options}
+                    onSelect={selectAttribute}
+                  />
                 </div>
-              )}
-
-              {/* Size Selection */}
-              {sizes.length > 0 && (
-                <div
-                  className="space-y-3 opacity-0 animate-fade-in-rise"
-                  style={{ animationDelay: '400ms', animationFillMode: 'forwards' }}
-                >
-                  <div className="text-sm font-medium">Taille</div>
-                  <div className="flex flex-wrap gap-2">
-                    {sizes.map((size) => (
-                      <button
-                        key={size}
-                        onClick={() => setSelectedSize(size)}
-                        className={`px-6 py-2 border rounded-full text-sm transition-colors ${selectedSize === size
-                          ? "bg-foreground text-background border-foreground"
-                          : "border-border hover:border-foreground"
-                          }`}
-                      >
-                        {size}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              )}
+              ))}
 
               {/* Size Guide */}
               <button
@@ -537,21 +494,17 @@ export default function ProductDetailClient({ product, relatedProducts = [], cat
               </button>
 
               {/* Validation messages */}
-              {(colors.length > 0 && !selectedColor) || (sizes.length > 0 && !selectedSize) ? (
+              {hasRequiredAttributes || combinationError ? (
                 <div
                   className="text-sm text-muted-foreground bg-muted/50 p-4 rounded-lg text-center opacity-0 animate-fade-in-rise"
                   style={{ animationDelay: '500ms', animationFillMode: 'forwards' }}
                 >
-                  {colors.length > 0 && !selectedColor && sizes.length > 0 && !selectedSize
-                    ? "Veuillez sélectionner une couleur et une taille pour continuer"
-                    : colors.length > 0 && !selectedColor
-                      ? "Veuillez sélectionner une couleur pour continuer"
-                      : "Veuillez sélectionner une taille pour continuer"}
+                  {combinationError || `Veuillez sélectionner: ${missingRequiredAttributes.map((a) => a.name).join(", ")}`}
                 </div>
               ) : null}
 
               {/* Stock Status - Affiché après sélection des attributs */}
-              {(sizes.length === 0 || selectedSize) && (colors.length === 0 || selectedColor) && (
+              {!hasRequiredAttributes && (
                 <div
                   className="opacity-0 animate-fade-in-rise"
                   style={{ animationDelay: '450ms', animationFillMode: 'forwards' }}
@@ -590,7 +543,7 @@ export default function ProductDetailClient({ product, relatedProducts = [], cat
               )}
 
               {/* Checkout Section - Based on checkoutMode config */}
-              {(sizes.length === 0 || selectedSize) && (colors.length === 0 || selectedColor) && (
+              {!hasRequiredAttributes && (
                 <div
                   className="space-y-4 opacity-0 animate-fade-in-rise"
                   style={{ animationDelay: '500ms', animationFillMode: 'forwards' }}

@@ -1,0 +1,2244 @@
+{
+  "generatedAt": "2026-04-06T03:00:13.909Z",
+  "storeUrl": "https://mediumturquoise-seal-882397.hostingersite.com",
+  "totalZones": 55,
+  "failedZones": 18,
+  "zones": [
+    {
+      "id": 0,
+      "name": "Locations not covered by your other zones",
+      "order": 0,
+      "locations": [],
+      "methods": [],
+      "error": null
+    },
+    {
+      "id": 27,
+      "name": "Adrar",
+      "order": 1,
+      "locations": [
+        {
+          "code": "DZ:DZ-01",
+          "type": "state",
+          "_links": {
+            "collection": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/27/locations"
+              }
+            ],
+            "describes": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/27"
+              }
+            ]
+          }
+        }
+      ],
+      "methods": [
+        {
+          "instance_id": 51,
+          "method_id": "flat_rate_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 1400,
+          "rawCost": "1400",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 52,
+          "method_id": "local_pickup_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 900,
+          "rawCost": "900",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 38,
+      "name": "Chlef",
+      "order": 2,
+      "locations": [
+        {
+          "code": "DZ:DZ-02",
+          "type": "state",
+          "_links": {
+            "collection": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/38/locations"
+              }
+            ],
+            "describes": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/38"
+              }
+            ]
+          }
+        }
+      ],
+      "methods": [
+        {
+          "instance_id": 73,
+          "method_id": "flat_rate_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 750,
+          "rawCost": "750",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 74,
+          "method_id": "local_pickup_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 450,
+          "rawCost": "450",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 31,
+      "name": "Laghouat",
+      "order": 3,
+      "locations": [
+        {
+          "code": "DZ:DZ-03",
+          "type": "state",
+          "_links": {
+            "collection": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/31/locations"
+              }
+            ],
+            "describes": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/31"
+              }
+            ]
+          }
+        }
+      ],
+      "methods": [
+        {
+          "instance_id": 59,
+          "method_id": "flat_rate_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 950,
+          "rawCost": "950",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 60,
+          "method_id": "local_pickup_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 600,
+          "rawCost": "600",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 41,
+      "name": "Oum bouaghi",
+      "order": 4,
+      "locations": [
+        {
+          "code": "DZ:DZ-04",
+          "type": "state",
+          "_links": {
+            "collection": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/41/locations"
+              }
+            ],
+            "describes": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/41"
+              }
+            ]
+          }
+        }
+      ],
+      "methods": [],
+      "error": "Request failed (504) for https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/41/methods: <html>\r\n<head><title>504 Gateway Time-out</title></head>\r\n<body>\r\n<center><h1>504 Gateway Time-out</h1></center>\r\n<hr><center>nginx</center>\r\n</body>\r\n</html>\r\n"
+    },
+    {
+      "id": 17,
+      "name": "Batna",
+      "order": 5,
+      "locations": [
+        {
+          "code": "DZ:DZ-05",
+          "type": "state",
+          "_links": {
+            "collection": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/17/locations"
+              }
+            ],
+            "describes": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/17"
+              }
+            ]
+          }
+        }
+      ],
+      "methods": [
+        {
+          "instance_id": 31,
+          "method_id": "flat_rate_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 800,
+          "rawCost": "800",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 32,
+          "method_id": "local_pickup_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 450,
+          "rawCost": "450",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 40,
+      "name": "Bejaia",
+      "order": 6,
+      "locations": [
+        {
+          "code": "DZ:DZ-06",
+          "type": "state",
+          "_links": {
+            "collection": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/40/locations"
+              }
+            ],
+            "describes": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/40"
+              }
+            ]
+          }
+        }
+      ],
+      "methods": [
+        {
+          "instance_id": 77,
+          "method_id": "flat_rate_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 800,
+          "rawCost": "800",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 78,
+          "method_id": "local_pickup_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 450,
+          "rawCost": "450",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 9,
+      "name": "Biskra",
+      "order": 7,
+      "locations": [
+        {
+          "code": "DZ:DZ-07",
+          "type": "state",
+          "_links": {
+            "collection": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/9/locations"
+              }
+            ],
+            "describes": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/9"
+              }
+            ]
+          }
+        }
+      ],
+      "methods": [
+        {
+          "instance_id": 17,
+          "method_id": "flat_rate_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 950,
+          "rawCost": "950",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 18,
+          "method_id": "local_pickup_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 600,
+          "rawCost": "600",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 12,
+      "name": "Bechar",
+      "order": 8,
+      "locations": [
+        {
+          "code": "DZ:DZ-08",
+          "type": "state",
+          "_links": {
+            "collection": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/12/locations"
+              }
+            ],
+            "describes": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/12"
+              }
+            ]
+          }
+        }
+      ],
+      "methods": [
+        {
+          "instance_id": 23,
+          "method_id": "flat_rate_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 1100,
+          "rawCost": "1100",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 24,
+          "method_id": "local_pickup_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 650,
+          "rawCost": "650",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 1,
+      "name": "Blida",
+      "order": 9,
+      "locations": [
+        {
+          "code": "DZ:DZ-09",
+          "type": "state",
+          "_links": {
+            "collection": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/1/locations"
+              }
+            ],
+            "describes": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/1"
+              }
+            ]
+          }
+        }
+      ],
+      "methods": [
+        {
+          "instance_id": 1,
+          "method_id": "flat_rate_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 400,
+          "rawCost": "400",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 2,
+          "method_id": "local_pickup_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 300,
+          "rawCost": "300",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 53,
+      "name": "Bouira",
+      "order": 10,
+      "locations": [
+        {
+          "code": "DZ:DZ-10",
+          "type": "state",
+          "_links": {
+            "collection": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/53/locations"
+              }
+            ],
+            "describes": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/53"
+              }
+            ]
+          }
+        }
+      ],
+      "methods": [
+        {
+          "instance_id": 103,
+          "method_id": "flat_rate_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 750,
+          "rawCost": "750",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 104,
+          "method_id": "local_pickup_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 450,
+          "rawCost": "450",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 42,
+      "name": "Tamanrasset",
+      "order": 11,
+      "locations": [
+        {
+          "code": "DZ:DZ-11",
+          "type": "state",
+          "_links": {
+            "collection": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/42/locations"
+              }
+            ],
+            "describes": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/42"
+              }
+            ]
+          }
+        }
+      ],
+      "methods": [],
+      "error": "Request failed (504) for https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/42/methods: <html>\r\n<head><title>504 Gateway Time-out</title></head>\r\n<body>\r\n<center><h1>504 Gateway Time-out</h1></center>\r\n<hr><center>nginx</center>\r\n</body>\r\n</html>\r\n"
+    },
+    {
+      "id": 25,
+      "name": "Tebessa",
+      "order": 12,
+      "locations": [
+        {
+          "code": "DZ:DZ-12",
+          "type": "state",
+          "_links": {
+            "collection": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/25/locations"
+              }
+            ],
+            "describes": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/25"
+              }
+            ]
+          }
+        }
+      ],
+      "methods": [],
+      "error": "Request failed (504) for https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/25/methods: <html>\r\n<head><title>504 Gateway Time-out</title></head>\r\n<body>\r\n<center><h1>504 Gateway Time-out</h1></center>\r\n<hr><center>nginx</center>\r\n</body>\r\n</html>\r\n"
+    },
+    {
+      "id": 21,
+      "name": "Tlemcen",
+      "order": 13,
+      "locations": [
+        {
+          "code": "DZ:DZ-13",
+          "type": "state",
+          "_links": {
+            "collection": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/21/locations"
+              }
+            ],
+            "describes": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/21"
+              }
+            ]
+          }
+        }
+      ],
+      "methods": [
+        {
+          "instance_id": 39,
+          "method_id": "flat_rate_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 850,
+          "rawCost": "850",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 40,
+          "method_id": "local_pickup_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 500,
+          "rawCost": "500",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 13,
+      "name": "Tiaret",
+      "order": 14,
+      "locations": [],
+      "methods": [
+        {
+          "instance_id": 25,
+          "method_id": "flat_rate_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 800,
+          "rawCost": "800",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 26,
+          "method_id": "local_pickup_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 450,
+          "rawCost": "450",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": "Request failed (504) for https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/13/locations: <html>\r\n<head><title>504 Gateway Time-out</title></head>\r\n<body>\r\n<center><h1>504 Gateway Time-out</h1></center>\r\n<hr><center>nginx</center>\r\n</body>\r\n</html>\r\n"
+    },
+    {
+      "id": 37,
+      "name": "Tizi ouzou",
+      "order": 15,
+      "locations": [
+        {
+          "code": "DZ:DZ-15",
+          "type": "state",
+          "_links": {
+            "collection": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/37/locations"
+              }
+            ],
+            "describes": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/37"
+              }
+            ]
+          }
+        }
+      ],
+      "methods": [
+        {
+          "instance_id": 71,
+          "method_id": "flat_rate_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 750,
+          "rawCost": "750",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 72,
+          "method_id": "local_pickup_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 450,
+          "rawCost": "450",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 44,
+      "name": "Alger",
+      "order": 16,
+      "locations": [
+        {
+          "code": "DZ:DZ-16",
+          "type": "state",
+          "_links": {
+            "collection": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/44/locations"
+              }
+            ],
+            "describes": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/44"
+              }
+            ]
+          }
+        }
+      ],
+      "methods": [
+        {
+          "instance_id": 85,
+          "method_id": "flat_rate_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 500,
+          "rawCost": "500",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 86,
+          "method_id": "local_pickup_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 350,
+          "rawCost": "350",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 45,
+      "name": "Djelfa",
+      "order": 17,
+      "locations": [
+        {
+          "code": "DZ:DZ-17",
+          "type": "state",
+          "_links": {
+            "collection": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/45/locations"
+              }
+            ],
+            "describes": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/45"
+              }
+            ]
+          }
+        }
+      ],
+      "methods": [
+        {
+          "instance_id": 87,
+          "method_id": "flat_rate_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 950,
+          "rawCost": "950",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 88,
+          "method_id": "local_pickup_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 600,
+          "rawCost": "600",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 32,
+      "name": "Jijel",
+      "order": 18,
+      "locations": [
+        {
+          "code": "DZ:DZ-18",
+          "type": "state",
+          "_links": {
+            "collection": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/32/locations"
+              }
+            ],
+            "describes": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/32"
+              }
+            ]
+          }
+        }
+      ],
+      "methods": [
+        {
+          "instance_id": 61,
+          "method_id": "flat_rate_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 800,
+          "rawCost": "800",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 62,
+          "method_id": "local_pickup_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 450,
+          "rawCost": "450",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 15,
+      "name": "Setif",
+      "order": 19,
+      "locations": [
+        {
+          "code": "DZ:DZ-19",
+          "type": "state",
+          "_links": {
+            "collection": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/15/locations"
+              }
+            ],
+            "describes": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/15"
+              }
+            ]
+          }
+        }
+      ],
+      "methods": [],
+      "error": "Request failed (504) for https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/15/methods: <html>\r\n<head><title>504 Gateway Time-out</title></head>\r\n<body>\r\n<center><h1>504 Gateway Time-out</h1></center>\r\n<hr><center>nginx</center>\r\n</body>\r\n</html>\r\n"
+    },
+    {
+      "id": 26,
+      "name": "Saida",
+      "order": 20,
+      "locations": [
+        {
+          "code": "DZ:DZ-20",
+          "type": "state",
+          "_links": {
+            "collection": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/26/locations"
+              }
+            ],
+            "describes": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/26"
+              }
+            ]
+          }
+        }
+      ],
+      "methods": [
+        {
+          "instance_id": 49,
+          "method_id": "flat_rate_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 800,
+          "rawCost": "800",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 50,
+          "method_id": "local_pickup_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 500,
+          "rawCost": "500",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 5,
+      "name": "Skikda",
+      "order": 21,
+      "locations": [
+        {
+          "code": "DZ:DZ-21",
+          "type": "state",
+          "_links": {
+            "collection": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/5/locations"
+              }
+            ],
+            "describes": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/5"
+              }
+            ]
+          }
+        }
+      ],
+      "methods": [
+        {
+          "instance_id": 9,
+          "method_id": "flat_rate_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 800,
+          "rawCost": "800",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 10,
+          "method_id": "local_pickup_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 450,
+          "rawCost": "450",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 23,
+      "name": "Sidi babbes",
+      "order": 22,
+      "locations": [
+        {
+          "code": "DZ:DZ-22",
+          "type": "state",
+          "_links": {
+            "collection": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/23/locations"
+              }
+            ],
+            "describes": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/23"
+              }
+            ]
+          }
+        }
+      ],
+      "methods": [
+        {
+          "instance_id": 43,
+          "method_id": "flat_rate_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 800,
+          "rawCost": "800",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 44,
+          "method_id": "local_pickup_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 450,
+          "rawCost": "450",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 7,
+      "name": "Annaba",
+      "order": 23,
+      "locations": [
+        {
+          "code": "DZ:DZ-23",
+          "type": "state",
+          "_links": {
+            "collection": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/7/locations"
+              }
+            ],
+            "describes": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/7"
+              }
+            ]
+          }
+        }
+      ],
+      "methods": [
+        {
+          "instance_id": 13,
+          "method_id": "flat_rate_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 800,
+          "rawCost": "800",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 14,
+          "method_id": "local_pickup_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 450,
+          "rawCost": "450",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 3,
+      "name": "Guelma",
+      "order": 24,
+      "locations": [
+        {
+          "code": "DZ:DZ-24",
+          "type": "state",
+          "_links": {
+            "collection": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/3/locations"
+              }
+            ],
+            "describes": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/3"
+              }
+            ]
+          }
+        }
+      ],
+      "methods": [
+        {
+          "instance_id": 5,
+          "method_id": "flat_rate_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 800,
+          "rawCost": "800",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 6,
+          "method_id": "local_pickup_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 450,
+          "rawCost": "450",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 2,
+      "name": "Constantine",
+      "order": 25,
+      "locations": [
+        {
+          "code": "DZ:DZ-25",
+          "type": "state",
+          "_links": {
+            "collection": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/2/locations"
+              }
+            ],
+            "describes": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/2"
+              }
+            ]
+          }
+        }
+      ],
+      "methods": [],
+      "error": "Request failed (504) for https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/2/methods: <html>\r\n<head><title>504 Gateway Time-out</title></head>\r\n<body>\r\n<center><h1>504 Gateway Time-out</h1></center>\r\n<hr><center>nginx</center>\r\n</body>\r\n</html>\r\n"
+    },
+    {
+      "id": 4,
+      "name": "Medea",
+      "order": 26,
+      "locations": [
+        {
+          "code": "DZ:DZ-26",
+          "type": "state",
+          "_links": {
+            "collection": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/4/locations"
+              }
+            ],
+            "describes": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/4"
+              }
+            ]
+          }
+        }
+      ],
+      "methods": [
+        {
+          "instance_id": 7,
+          "method_id": "flat_rate_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 750,
+          "rawCost": "750",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 8,
+          "method_id": "local_pickup_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 450,
+          "rawCost": "450",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 47,
+      "name": "Mostaganem",
+      "order": 27,
+      "locations": [
+        {
+          "code": "DZ:DZ-27",
+          "type": "state",
+          "_links": {
+            "collection": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/47/locations"
+              }
+            ],
+            "describes": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/47"
+              }
+            ]
+          }
+        }
+      ],
+      "methods": [
+        {
+          "instance_id": 91,
+          "method_id": "flat_rate_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 800,
+          "rawCost": "800",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 92,
+          "method_id": "local_pickup_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 450,
+          "rawCost": "450",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 10,
+      "name": "Msila",
+      "order": 28,
+      "locations": [
+        {
+          "code": "DZ:DZ-28",
+          "type": "state",
+          "_links": {
+            "collection": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/10/locations"
+              }
+            ],
+            "describes": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/10"
+              }
+            ]
+          }
+        }
+      ],
+      "methods": [
+        {
+          "instance_id": 19,
+          "method_id": "flat_rate_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 850,
+          "rawCost": "850",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 20,
+          "method_id": "local_pickup_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 500,
+          "rawCost": "500",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 36,
+      "name": "Mascara",
+      "order": 29,
+      "locations": [
+        {
+          "code": "DZ:DZ-29",
+          "type": "state",
+          "_links": {
+            "collection": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/36/locations"
+              }
+            ],
+            "describes": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/36"
+              }
+            ]
+          }
+        }
+      ],
+      "methods": [
+        {
+          "instance_id": 69,
+          "method_id": "flat_rate_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 800,
+          "rawCost": "800",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 70,
+          "method_id": "local_pickup_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 450,
+          "rawCost": "450",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 54,
+      "name": "Ouargla",
+      "order": 30,
+      "locations": [
+        {
+          "code": "DZ:DZ-30",
+          "type": "state",
+          "_links": {
+            "collection": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/54/locations"
+              }
+            ],
+            "describes": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/54"
+              }
+            ]
+          }
+        }
+      ],
+      "methods": [
+        {
+          "instance_id": 105,
+          "method_id": "flat_rate_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 950,
+          "rawCost": "950",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 106,
+          "method_id": "local_pickup_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 600,
+          "rawCost": "600",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 18,
+      "name": "Oran",
+      "order": 31,
+      "locations": [
+        {
+          "code": "DZ:DZ-31",
+          "type": "state",
+          "_links": {
+            "collection": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/18/locations"
+              }
+            ],
+            "describes": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/18"
+              }
+            ]
+          }
+        }
+      ],
+      "methods": [
+        {
+          "instance_id": 33,
+          "method_id": "flat_rate_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 800,
+          "rawCost": "800",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 34,
+          "method_id": "local_pickup_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 450,
+          "rawCost": "450",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 22,
+      "name": "Bayadh",
+      "order": 32,
+      "locations": [
+        {
+          "code": "DZ:DZ-32",
+          "type": "state",
+          "_links": {
+            "collection": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/22/locations"
+              }
+            ],
+            "describes": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/22"
+              }
+            ]
+          }
+        }
+      ],
+      "methods": [
+        {
+          "instance_id": 41,
+          "method_id": "flat_rate_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 1100,
+          "rawCost": "1100",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 42,
+          "method_id": "local_pickup_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 600,
+          "rawCost": "600",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 35,
+      "name": "Bordj bou arreridj",
+      "order": 34,
+      "locations": [
+        {
+          "code": "DZ:DZ-34",
+          "type": "state",
+          "_links": {
+            "collection": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/35/locations"
+              }
+            ],
+            "describes": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/35"
+              }
+            ]
+          }
+        }
+      ],
+      "methods": [],
+      "error": "Request failed (504) for https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/35/methods: <html>\r\n<head><title>504 Gateway Time-out</title></head>\r\n<body>\r\n<center><h1>504 Gateway Time-out</h1></center>\r\n<hr><center>nginx</center>\r\n</body>\r\n</html>\r\n"
+    },
+    {
+      "id": 39,
+      "name": "Boumerdes",
+      "order": 35,
+      "locations": [
+        {
+          "code": "DZ:DZ-35",
+          "type": "state",
+          "_links": {
+            "collection": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/39/locations"
+              }
+            ],
+            "describes": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/39"
+              }
+            ]
+          }
+        }
+      ],
+      "methods": [
+        {
+          "instance_id": 75,
+          "method_id": "flat_rate_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 750,
+          "rawCost": "750",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 76,
+          "method_id": "local_pickup_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 450,
+          "rawCost": "450",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 48,
+      "name": "Tarf",
+      "order": 36,
+      "locations": [
+        {
+          "code": "DZ:DZ-36",
+          "type": "state",
+          "_links": {
+            "collection": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/48/locations"
+              }
+            ],
+            "describes": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/48"
+              }
+            ]
+          }
+        }
+      ],
+      "methods": [
+        {
+          "instance_id": 93,
+          "method_id": "flat_rate_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 800,
+          "rawCost": "800",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 94,
+          "method_id": "local_pickup_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 450,
+          "rawCost": "450",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 33,
+      "name": "Tissemsilt",
+      "order": 38,
+      "locations": [],
+      "methods": [
+        {
+          "instance_id": 63,
+          "method_id": "flat_rate_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 800,
+          "rawCost": "800",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 64,
+          "method_id": "local_pickup_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 520,
+          "rawCost": "520",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": "Request failed (503) for https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/33/locations: <!DOCTYPE html>\n<html style=\"height:100%\">\n<head>\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\" />\n<title> 503 Service Unavailable\r\n</title><style>@media (prefers-color-scheme:dark){body{background-color:#000!important}}</style></head>\n<body style=\"color: #444; margin:0;font: normal 14px/20px Arial, Helvetica, sans-serif; height:100%; background-color: #fff;\">\n<div style=\"height:auto; min-height:100%; \">     <div style=\"text-align: center; width:800px; margin-left: -400px; position:absolute; top: 30%; left:50%;\">\n        <h1 style=\"margin:0; font-size:150px; line-height:150px; font-weight:bold;\">503</h1>\n<h2 style=\"margin-top:20px;font-size: 30px;\">Service Unavailable\r\n</h2>\n<p>The server is temporarily busy, try again later!</p>\n</div></div></body></html>\n"
+    },
+    {
+      "id": 11,
+      "name": "Oued",
+      "order": 39,
+      "locations": [
+        {
+          "code": "DZ:DZ-39",
+          "type": "state",
+          "_links": {
+            "collection": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/11/locations"
+              }
+            ],
+            "describes": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/11"
+              }
+            ]
+          }
+        }
+      ],
+      "methods": [
+        {
+          "instance_id": 21,
+          "method_id": "flat_rate_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 950,
+          "rawCost": "950",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 22,
+          "method_id": "local_pickup_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 600,
+          "rawCost": "600",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 24,
+      "name": "Khenchela",
+      "order": 40,
+      "locations": [],
+      "methods": [
+        {
+          "instance_id": 45,
+          "method_id": "flat_rate_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 800,
+          "rawCost": "800",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 46,
+          "method_id": "local_pickup_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 450,
+          "rawCost": "450",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": "Request failed (504) for https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/24/locations: <html>\r\n<head><title>504 Gateway Time-out</title></head>\r\n<body>\r\n<center><h1>504 Gateway Time-out</h1></center>\r\n<hr><center>nginx</center>\r\n</body>\r\n</html>\r\n"
+    },
+    {
+      "id": 19,
+      "name": "Souk ahras",
+      "order": 41,
+      "locations": [
+        {
+          "code": "DZ:DZ-41",
+          "type": "state",
+          "_links": {
+            "collection": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/19/locations"
+              }
+            ],
+            "describes": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/19"
+              }
+            ]
+          }
+        }
+      ],
+      "methods": [
+        {
+          "instance_id": 35,
+          "method_id": "flat_rate_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 800,
+          "rawCost": "800",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 36,
+          "method_id": "local_pickup_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 450,
+          "rawCost": "450",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 46,
+      "name": "Tipaza",
+      "order": 42,
+      "locations": [
+        {
+          "code": "DZ:DZ-42",
+          "type": "state",
+          "_links": {
+            "collection": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/46/locations"
+              }
+            ],
+            "describes": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/46"
+              }
+            ]
+          }
+        }
+      ],
+      "methods": [
+        {
+          "instance_id": 89,
+          "method_id": "flat_rate_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 750,
+          "rawCost": "750",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 90,
+          "method_id": "local_pickup_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 450,
+          "rawCost": "450",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 29,
+      "name": "Mila",
+      "order": 43,
+      "locations": [
+        {
+          "code": "DZ:DZ-43",
+          "type": "state",
+          "_links": {
+            "collection": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/29/locations"
+              }
+            ],
+            "describes": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/29"
+              }
+            ]
+          }
+        }
+      ],
+      "methods": [
+        {
+          "instance_id": 55,
+          "method_id": "flat_rate_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 800,
+          "rawCost": "800",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 56,
+          "method_id": "local_pickup_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 450,
+          "rawCost": "450",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 28,
+      "name": "Ain defla",
+      "order": 44,
+      "locations": [
+        {
+          "code": "DZ:DZ-44",
+          "type": "state",
+          "_links": {
+            "collection": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/28/locations"
+              }
+            ],
+            "describes": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/28"
+              }
+            ]
+          }
+        }
+      ],
+      "methods": [
+        {
+          "instance_id": 53,
+          "method_id": "flat_rate_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 750,
+          "rawCost": "750",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 54,
+          "method_id": "local_pickup_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 450,
+          "rawCost": "450",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 8,
+      "name": "Naama",
+      "order": 45,
+      "locations": [
+        {
+          "code": "DZ:DZ-45",
+          "type": "state",
+          "_links": {
+            "collection": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/8/locations"
+              }
+            ],
+            "describes": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/8"
+              }
+            ]
+          }
+        }
+      ],
+      "methods": [
+        {
+          "instance_id": 15,
+          "method_id": "flat_rate_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 1100,
+          "rawCost": "1100",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 16,
+          "method_id": "local_pickup_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 600,
+          "rawCost": "600",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 49,
+      "name": "Ain temouchent",
+      "order": 46,
+      "locations": [],
+      "methods": [
+        {
+          "instance_id": 95,
+          "method_id": "flat_rate_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 800,
+          "rawCost": "800",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 96,
+          "method_id": "local_pickup_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 450,
+          "rawCost": "450",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": "Request failed (504) for https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/49/locations: <html>\r\n<head><title>504 Gateway Time-out</title></head>\r\n<body>\r\n<center><h1>504 Gateway Time-out</h1></center>\r\n<hr><center>nginx</center>\r\n</body>\r\n</html>\r\n"
+    },
+    {
+      "id": 6,
+      "name": "Ghardaia",
+      "order": 47,
+      "locations": [],
+      "methods": [
+        {
+          "instance_id": 11,
+          "method_id": "flat_rate_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 950,
+          "rawCost": "950",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 12,
+          "method_id": "local_pickup_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 600,
+          "rawCost": "600",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": "Request failed (504) for https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/6/locations: <html>\r\n<head><title>504 Gateway Time-out</title></head>\r\n<body>\r\n<center><h1>504 Gateway Time-out</h1></center>\r\n<hr><center>nginx</center>\r\n</body>\r\n</html>\r\n"
+    },
+    {
+      "id": 20,
+      "name": "Relizane",
+      "order": 48,
+      "locations": [
+        {
+          "code": "DZ:DZ-48",
+          "type": "state",
+          "_links": {
+            "collection": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/20/locations"
+              }
+            ],
+            "describes": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/20"
+              }
+            ]
+          }
+        }
+      ],
+      "methods": [
+        {
+          "instance_id": 37,
+          "method_id": "flat_rate_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 800,
+          "rawCost": "800",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 38,
+          "method_id": "local_pickup_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 450,
+          "rawCost": "450",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 43,
+      "name": "Timimoun",
+      "order": 49,
+      "locations": [],
+      "methods": [
+        {
+          "instance_id": 83,
+          "method_id": "flat_rate_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 1400,
+          "rawCost": "1400",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 84,
+          "method_id": "local_pickup_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 900,
+          "rawCost": "900",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": "Request failed (504) for https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/43/locations: <html>\r\n<head><title>504 Gateway Time-out</title></head>\r\n<body>\r\n<center><h1>504 Gateway Time-out</h1></center>\r\n<hr><center>nginx</center>\r\n</body>\r\n</html>\r\n"
+    },
+    {
+      "id": 51,
+      "name": "Ouled djellal",
+      "order": 51,
+      "locations": [],
+      "methods": [
+        {
+          "instance_id": 99,
+          "method_id": "flat_rate_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 950,
+          "rawCost": "950",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 100,
+          "method_id": "local_pickup_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 600,
+          "rawCost": "600",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": "Request failed (504) for https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/51/locations: <html>\r\n<head><title>504 Gateway Time-out</title></head>\r\n<body>\r\n<center><h1>504 Gateway Time-out</h1></center>\r\n<hr><center>nginx</center>\r\n</body>\r\n</html>\r\n"
+    },
+    {
+      "id": 30,
+      "name": "Beni abbes",
+      "order": 52,
+      "locations": [],
+      "methods": [
+        {
+          "instance_id": 57,
+          "method_id": "flat_rate_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 1000,
+          "rawCost": "1000",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 58,
+          "method_id": "local_pickup_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 900,
+          "rawCost": "900",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": "Request failed (504) for https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/30/locations: <html>\r\n<head><title>504 Gateway Time-out</title></head>\r\n<body>\r\n<center><h1>504 Gateway Time-out</h1></center>\r\n<hr><center>nginx</center>\r\n</body>\r\n</html>\r\n"
+    },
+    {
+      "id": 52,
+      "name": "In salah",
+      "order": 53,
+      "locations": [],
+      "methods": [
+        {
+          "instance_id": 101,
+          "method_id": "flat_rate_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 1600,
+          "rawCost": "1600",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 102,
+          "method_id": "local_pickup_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 1120,
+          "rawCost": "1120",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": "Request failed (504) for https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/52/locations: <html>\r\n<head><title>504 Gateway Time-out</title></head>\r\n<body>\r\n<center><h1>504 Gateway Time-out</h1></center>\r\n<hr><center>nginx</center>\r\n</body>\r\n</html>\r\n"
+    },
+    {
+      "id": 14,
+      "name": "In guezzam",
+      "order": 54,
+      "locations": [],
+      "methods": [
+        {
+          "instance_id": 27,
+          "method_id": "flat_rate_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 1600,
+          "rawCost": "1600",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": "Request failed (504) for https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/14/locations: <html>\r\n<head><title>504 Gateway Time-out</title></head>\r\n<body>\r\n<center><h1>504 Gateway Time-out</h1></center>\r\n<hr><center>nginx</center>\r\n</body>\r\n</html>\r\n"
+    },
+    {
+      "id": 34,
+      "name": "Touggourt",
+      "order": 55,
+      "locations": [],
+      "methods": [
+        {
+          "instance_id": 65,
+          "method_id": "flat_rate_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 950,
+          "rawCost": "950",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 66,
+          "method_id": "local_pickup_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 600,
+          "rawCost": "600",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": "Request failed (504) for https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/34/locations: <html>\r\n<head><title>504 Gateway Time-out</title></head>\r\n<body>\r\n<center><h1>504 Gateway Time-out</h1></center>\r\n<hr><center>nginx</center>\r\n</body>\r\n</html>\r\n"
+    },
+    {
+      "id": 16,
+      "name": "Meghaier",
+      "order": 57,
+      "locations": [
+        {
+          "code": "DZ:DZ-57",
+          "type": "state",
+          "_links": {
+            "collection": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/16/locations"
+              }
+            ],
+            "describes": [
+              {
+                "href": "https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/16"
+              }
+            ]
+          }
+        }
+      ],
+      "methods": [
+        {
+          "instance_id": 30,
+          "method_id": "flat_rate_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 950,
+          "rawCost": "950",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 50,
+      "name": "Menia",
+      "order": 58,
+      "locations": [],
+      "methods": [
+        {
+          "instance_id": 97,
+          "method_id": "flat_rate_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 1000,
+          "rawCost": "1000",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 98,
+          "method_id": "local_pickup_zrexpress_v2",
+          "method_title": "ZR Express 2.0 Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 670,
+          "rawCost": "670",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": "Request failed (504) for https://mediumturquoise-seal-882397.hostingersite.com/wp-json/wc/v3/shipping/zones/50/locations: <html>\r\n<head><title>504 Gateway Time-out</title></head>\r\n<body>\r\n<center><h1>504 Gateway Time-out</h1></center>\r\n<hr><center>nginx</center>\r\n</body>\r\n</html>\r\n"
+    }
+  ]
+}

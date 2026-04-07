@@ -15,6 +15,43 @@ import { getWooCredentials, wooConfig, siteConfig } from "@/lib/config"
  */
 export const dynamicParams = true // Permet la génération des nouveaux produits
 
+function sleep(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms))
+}
+
+async function fetchJsonWithRetry(url: string, authHeader: string, context: string) {
+  const maxAttempts = 3
+
+  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+    try {
+      const response = await fetch(url, {
+        headers: {
+          Authorization: authHeader,
+        },
+        cache: "force-cache",
+        signal: AbortSignal.timeout(15000),
+      })
+
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`)
+      }
+
+      return await response.json()
+    } catch (error) {
+      const isLastAttempt = attempt === maxAttempts
+
+      if (isLastAttempt) {
+        throw error
+      }
+
+      console.warn(`[SSG] Retry ${attempt}/${maxAttempts - 1} for ${context}`)
+      await sleep(500 * attempt)
+    }
+  }
+
+  return null
+}
+
 async function getProduct(id: string) {
   try {
     const { storeUrl, authHeader } = getWooCredentials()
@@ -139,19 +176,13 @@ export async function generateStaticParams() {
     while (page <= maxPages) {
       const apiUrl = `${storeUrl}/wp-json/wc/v3/products?per_page=${perPage}&page=${page}&status=publish`
 
-      const response = await fetch(apiUrl, {
-        headers: {
-          Authorization: authHeader,
-        },
-        cache: "force-cache",
-      })
-
-      if (!response.ok) {
-        console.error(`[SSG] Failed to fetch page ${page}:`, response.status)
+      let products: any[] | null = null
+      try {
+        products = await fetchJsonWithRetry(apiUrl, authHeader, `products page ${page}`)
+      } catch (error) {
+        console.error(`[SSG] Failed to fetch page ${page} after retries:`, error)
         break
       }
-
-      const products = await response.json()
 
       if (!products || products.length === 0) {
         console.log(`[SSG] No more products at page ${page}`)
