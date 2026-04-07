@@ -20,7 +20,7 @@ async function getProducts() {
             headers: {
                 Authorization: authHeader,
             },
-            next: { revalidate: 300 } // ISR: Revalidate every 5 minutes
+            cache: "force-cache" // Full SSG: cache figé au build
         })
 
         if (!response.ok) {

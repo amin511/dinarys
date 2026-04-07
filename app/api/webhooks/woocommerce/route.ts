@@ -3,6 +3,7 @@ import { NextResponse } from "next/server"
 import crypto from "crypto"
 
 const WEBHOOK_SECRET = process.env.WOOCOMMERCE_WEBHOOK_SECRET || ""
+const VERCEL_DEPLOY_HOOK_URL = process.env.VERCEL_DEPLOY_HOOK_URL || ""
 
 /**
  * Verify WooCommerce webhook signature
@@ -13,19 +14,59 @@ function verifyWebhookSignature(payload: string, signature: string): boolean {
         return true
     }
 
+    if (!signature) {
+        console.warn("[WooCommerce Webhook] Missing webhook signature header")
+        return false
+    }
+
     try {
         const expectedSignature = crypto
             .createHmac("sha256", WEBHOOK_SECRET)
             .update(payload)
             .digest("base64")
 
-        return crypto.timingSafeEqual(
-            Buffer.from(signature),
-            Buffer.from(expectedSignature)
-        )
+        const actualBuffer = Buffer.from(signature)
+        const expectedBuffer = Buffer.from(expectedSignature)
+
+        if (actualBuffer.length !== expectedBuffer.length) {
+            console.error("[WooCommerce Webhook] Signature length mismatch")
+            return false
+        }
+
+        return crypto.timingSafeEqual(actualBuffer, expectedBuffer)
     } catch (error) {
         console.error("[WooCommerce Webhook] Signature verification error:", error)
-        return true // Continue anyway if verification fails
+        return false
+    }
+}
+
+async function triggerFullSsgRebuild(reason: string, payload: { event: string; productId?: string | number }) {
+    if (!VERCEL_DEPLOY_HOOK_URL) {
+        console.warn("[WooCommerce Webhook] VERCEL_DEPLOY_HOOK_URL not set; skipping rebuild trigger")
+        return
+    }
+
+    try {
+        const response = await fetch(VERCEL_DEPLOY_HOOK_URL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                trigger: "woocommerce-webhook",
+                reason,
+                event: payload.event,
+                productId: payload.productId || null,
+                timestamp: new Date().toISOString(),
+            }),
+        })
+
+        if (!response.ok) {
+            console.error(`[WooCommerce Webhook] Failed to trigger rebuild: HTTP ${response.status}`)
+            return
+        }
+
+        console.log("[WooCommerce Webhook] ✅ Full SSG rebuild triggered")
+    } catch (error) {
+        console.error("[WooCommerce Webhook] Error triggering rebuild:", error)
     }
 }
 
@@ -54,15 +95,15 @@ export async function POST(request: Request) {
             hasSignature: Boolean(signature),
         })
 
-        if (!verifyWebhookSignature(rawBody, signature)) {
-            console.error("[WooCommerce Webhook] Invalid signature")
-            return NextResponse.json({ error: "Invalid webhook signature" }, { status: 401 })
-        }
-
         // Handle WooCommerce ping/test requests (not JSON)
         if (trimmedBody.startsWith("webhook_id=")) {
             console.log("[WooCommerce Webhook] Ping request received, responding OK")
             return NextResponse.json({ success: true, message: "Ping received" })
+        }
+
+        if (!verifyWebhookSignature(rawBody, signature)) {
+            console.error("[WooCommerce Webhook] Invalid signature")
+            return NextResponse.json({ error: "Invalid webhook signature" }, { status: 401 })
         }
 
         // Parse payload
@@ -143,6 +184,7 @@ async function handleProductWebhook(event: string, payload: any) {
             // Revalider les listings pour afficher le nouveau produit
             revalidatePath("/products")
             revalidatePath("/")
+            await triggerFullSsgRebuild("product.created", { event, productId })
 
             console.log(`[WooCommerce Webhook] ✅ New product ${productId} - Revalidated route layout and listings`)
             break
@@ -156,6 +198,7 @@ async function handleProductWebhook(event: string, payload: any) {
             revalidatePath(`/product/${productId}`)
             revalidatePath("/products")
             revalidatePath("/")
+            await triggerFullSsgRebuild("product.updated", { event, productId })
             console.log(`[WooCommerce Webhook] ✅ Updated product ${productId} - Revalidated tags and paths`)
             break
 
@@ -169,6 +212,7 @@ async function handleProductWebhook(event: string, payload: any) {
             revalidatePath("/product/[id]", "layout")
             revalidatePath("/products")
             revalidatePath("/")
+            await triggerFullSsgRebuild("product.deleted", { event, productId })
             console.log(`[WooCommerce Webhook] ✅ Product ${productId} deleted - Revalidated all routes`)
             break
 
@@ -181,6 +225,7 @@ async function handleProductWebhook(event: string, payload: any) {
             revalidatePath(`/product/${productId}`)
             revalidatePath("/products")
             revalidatePath("/")
+            await triggerFullSsgRebuild("product.restored", { event, productId })
             console.log(`[WooCommerce Webhook] ✅ Product ${productId} restored - Revalidated all routes`)
             break
     }
