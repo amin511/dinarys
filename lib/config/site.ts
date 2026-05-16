@@ -15,7 +15,7 @@ export const siteConfig = {
 
     // Logo & Branding
     logo: {
-        src: "/logo.png",
+        src: "/dinarys-logo.png",
         alt: "NOUR CONFECTION",
         width: 120,
         height: 60,

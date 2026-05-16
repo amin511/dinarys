@@ -1,6 +1,7 @@
 /**
  * WooCommerce Configuration
  * All settings related to WooCommerce/WordPress integration
+ *
  */
 
 export const wooConfig = {

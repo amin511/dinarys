@@ -1,25 +1,21 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Assistant, Playfair_Display, Cormorant_Garamond } from "next/font/google"
+import { Cinzel, Montserrat } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { siteConfig } from "@/lib/config"
 import { ShippingPreloader } from "@/components/shipping-preloader"
 import { FacebookPixel } from "@/components/facebook-pixel"
 import "./globals.css"
 
-const assistant = Assistant({
+const montserrat = Montserrat({
   subsets: ["latin"],
+  variable: "--font-montserrat",
 })
 
-const playfair = Playfair_Display({
+const cinzel = Cinzel({
   subsets: ["latin"],
-  variable: "--font-playfair",
-})
-
-const cormorant = Cormorant_Garamond({
-  subsets: ["latin"],
-  weight: ["300", "400", "500"],
-  variable: "--font-cormorant",
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-cinzel",
 })
 
 export const metadata: Metadata = {
@@ -38,7 +34,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`antialiased ${assistant.className} ${playfair.variable} ${cormorant.variable}`}>
+      <body className={`antialiased ${montserrat.className} ${montserrat.variable} ${cinzel.variable}`}>
         <ShippingPreloader />
         {children}
         <Analytics />

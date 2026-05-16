@@ -9,8 +9,8 @@ export const themeConfig = {
     colors: {
         // Primary brand colors
         primary: {
-            light: "oklch(0.15 0 0)",
-            dark: "oklch(0.95 0 0)",
+            light: "#d6a853",
+            dark: "#d6a853",
         },
         // Secondary/accent colors
         secondary: {
@@ -26,8 +26,8 @@ export const themeConfig = {
 
     // Typography
     fonts: {
-        heading: "Playfair Display",
-        body: "Assistant",
+        heading: "Cinzel",
+        body: "Montserrat",
         mono: "Geist Mono",
     },
 
