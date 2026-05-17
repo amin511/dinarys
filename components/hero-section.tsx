@@ -8,9 +8,9 @@ const SUBTITLE_WORDS = ["cosmétique", "premium", "algérienne", "naturelle"]
 const WORD_INTERVAL = 2200 // ms per word
 
 const slides = [
-  { src: "/hero/prod1.jpeg", alt: "Nour Confection – collection 1" },
-  { src: "/hero/prod2.jpeg", alt: "Nour Confection – collection 2" },
-  { src: "/hero_dinarys2.png", alt: "Nour Confection – collection 3" },
+  { src: "/hero_dinarys2.png", alt: "Dinarys – collection 3" },
+  { src: "/hero/prod1.jpeg", alt: "Dinarys – collection 1" },
+  { src: "/hero/prod2.jpeg", alt: "Dinarys – collection 2" },
 ]
 
 const SLIDE_INTERVAL = 3000

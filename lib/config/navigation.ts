@@ -57,7 +57,7 @@ export const navigationConfig = {
     // Announcement bar content
     announcement: {
         enabled: true,
-        text: "Livraison gratuite pour les achats plus de 45000da | Livraison partout en Algérie",
+        text: "Livraison partout en Algérie",
         link: null as string | null,
     },
 
