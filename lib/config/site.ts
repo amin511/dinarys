@@ -1,57 +1,56 @@
 /**
  * Site Configuration
  * Central configuration for all site-wide settings
- * Easy to customize when switching brands/clients
  */
 
 export const siteConfig = {
     // Brand Information
-    name: "NOUR CONFECTION",
-    tagline: "Élégance & Tradition",
-    description: "Nour Confection propose des créations élégantes pour mariées et bébés, inspirées du patrimoine algérien et réalisées avec un savoir-faire artisanal pour sublimer les moments les plus précieux.",
+    name: "DINARYS",
+    tagline: "Une marque premium Made in Algeria",
+    description: "Dinarys est une marque cosmétique premium née avec une ambition claire : proposer des produits de haute qualité, modernes et performants, conçus pour répondre aux besoins réels des consommateurs algériens.",
 
     // URLs
-    url: process.env.NEXT_PUBLIC_SITE_URL || "https://nourconfection.com",
+    url: process.env.NEXT_PUBLIC_SITE_URL || "https://dinarys.dz",
 
     // Logo & Branding
     logo: {
         src: "/dinarys-logo.png",
-        alt: "NOUR CONFECTION",
+        alt: "DINARYS Cosmetics",
         width: 120,
         height: 60,
     },
-    favicon: "/logo.png",
+    favicon: "/dinarys-logo.png",
 
     // Contact Information
     contact: {
-        email: "nour.t.confection@gmail.com",
-        phone: "+2137995339100",
-        phoneDisplay: "+2137995339100",
-        address: "rue Ammara Youcef Blida 00009",
-        mapUrl: "https://maps.app.goo.gl/WMA2iAvKLS5z2caC7",
+        email: "dinarys.cosmetics@gmail.com",
+        phone: "+213696949326",
+        phoneDisplay: "+213 696 94 93 26",
+        address: "Algérie",
+        mapUrl: "",
     },
 
     // Social Media
     social: {
         instagram: {
-            url: "https://www.instagram.com/nour.confection/",
-            handle: "@nour.confection",
+            url: "https://www.instagram.com/__dinarys",
+            handle: "@__dinarys",
         },
         facebook: {
-            url: "https://www.facebook.com/p/Nour-confection-100076232980561/",
-            handle: "Nour confection",
+            url: "https://www.facebook.com/share/1AybrnVW15/",
+            handle: "Dinarys Cosmetics",
         },
         twitter: {
             url: "",
             handle: "",
         },
         tiktok: {
-            url: "https://www.tiktok.com/@nour.confection",
-            handle: "@nour.confection",
+            url: "https://www.tiktok.com/@dinarys_cosmetics",
+            handle: "@dinarys_cosmetics",
         },
         whatsapp: {
-            url: "https://wa.me/213799533910",
-            phone: "+213799533910",
+            url: "https://wa.me/213696949326",
+            phone: "+213696949326",
         },
     },
 
@@ -66,12 +65,12 @@ export const siteConfig = {
 
     // SEO
     seo: {
-        titleTemplate: "%s | NOUR CONFECTION",
-        defaultTitle: "NOUR CONFECTION - Élégance & Tradition",
+        titleTemplate: "%s | DINARYS",
+        defaultTitle: "DINARYS — Une marque premium Made in Algeria",
         openGraph: {
             type: "website",
             locale: "fr_DZ",
-            siteName: "NOUR CONFECTION",
+            siteName: "DINARYS",
         },
     },
 
@@ -102,12 +101,6 @@ export const siteConfig = {
      * Options: "cart" | "checkout" | "stay"
      */
     addToCartRedirect: "cart" as "cart" | "checkout" | "stay",
-
-    // Video Section
-    video: {
-        url: "https://mediumturquoise-seal-882397.hostingersite.com/wp-content/uploads/2026/04/snaptik_7409755669982760198_v3.mp4",
-        poster: "/hero.jpeg",
-    },
 
     // Copyright
     copyright: {

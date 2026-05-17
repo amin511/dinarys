@@ -37,20 +37,19 @@ export const navigationConfig = {
             ],
         },
         about: {
-            title: "Nour Confection",
+            title: "Dinarys",
             links: [
                 { label: "Qui sommes-nous", href: "/a-propos" },
-                { label: "Notre savoir-faire", href: "/a-propos#savoir-faire" },
+                { label: "Notre gamme capillaire", href: "/#ingredients" },
             ],
         },
         support: {
             title: "Contact",
             links: [
-                { label: "Instagram", href: "https://www.instagram.com/nour.confection/", external: true },
-                { label: "Facebook", href: "https://www.facebook.com/p/Nour-confection-100076232980561/", external: true },
-                { label: "TikTok", href: "https://www.tiktok.com/@nour.confection", external: true },
-                { label: "Appelez-nous", href: "tel:+213799533910" },
-                { label: "Localisation", href: "https://maps.app.goo.gl/WMA2iAvKLS5z2caC7", external: true },
+                { label: "Instagram", href: "https://www.instagram.com/__dinarys", external: true },
+                { label: "Facebook", href: "https://www.facebook.com/share/1AybrnVW15/", external: true },
+                { label: "TikTok", href: "https://www.tiktok.com/@dinarys_cosmetics", external: true },
+                { label: "Appelez-nous", href: "tel:+213696949326" },
             ],
         },
     },
@@ -58,7 +57,7 @@ export const navigationConfig = {
     // Announcement bar content
     announcement: {
         enabled: true,
-        text: "Livraison gratuite pour les achats plus de 45000da",
+        text: "Livraison gratuite pour les achats plus de 45000da | Livraison partout en Algérie",
         link: null as string | null,
     },
 

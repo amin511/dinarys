@@ -1,10 +1,8 @@
 import Header from "@/components/header"
 import HeroSection from "@/components/hero-section"
-import VideoSection from "@/components/video-section"
+import IngredientsSection from "@/components/ingredients-section"
 import ProductsSectionServer from "@/components/products-section-server"
 import AboutBrandSection from "@/components/about-brand-section"
-import BrandBanner from "@/components/brand-banner"
-import AboutContactSection from "@/components/about-contact-section"
 import Footer from "@/components/footer"
 import { Suspense } from "react"
 
@@ -37,12 +35,12 @@ export default function Home() {
       <Header />
       <HeroSection />
       <AboutBrandSection />
-      <VideoSection />
       <Suspense fallback={<ProductsLoading />}>
         <ProductsSectionServer />
       </Suspense>
-      {/* <BrandBanner /> */}
-      {/* <AboutContactSection /> */}
+
+      <IngredientsSection />
+
       <Footer />
     </main>
   )

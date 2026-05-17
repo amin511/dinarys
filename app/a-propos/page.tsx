@@ -3,14 +3,17 @@ import Image from "next/image"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { siteConfig } from "@/lib/config"
-import { Sparkles, Heart, Gem, Scissors } from "lucide-react"
-import VideoSection from "@/components/video-section"
+import { Sparkles, Leaf, Gem, FlaskConical } from "lucide-react"
 
 export const metadata: Metadata = {
   title: `À Propos | ${siteConfig.name}`,
   description:
-    "Découvrez l'histoire de Nour Confection — une marque née d'une passion pour l'élégance algérienne, les traditions et le fait main.",
+    "Découvrez l'histoire de Dinarys — une marque cosmétique premium Made in Algeria, née pour proposer des produits de haute qualité aux consommateurs algériens.",
 }
+
+// Brand gold
+const GOLD = "#B8943C"
+const GOLD_LIGHT = "#D4A843"
 
 export default function AboutPage() {
   return (
@@ -18,37 +21,36 @@ export default function AboutPage() {
       <Header />
 
       {/* ── Hero Section ─────────────────────────────── */}
-      <section className="relative overflow-hidden bg-[#1a1a1a] text-white">
-        {/* Decorative gradient overlay */}
+      <section className="relative overflow-hidden bg-[#0d0d0d] text-white">
+        {/* Gold gradient overlay */}
         <div
-          className="absolute inset-0 opacity-40"
+          className="absolute inset-0 opacity-30"
           style={{
             background:
-              "radial-gradient(ellipse at 30% 50%, #8c3b7b 0%, transparent 60%), radial-gradient(ellipse at 70% 80%, #6b2f5a 0%, transparent 50%)",
+              `radial-gradient(ellipse at 30% 50%, ${GOLD} 0%, transparent 60%), radial-gradient(ellipse at 70% 80%, ${GOLD}80 0%, transparent 50%)`,
           }}
         />
 
         <div className="relative max-w-4xl mx-auto px-6 py-28 md:py-36 text-center">
           {/* Badge */}
-          <span className="inline-block bg-white/10 backdrop-blur-sm border border-white/20 text-white/90 text-xs font-semibold tracking-[0.25em] uppercase px-5 py-2 rounded-full mb-8 animate-fade-in-rise">
+          <span
+            className="inline-block text-white/90 text-xs font-bold tracking-[0.25em] uppercase px-5 py-2 rounded-full mb-8"
+            style={{ background: `${GOLD}30`, border: `1px solid ${GOLD}50` }}
+          >
             Notre Histoire
           </span>
 
           <h1
-            className={`font-playfair text-4xl md:text-5xl lg:text-6xl font-medium leading-tight mb-6 animate-fade-in-rise`}
-            style={{ animationDelay: "150ms" }}
+            className="font-playfair text-4xl md:text-5xl lg:text-6xl font-medium leading-tight mb-6"
           >
-            Nour Confection est bien plus
+            Dinarys est bien plus
             <br className="hidden md:block" />
             qu&apos;une marque.
           </h1>
 
-          <p
-            className="text-white/70 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed animate-fade-in-rise"
-            style={{ animationDelay: "300ms" }}
-          >
-            C&apos;est une histoire de passion, de tradition et d&apos;amour pour
-            l&apos;élégance algérienne.
+          <p className="text-white/70 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+            C&apos;est une ambition claire : mettre la cosmétique premium algérienne
+            entre les mains de chaque consommatrice.
           </p>
         </div>
 
@@ -56,77 +58,38 @@ export default function AboutPage() {
         <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent" />
       </section>
 
-      {/* ── Video Introduction ─────────────────────────── */}
-      <section className="py-20 md:py-28 px-6 bg-[#FAFAFA]">
-        <div className="max-w-5xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
-            {/* Text side */}
-            <div className="order-2 md:order-1">
-              <span className="inline-block bg-[#8B5E83] text-white text-xs font-semibold tracking-[0.2em] uppercase px-4 py-1.5 rounded-sm mb-6">
-                Découvrez Notre Univers
-              </span>
-              <h2
-                className={`font-playfair text-3xl md:text-4xl font-medium text-[#2D2D2D] leading-snug mb-6`}
-              >
-                Un savoir-faire artisanal,
-                <br className="hidden md:block" />
-                transmis avec passion.
-              </h2>
-              <div className="space-y-4 text-[#4A4A4A] text-base md:text-lg leading-relaxed">
-                <p>
-                  Derrière chaque création Nour Confection se cache un travail minutieux :
-                  le choix des tissus, la précision de la couture, la délicatesse des
-                  broderies et le soin apporté à chaque finition.
-                </p>
-                <p>
-                  Cette vidéo vous ouvre les portes de notre atelier, là où naissent les
-                  pièces qui accompagneront vos plus beaux moments.
-                </p>
-              </div>
-            </div>
-
-            {/* Video side */}
-            <div className="order-1 md:order-2 flex justify-center">
-              <VideoSection embedded />
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* ── Brand Story ──────────────────────────────── */}
       <section className="py-20 md:py-28 px-6">
         <div className="max-w-3xl mx-auto">
-          <span className="inline-block bg-[#8B5E83] text-white text-xs font-semibold tracking-[0.2em] uppercase px-4 py-1.5 rounded-sm mb-8">
+          <span
+            className="inline-block text-white text-xs font-bold tracking-[0.2em] uppercase px-4 py-1.5 rounded-sm mb-8"
+            style={{ background: GOLD }}
+          >
             Qui Sommes-Nous
           </span>
 
-          <h2
-            className={`font-playfair text-3xl md:text-4xl font-medium text-[#2D2D2D] leading-snug mb-8`}
-          >
-            Préserver l&apos;âme des traditions algériennes
-            <br className="hidden md:block" />
-            avec une touche moderne et raffinée.
+          <h2 className="font-playfair text-3xl md:text-4xl font-medium text-[#1a1a1a] leading-snug mb-8">
+            Une marque premium née avec une ambition claire.
           </h2>
 
           <div className="space-y-6 text-[#4A4A4A] text-base md:text-lg leading-relaxed">
             <p>
-              Fondée par une créatrice animée par la volonté de sublimer les moments les
-              plus précieux de la vie d&apos;une femme, <strong>Nour Confection</strong>{" "}
-              est née d&apos;un rêve : préserver l&apos;âme des traditions algériennes tout
-              en leur offrant une touche moderne et raffinée.
+              <strong>Dinarys</strong> est une marque cosmétique premium née avec une ambition claire : proposer des produits de haute qualité, modernes et performants, conçus pour répondre aux besoins réels des consommateurs algériens.
             </p>
             <p>
-              Chaque pièce est pensée avec soin, dessinée avec délicatesse et confectionnée
-              avec exigence. Nos collections pour{" "}
-              <strong>mariées</strong> et <strong>bébés</strong> célèbrent la
-              beauté des détails, l&apos;authenticité du patrimoine et le raffinement du
-              fait main.
+              Chaque formulation est pensée avec soin, développée avec exigence et fabriquée avec les meilleurs actifs disponibles. Nos gammes capillaires célèbrent la beauté des cheveux algériens tout en s&apos;inscrivant dans les standards les plus élevés de la cosmétique internationale.
             </p>
+            <div className="flex items-center gap-3 pt-2">
+              <span className="text-2xl">🇩🇿</span>
+              <span className="font-semibold tracking-wider text-[#1a1a1a] uppercase text-sm">
+                Made in Algeria · Fièrement algérien
+              </span>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ── Divider ──────────────────────────────────── */}
+      {/* ── Divider ── */}
       <div className="max-w-7xl mx-auto px-6">
         <div className="border-t border-[#E5DDD3]" />
       </div>
@@ -135,207 +98,160 @@ export default function AboutPage() {
       <section className="py-20 md:py-28 px-6">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16">
-            <span className="inline-block bg-[#8B5E83] text-white text-xs font-semibold tracking-[0.2em] uppercase px-4 py-1.5 rounded-sm mb-6">
+            <span
+              className="inline-block text-white text-xs font-bold tracking-[0.2em] uppercase px-4 py-1.5 rounded-sm mb-6"
+              style={{ background: GOLD }}
+            >
               Nos Valeurs
             </span>
-            <h2
-              className={`font-playfair text-3xl md:text-4xl font-medium text-[#2D2D2D]`}
-            >
+            <h2 className="font-playfair text-3xl md:text-4xl font-medium text-[#1a1a1a]">
               Ce en quoi nous croyons
             </h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
             {/* Value 1 */}
-            <div className="group text-center p-8 rounded-2xl border border-[#E5DDD3] hover:border-[#8B5E83]/30 hover:shadow-lg transition-all duration-500">
-              <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-[#8B5E83]/10 flex items-center justify-center group-hover:bg-[#8B5E83]/20 transition-colors duration-500">
-                <Sparkles className="w-7 h-7 text-[#8B5E83]" />
-              </div>
-              <h3
-                className={`font-playfair text-xl font-medium text-[#2D2D2D] mb-3`}
+            <div
+              className="group text-center p-8 rounded-2xl border hover:shadow-lg transition-all duration-500"
+              style={{ borderColor: "#E5DDD3" }}
+            >
+              <div
+                className="w-16 h-16 mx-auto mb-6 rounded-full flex items-center justify-center transition-colors duration-500"
+                style={{ background: `${GOLD}15` }}
               >
-                Chaque mariée est unique
+                <Sparkles className="w-7 h-7" style={{ color: GOLD }} />
+              </div>
+              <h3 className="font-playfair text-xl font-medium text-[#1a1a1a] mb-3">
+                Qualité Premium
               </h3>
               <p className="text-[#4A4A4A] text-sm leading-relaxed">
-                Nous croyons que chaque mariée mérite de se sentir unique,
-                sublimée par des pièces qui racontent son histoire.
+                Nous sélectionnons les meilleurs actifs pour formuler des produits à la hauteur des attentes les plus exigeantes.
               </p>
             </div>
 
             {/* Value 2 */}
-            <div className="group text-center p-8 rounded-2xl border border-[#E5DDD3] hover:border-[#8B5E83]/30 hover:shadow-lg transition-all duration-500">
-              <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-[#8B5E83]/10 flex items-center justify-center group-hover:bg-[#8B5E83]/20 transition-colors duration-500">
-                <Heart className="w-7 h-7 text-[#8B5E83]" />
-              </div>
-              <h3
-                className={`font-playfair text-xl font-medium text-[#2D2D2D] mb-3`}
+            <div
+              className="group text-center p-8 rounded-2xl border hover:shadow-lg transition-all duration-500"
+              style={{ borderColor: "#E5DDD3" }}
+            >
+              <div
+                className="w-16 h-16 mx-auto mb-6 rounded-full flex items-center justify-center transition-colors duration-500"
+                style={{ background: `${GOLD}15` }}
               >
-                Chaque naissance est un trésor
+                <Leaf className="w-7 h-7" style={{ color: GOLD }} />
+              </div>
+              <h3 className="font-playfair text-xl font-medium text-[#1a1a1a] mb-3">
+                Performance Prouvée
               </h3>
               <p className="text-[#4A4A4A] text-sm leading-relaxed">
-                Nous célébrons chaque nouveau-né avec des créations
-                délicates et précieuses, dignes de ce moment unique.
+                Chaque produit est développé pour des résultats visibles et mesurables, adaptés aux besoins réels de nos clientes.
               </p>
             </div>
 
             {/* Value 3 */}
-            <div className="group text-center p-8 rounded-2xl border border-[#E5DDD3] hover:border-[#8B5E83]/30 hover:shadow-lg transition-all duration-500">
-              <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-[#8B5E83]/10 flex items-center justify-center group-hover:bg-[#8B5E83]/20 transition-colors duration-500">
-                <Gem className="w-7 h-7 text-[#8B5E83]" />
-              </div>
-              <h3
-                className={`font-playfair text-xl font-medium text-[#2D2D2D] mb-3`}
+            <div
+              className="group text-center p-8 rounded-2xl border hover:shadow-lg transition-all duration-500"
+              style={{ borderColor: "#E5DDD3" }}
+            >
+              <div
+                className="w-16 h-16 mx-auto mb-6 rounded-full flex items-center justify-center transition-colors duration-500"
+                style={{ background: `${GOLD}15` }}
               >
-                Tradition & Modernité
+                <Gem className="w-7 h-7" style={{ color: GOLD }} />
+              </div>
+              <h3 className="font-playfair text-xl font-medium text-[#1a1a1a] mb-3">
+                Made in Algeria
               </h3>
               <p className="text-[#4A4A4A] text-sm leading-relaxed">
-                La tradition peut être élégante, contemporaine et
-                intemporelle à la fois. C&apos;est notre promesse.
+                Fiers de notre origine, nous portons haut les couleurs de l&apos;industrie cosmétique algérienne sur la scène internationale.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── Divider ──────────────────────────────────── */}
+      {/* ── Divider ── */}
       <div className="max-w-7xl mx-auto px-6">
         <div className="border-t border-[#E5DDD3]" />
       </div>
 
-      {/* ── Craftsmanship ────────────────────────────── */}
+      {/* ── Our Formulation Philosophy ─────────────────── */}
       <section className="py-20 md:py-28 px-6">
         <div className="max-w-5xl mx-auto">
-          {/* Header */}
           <div className="max-w-3xl mx-auto mb-16">
             <div className="flex items-center gap-4 mb-8">
-              <div className="w-12 h-12 rounded-full bg-[#8B5E83]/10 flex items-center justify-center shrink-0">
-                <Scissors className="w-6 h-6 text-[#8B5E83]" />
+              <div
+                className="w-12 h-12 rounded-full flex items-center justify-center shrink-0"
+                style={{ background: `${GOLD}15` }}
+              >
+                <FlaskConical className="w-6 h-6" style={{ color: GOLD }} />
               </div>
-              <span className="inline-block bg-[#8B5E83] text-white text-xs font-semibold tracking-[0.2em] uppercase px-4 py-1.5 rounded-sm">
-                Notre Savoir-Faire
+              <span
+                className="inline-block text-white text-xs font-bold tracking-[0.2em] uppercase px-4 py-1.5 rounded-sm"
+                style={{ background: GOLD }}
+              >
+                Notre Philosophie
               </span>
             </div>
 
-            <h2
-              className={`font-playfair text-3xl md:text-4xl font-medium text-[#2D2D2D] leading-snug mb-8`}
-            >
-              Des matières nobles et des finitions haut de gamme
+            <h2 className="font-playfair text-3xl md:text-4xl font-medium text-[#1a1a1a] leading-snug mb-8">
+              Des actifs scientifiquement sélectionnés
             </h2>
 
             <div className="space-y-6 text-[#4A4A4A] text-base md:text-lg leading-relaxed">
               <p>
-                Chez Nour Confection, nous travaillons des{" "}
-                <strong>matières nobles</strong>, des{" "}
-                <strong>broderies inspirées du patrimoine algérien</strong> et des{" "}
-                <strong>finitions haut de gamme</strong> pour créer des accessoires qui
-                accompagnent les plus beaux souvenirs.
+                Chez <strong>Dinarys</strong>, nous croyons que la science et la nature ne s&apos;opposent pas. Nos formules associent des actifs d&apos;origine naturelle — calendula, camomille, protéines de blé — avec les avancées de la cosmétique moderne comme la vitamine B5 et la kératine d&apos;origine naturelle.
               </p>
               <p>
-                Nos créations ne sont pas de simples articles.
-                <br />
-                Ce sont des pièces qui racontent une histoire.
+                Le résultat : des produits doux, efficaces et respectueux de la santé capillaire des femmes algériennes.
               </p>
             </div>
           </div>
 
-          {/* Photo Gallery — Masonry-style grid */}
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
-            {/* Image 1 — tall */}
-            <div className="row-span-2 relative rounded-2xl overflow-hidden shadow-md group">
-              <Image
-                src="/about/img1.jpeg"
-                alt="Confection à la machine à coudre"
-                fill
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
-                sizes="(max-width: 768px) 50vw, 33vw"
-              />
-            </div>
-
-            {/* Image 2 */}
-            <div className="relative aspect-square rounded-2xl overflow-hidden shadow-md group">
-              <Image
-                src="/about/img2.jpeg"
-                alt="Nouage de ruban sur tissu"
-                fill
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
-                sizes="(max-width: 768px) 50vw, 33vw"
-              />
-            </div>
-
-            {/* Image 3 */}
-            <div className="relative aspect-square rounded-2xl overflow-hidden shadow-md group">
-              <Image
-                src="/about/img3.jpeg"
-                alt="Couture et finitions"
-                fill
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
-                sizes="(max-width: 768px) 50vw, 33vw"
-              />
-            </div>
-
-            {/* Image 4 */}
-            <div className="relative aspect-square rounded-2xl overflow-hidden shadow-md group">
-              <Image
-                src="/about/img4.jpeg"
-                alt="Fils et matériaux de confection"
-                fill
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
-                sizes="(max-width: 768px) 50vw, 33vw"
-              />
-            </div>
-
-            {/* Image 5 */}
-            <div className="relative aspect-square rounded-2xl overflow-hidden shadow-md group">
-              <Image
-                src="/about/img5.jpeg"
-                alt="Emballage Nour Confection"
-                fill
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
-                sizes="(max-width: 768px) 50vw, 33vw"
-              />
-            </div>
-
-            {/* Image 6 */}
-            <div className="relative aspect-square rounded-2xl overflow-hidden shadow-md group">
-              <Image
-                src="/about/img6.jpeg"
-                alt="Détails de confection"
-                fill
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
-                sizes="(max-width: 768px) 50vw, 33vw"
-              />
-            </div>
+          {/* Key actives grid */}
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+            {[
+              { emoji: "🌼", name: "Calendula", desc: "Apaisant & protecteur" },
+              { emoji: "🌸", name: "Camomille", desc: "Douceur & éclat" },
+              { emoji: "💊", name: "Vitamine B5", desc: "Hydratation & brillance" },
+              { emoji: "🌾", name: "Protéines de Blé", desc: "Force & souplesse" },
+              { emoji: "💎", name: "Kératine", desc: "Réparation & structure" },
+            ].map((a, i) => (
+              <div
+                key={i}
+                className="p-5 rounded-2xl border text-center transition-all duration-300 hover:shadow-md"
+                style={{ borderColor: `${GOLD}30`, background: `${GOLD}08` }}
+              >
+                <div className="text-3xl mb-3">{a.emoji}</div>
+                <p className="font-semibold text-sm text-[#1a1a1a] mb-1">{a.name}</p>
+                <p className="text-xs text-[#5A5A5A]">{a.desc}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* ── Video Section ────────────────────────────── */}
-      <VideoSection />
-
       {/* ── CTA / Closing ────────────────────────────── */}
-      <section className="bg-[#1a1a1a] text-white">
+      <section className="bg-[#0d0d0d] text-white">
         <div
           className="relative overflow-hidden"
           style={{
-            background:
-              "radial-gradient(ellipse at 50% 0%, #8c3b7b33 0%, transparent 60%)",
+            background: `radial-gradient(ellipse at 50% 0%, ${GOLD}20 0%, transparent 60%)`,
           }}
         >
           <div className="max-w-3xl mx-auto px-6 py-24 md:py-32 text-center">
-            <h2
-              className={`font-playfair text-3xl md:text-4xl lg:text-5xl font-medium leading-tight mb-6`}
-            >
-              Votre histoire.
+            <h2 className="font-playfair text-3xl md:text-4xl lg:text-5xl font-medium leading-tight mb-6">
+              Prenez soin de vous,<br />avec Dinarys.
             </h2>
             <p className="text-white/70 text-lg md:text-xl max-w-xl mx-auto leading-relaxed mb-10">
-              Chaque création Nour Confection est une pièce unique, pensée pour
-              accompagner vos plus beaux moments.
+              Découvrez notre gamme capillaire premium, conçue pour sublimer et nourrir vos cheveux au quotidien.
             </p>
             <a
               href="/products"
-              className="inline-block border-2 border-white text-white text-sm font-semibold tracking-widest uppercase px-10 py-4 hover:bg-white hover:text-[#1a1a1a] transition-all duration-300"
+              className="inline-block border-2 text-white text-sm font-bold tracking-widest uppercase px-10 py-4 transition-all duration-300"
+              style={{ borderColor: GOLD }}
             >
-              Découvrir nos créations
+              Découvrir nos produits
             </a>
           </div>
         </div>
