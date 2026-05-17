@@ -39,7 +39,7 @@ const products = [
       { icon: "☀️", label: "Protection UV & Chaleur", desc: "Protège des rayons UV et de la chaleur des outils coiffants." },
       { icon: "✨", label: "Anti-Frisottis & Brillance", desc: "Discipline les cheveux et sublime leur éclat naturel." },
     ],
-    image: "/hero_dinarys2.png",
+    image: "/hero/prod33.jpeg",
     volume: "100ml",
   },
 ]
@@ -103,9 +103,8 @@ export default function IngredientsSection() {
         {products.map((product, i) => (
           <div
             key={i}
-            className={`grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center ${
-              i % 2 === 1 ? "md:[&>*:first-child]:order-2" : ""
-            }`}
+            className={`grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center ${i % 2 === 1 ? "md:[&>*:first-child]:order-2" : ""
+              }`}
           >
             {/* Image */}
             <div className="relative group">
