@@ -160,34 +160,31 @@ export default function Header() {
         - Other pages → always white
       */}
       <div
-        className={`absolute inset-0 z-[-1] transition-opacity duration-250 ${
-          alwaysVisible || isScrolled
+        className={`absolute inset-0 z-[-1] transition-opacity duration-250 ${alwaysVisible || isScrolled
             ? 'opacity-100 bg-white border-b border-[#E5DDD3]/70 shadow-sm'
             : 'opacity-0'
-        }`}
+          }`}
       />
 
       {navigationConfig.announcement.enabled && (
         <div
-          className={`transition-all duration-200 overflow-hidden ${
-            isScrolled || alwaysVisible
+          className={`transition-all duration-200 overflow-hidden ${isScrolled || alwaysVisible
               ? 'max-h-0 opacity-0'
               : 'max-h-10 opacity-100 bg-primary/90 text-white text-center py-2 text-sm relative z-10'
-          }`}
+            }`}
         >
           {navigationConfig.announcement.text}
         </div>
       )}
 
       {/* Inner container — same height on home & other pages */}
-      <div className={`max-w-7xl mx-auto px-4 flex items-center relative z-10 transition-all duration-200 ${
-        isScrolled || alwaysVisible ? 'h-[64px] lg:h-[72px]' : 'h-[76px] lg:h-[90px]'
-      } ${
+      <div className={`max-w-7xl mx-auto px-4 flex items-center relative z-10 transition-all duration-200 ${isScrolled || alwaysVisible ? 'h-[64px] lg:h-[72px]' : 'h-[76px] lg:h-[90px]'
+        } ${
         /* On home: center logo with 3-col grid | On other pages: logo left, nav right */
         isHomePage
           ? 'lg:grid lg:grid-cols-[1fr_auto_1fr] justify-between'
           : 'justify-between gap-6'
-      }`}>
+        }`}>
 
         {/* Mobile hamburger — hidden on lg */}
         <button
@@ -199,11 +196,10 @@ export default function Header() {
         </button>
 
         {/* ── Desktop Navigation ──────── */}
-        <nav className={`hidden lg:flex items-center gap-2 transition-all duration-200 ${
-          alwaysVisible || isScrolled
+        <nav className={`hidden lg:flex items-center gap-2 transition-all duration-200 ${alwaysVisible || isScrolled
             ? 'opacity-100 translate-y-0 pointer-events-auto'
             : 'opacity-0 -translate-y-2 pointer-events-none'
-        }`}>
+          }`}>
           <DesktopNavLink href="/" label="Accueil" />
           <DesktopNavLink href="/a-propos" label="Qui est Dinarys" />
 
@@ -275,33 +271,30 @@ export default function Header() {
         {/* Logo */}
         <Link
           href="/"
-          className={`transition-all duration-200 ${
-            isHomePage
+          className={`transition-all duration-200 ${isHomePage
               /* Home: absolutely centered when transparent, normal in grid when scrolled */
               ? isScrolled
                 ? 'lg:relative lg:left-auto lg:translate-x-0 lg:justify-self-center scale-100'
                 : 'absolute left-1/2 -translate-x-1/2 lg:relative lg:left-auto lg:translate-x-0 lg:justify-self-center scale-105 lg:scale-125 drop-shadow-2xl'
               /* Other pages: normal flow, no scaling */
               : 'scale-100'
-          }`}
+            }`}
         >
           <div className="relative">
             {/* White glow only on home transparent state */}
             <div
-              className={`absolute inset-0 bg-white/20 blur-xl rounded-full transition-opacity duration-200 ${
-                isHomePage && !isScrolled ? 'opacity-100' : 'opacity-0'
-              }`}
+              className={`absolute inset-0 bg-white/20 blur-xl rounded-full transition-opacity duration-200 ${isHomePage && !isScrolled ? 'opacity-100' : 'opacity-0'
+                }`}
             />
             <Image
               src={siteConfig.logo.src}
               alt={siteConfig.logo.alt}
               width={siteConfig.logo.width}
               height={siteConfig.logo.height}
-              className={`h-10 lg:h-12 w-auto max-w-[140px] lg:max-w-none object-contain transition-all duration-200 ${
-                isHomePage && !isScrolled
+              className={`h-10 lg:h-12 w-auto max-w-[140px] lg:max-w-none object-contain transition-all duration-200 ${isHomePage && !isScrolled
                   ? 'brightness-0 invert filter'          /* white logo on dark hero */
                   : 'mix-blend-multiply dark:mix-blend-screen dark:invert' /* dark logo on white bg */
-              }`}
+                }`}
               priority
             />
           </div>
@@ -327,11 +320,10 @@ export default function Header() {
         </div>
 
         {/* Actions (right column) - DESKTOP */}
-        <div className={`hidden lg:flex items-center gap-5 justify-self-end relative z-50 transition-all duration-200 ${
-          alwaysVisible || isScrolled
+        <div className={`hidden lg:flex items-center gap-5 justify-self-end relative z-50 transition-all duration-200 ${alwaysVisible || isScrolled
             ? 'opacity-100 translate-y-0 pointer-events-auto'
             : 'opacity-0 -translate-y-2 pointer-events-none'
-        }`}>
+          }`}>
           <button
             className="transition-all duration-300 hover:scale-110 p-1 text-[#4A4A4A] hover:text-[#1a1a1a]"
             onClick={() => setIsSearchOpen(!isSearchOpen)}
@@ -445,7 +437,7 @@ export default function Header() {
                 /* ── MENU TAB ─────────────────────────── */
                 <div className="py-2">
                   <SidebarLink href="/" label="ACCUEIL" onClick={closeMenu} />
-                  <SidebarLink href="/a-propos" label="QUI EST NOUR" onClick={closeMenu} />
+                  <SidebarLink href="/a-propos" label="QUI EST DINARYS" onClick={closeMenu} />
                   <SidebarLink href="/products" label="NOS PRODUITS" onClick={closeMenu} hasArrow />
                   <SidebarLink href="/products" label="NOUVELLE COLLECTION" onClick={closeMenu} />
                   <SidebarLink href="#about-contact" label="NOUS CONTACTER" onClick={closeMenu} />
