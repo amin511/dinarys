@@ -22,7 +22,7 @@ export default function Header() {
   const [isSearchOpen, setIsSearchOpen] = useState(false)
   const [cartCount, setCartCount] = useState(0)
   const [categories, setCategories] = useState<Category[]>([])
-  const [loadingCategories, sjetLoadingCategories] = useState(false)
+  const [loadingCategories, setLoadingCategories] = useState(false)
   const [activeTab, setActiveTab] = useState<"menu" | "categories">("menu")
   const [searchTerm, setSearchTerm] = useState("")
   const [isCategoriesOpen, setIsCategoriesOpen] = useState(false)
