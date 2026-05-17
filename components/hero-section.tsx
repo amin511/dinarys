@@ -9,11 +9,11 @@ const WORD_INTERVAL = 2200
 
 const slides = [
   { src: "/hero/prod1.jpeg", alt: "Dinarys – collection 1" },
-  { src: "/hero/prod2.jpeg", alt: "Dinarys – collection 2" },
-  { src: "/hero_dinarys2.png", alt: "Dinarys – collection 3" },
+  { src: "/hero/prod22.jpeg", alt: "Dinarys – collection 2" },
+  { src: "/hero/prod44.jpeg", alt: "Dinarys – collection 3" },
 ]
 
-const SLIDE_INTERVAL = 2200
+const SLIDE_INTERVAL = 3000
 
 export default function HeroSection() {
   const [current, setCurrent] = useState(0)
@@ -53,7 +53,7 @@ export default function HeroSection() {
   }
 
   /* ── Shared text overlay ── */
-  const TextOverlay = () => (
+  const renderTextOverlay = () => (
     <div className="absolute inset-0 flex flex-col items-center justify-center text-center pointer-events-none px-4 z-10">
       <h1
         className="text-white"
@@ -96,7 +96,7 @@ export default function HeroSection() {
   )
 
   /* ── Dot indicators ── */
-  const Dots = () => (
+  const renderDots = () => (
     <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex gap-2 z-20">
       {slides.map((_, i) => (
         <button
@@ -121,7 +121,7 @@ export default function HeroSection() {
   /* ═══════════════════════════════════════════════
      MOBILE  — full-width slider (< lg)
   ═══════════════════════════════════════════════ */
-  const MobileHero = () => (
+  const renderMobileHero = () => (
     <div
       className="relative lg:hidden overflow-hidden"
       style={{ height: "90svh", minHeight: "480px" }}
@@ -132,8 +132,8 @@ export default function HeroSection() {
           display: "flex",
           width: `${slides.length * 100}%`,
           height: "100%",
-          transform: `translateX(-${(current * 100) / slides.length}%)`,
-          transition: "transform 0.75s cubic-bezier(0.77,0,0.18,1)",
+          transform: `translate3d(-${(current * 100) / slides.length}%, 0, 0)`,
+          transition: "transform 0.8s cubic-bezier(0.65, 0, 0.35, 1)",
           willChange: "transform",
         }}
       >
@@ -156,15 +156,15 @@ export default function HeroSection() {
 
       {/* Overlay */}
       <div className="absolute inset-0 bg-black/48 pointer-events-none" />
-      <TextOverlay />
-      <Dots />
+      {renderTextOverlay()}
+      {renderDots()}
     </div>
   )
 
   /* ═══════════════════════════════════════════════
      DESKTOP — 3-column triptych layout (>= lg)
   ═══════════════════════════════════════════════ */
-  const DesktopHero = () => (
+  const renderDesktopHero = () => (
     <div
       className="hidden lg:flex relative overflow-hidden"
       style={{ height: "100vh", minHeight: "560px" }}
@@ -178,7 +178,8 @@ export default function HeroSection() {
           style={{
             /* Active column is wider */
             flexBasis: i === current ? "42%" : "29%",
-            transition: "flex-basis 0.6s cubic-bezier(0.77,0,0.18,1)",
+            transition: "flex-basis 0.8s cubic-bezier(0.65, 0, 0.35, 1)",
+            willChange: "flex-basis",
           }}
         >
           <Image
@@ -216,7 +217,7 @@ export default function HeroSection() {
       ))}
 
       {/* Centered text overlay across all 3 columns */}
-      <TextOverlay />
+      {renderTextOverlay()}
 
       {/* Bottom: dots + "Made in Algeria" badge */}
       <div className="absolute bottom-6 left-0 right-0 flex items-center justify-between px-10 z-20">
@@ -264,8 +265,8 @@ export default function HeroSection() {
 
   return (
     <section aria-label="Galerie Dinarys">
-      <MobileHero />
-      <DesktopHero />
+      {renderMobileHero()}
+      {renderDesktopHero()}
     </section>
   )
 }
