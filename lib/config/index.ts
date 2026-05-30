@@ -46,7 +46,7 @@ export function formatPrice(price: number, locale?: string): string {
     if (isArabic) {
         return `${formatted} ${symbol}`
     }
-    return `${symbol} ${formatted} ${code}`
+    return `${symbol} ${formatted}`
 }
 
 /**
