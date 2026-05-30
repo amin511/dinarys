@@ -75,11 +75,17 @@
   --sidebar-ring: oklch(0.95 0 0);
 }
 
-@theme inline {
+@theme {
   --font-sans: "Montserrat", sans-serif;
   --font-mono: "Geist Mono", "Geist Mono Fallback";
   --font-playfair: var(--font-cinzel), "Cinzel", serif;
   --font-cormorant: var(--font-montserrat), "Montserrat", sans-serif;
+  --font-arabic: var(--font-arabic), "Almarai", sans-serif;
+  --font-primary: var(--font-montserrat), "Montserrat", sans-serif;
+  --font-heading: var(--font-cinzel), "Cinzel", serif;
+}
+
+@theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -125,6 +131,25 @@
 
   body {
     @apply bg-white text-foreground;
+    font-family: var(--font-primary);
+  }
+
+  [dir="rtl"] {
+    --font-primary: var(--font-arabic), "Almarai", sans-serif;
+    --font-heading: var(--font-cairo), "Cairo", sans-serif;
+    --font-sans: var(--font-arabic), "Almarai", sans-serif;
+    --font-playfair: var(--font-cairo), "Cairo", sans-serif;
+    --font-cormorant: var(--font-arabic), "Almarai", sans-serif;
+  }
+
+}
+
+/* Arabic letters are joined — letter-spacing breaks their connections */
+@layer utilities {
+  html[dir="rtl"] *,
+  html[dir="rtl"] *::before,
+  html[dir="rtl"] *::after {
+    letter-spacing: 0 !important;
   }
 }
 
@@ -177,4 +202,19 @@
 
 .animate-scale-in {
   animation: scale-in 0.5s ease-out forwards;
+}
+
+/* Hero Ken Burns zoom for active slide */
+@keyframes ken-burns {
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(1.06);
+  }
+}
+
+.animate-ken-burns {
+  animation: ken-burns 6s ease-in-out infinite alternate;
 }

@@ -2,9 +2,8 @@
 
 import { useState, useEffect, useRef } from "react"
 import Image from "next/image"
+import { useTranslations, useLocale } from "next-intl"
 
-// Words that cycle in the animated subtitle
-const SUBTITLE_WORDS = ["cosmétique", "premium", "algérienne", "naturelle"]
 const WORD_INTERVAL = 2200
 
 const slides = [
@@ -16,6 +15,13 @@ const slides = [
 const SLIDE_INTERVAL = 3000
 
 export default function HeroSection() {
+  const t = useTranslations("hero")
+  const locale = useLocale()
+  const isArabic = locale === "ar"
+  const words: string[] = t.raw("words")
+
+  const titleFont = "var(--font-heading)"
+
   const [current, setCurrent] = useState(0)
   const [wordIndex, setWordIndex] = useState(0)
   const [wordVisible, setWordVisible] = useState(true)
@@ -40,12 +46,12 @@ export default function HeroSection() {
     const cycle = setInterval(() => {
       setWordVisible(false)
       setTimeout(() => {
-        setWordIndex((p) => (p + 1) % SUBTITLE_WORDS.length)
+        setWordIndex((p) => (p + 1) % words.length)
         setWordVisible(true)
       }, 380)
     }, WORD_INTERVAL)
     return () => clearInterval(cycle)
-  }, [])
+  }, [words.length])
 
   const handleDotClick = (i: number) => {
     setCurrent(i)
@@ -58,16 +64,16 @@ export default function HeroSection() {
       <h1
         className="text-white"
         style={{
-          fontFamily: "var(--font-playfair,'Playfair Display',serif)",
-          fontSize: "clamp(2.8rem, 10vw, 6.5rem)",
+          fontFamily: titleFont,
+          fontSize: isArabic ? "clamp(3rem, 10vw, 7rem)" : "clamp(2.8rem, 10vw, 6.5rem)",
           fontWeight: 700,
-          letterSpacing: "0.14em",
+          letterSpacing: isArabic ? 0 : "0.14em",
           textShadow: "0 4px 32px rgba(0,0,0,0.55)",
           lineHeight: 1,
           margin: 0,
         }}
       >
-        DINARYS
+        {isArabic ? "ديناريز" : "DINARYS"}
       </h1>
 
       <div className="flex items-center gap-4 mt-3">
@@ -77,7 +83,7 @@ export default function HeroSection() {
             fontFamily: "var(--font-cormorant,'Cormorant Garamond',serif)",
             fontSize: "clamp(1rem, 2.5vw, 1.75rem)",
             fontWeight: 300,
-            letterSpacing: "0.2em",
+            letterSpacing: isArabic ? 0 : "0.2em",
             color: "rgba(255,255,255,0.9)",
             fontStyle: "italic",
             margin: 0,
@@ -88,7 +94,7 @@ export default function HeroSection() {
             transition: "opacity 0.38s ease, transform 0.38s ease",
           }}
         >
-          {SUBTITLE_WORDS[wordIndex]}
+          {words[wordIndex]}
         </p>
         <span className="block h-px bg-white/70" style={{ width: "clamp(1.5rem,5vw,3rem)" }} />
       </div>
@@ -132,7 +138,7 @@ export default function HeroSection() {
           display: "flex",
           width: `${slides.length * 100}%`,
           height: "100%",
-          transform: `translate3d(-${(current * 100) / slides.length}%, 0, 0)`,
+          transform: `translate3d(${isArabic ? "" : "-"}${(current * 100) / slides.length}%, 0, 0)`,
           transition: "transform 0.8s cubic-bezier(0.65, 0, 0.35, 1)",
           willChange: "transform",
         }}
@@ -162,103 +168,191 @@ export default function HeroSection() {
   )
 
   /* ═══════════════════════════════════════════════
-     DESKTOP — 3-column triptych layout (>= lg)
+     DESKTOP — Vertical accordion layout (>= lg)
   ═══════════════════════════════════════════════ */
   const renderDesktopHero = () => (
     <div
       className="hidden lg:flex relative overflow-hidden"
       style={{ height: "100vh", minHeight: "560px" }}
     >
-      {/* 3 columns */}
-      {slides.map((slide, i) => (
-        <div
-          key={i}
-          onClick={() => handleDotClick(i)}
-          className="relative flex-1 overflow-hidden cursor-pointer group"
-          style={{
-            /* Active column is wider */
-            flexBasis: i === current ? "42%" : "29%",
-            transition: "flex-basis 0.8s cubic-bezier(0.65, 0, 0.35, 1)",
-            willChange: "flex-basis",
-          }}
-        >
-          <Image
-            src={slide.src}
-            alt={slide.alt}
-            fill
-            priority={i === 0}
-            sizes="(min-width: 1024px) 42vw, 29vw"
-            style={{
-              objectFit: "cover",
-              objectPosition: "center top",
-              transition: "transform 0.7s ease",
-            }}
-            className="group-hover:scale-105"
-          />
-
-          {/* Per-column dark gradient — lighter on active */}
+      {slides.map((slide, i) => {
+        const isActive = i === current
+        return (
           <div
-            className="absolute inset-0 transition-all duration-500"
+            key={i}
+            onClick={() => handleDotClick(i)}
+            className="relative overflow-hidden cursor-pointer group"
             style={{
-              background: i === current
-                ? "linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.15) 100%)"
-                : "linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.55) 100%)",
+              flexBasis: isActive ? "60%" : "20%",
+              transition: "flex-basis 0.9s cubic-bezier(0.65, 0, 0.35, 1)",
+              willChange: "flex-basis",
             }}
-          />
-
-          {/* Thin gold separator line between columns */}
-          {i > 0 && (
-            <div
-              className="absolute left-0 top-0 bottom-0 w-px"
-              style={{ background: "rgba(184,148,60,0.3)" }}
+          >
+            {/* Image — Ken Burns only on active */}
+            <Image
+              src={slide.src}
+              alt={slide.alt}
+              fill
+              priority={i === 0}
+              sizes="(min-width: 1024px) 60vw, 20vw"
+              style={{ objectFit: "cover", objectPosition: "center top" }}
+              className={isActive ? "animate-ken-burns" : ""}
             />
-          )}
-        </div>
-      ))}
 
-      {/* Centered text overlay across all 3 columns */}
-      {renderTextOverlay()}
-
-      {/* Bottom: dots + "Made in Algeria" badge */}
-      <div className="absolute bottom-6 left-0 right-0 flex items-center justify-between px-10 z-20">
-        {/* Made in Algeria */}
-        <div
-          className="flex items-center gap-2 px-4 py-1.5 rounded-full text-white/80 text-xs font-semibold tracking-widest uppercase backdrop-blur-sm"
-          style={{ background: "rgba(0,0,0,0.35)", border: "1px solid rgba(184,148,60,0.4)" }}
-        >
-          <span>🇩🇿</span>
-          <span>Made in Algeria</span>
-        </div>
-
-        {/* Dots */}
-        <div className="flex gap-2">
-          {slides.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => handleDotClick(i)}
-              aria-label={`Slide ${i + 1}`}
+            {/* Overlay */}
+            <div
+              className="absolute inset-0 transition-all duration-700"
               style={{
-                width: i === current ? "24px" : "8px",
-                height: "8px",
-                borderRadius: "9999px",
-                border: "none",
-                background: i === current ? "#fff" : "rgba(255,255,255,0.45)",
-                cursor: "pointer",
-                padding: 0,
-                transition: "width 0.35s ease, background 0.35s ease",
+                background: isActive
+                  ? "linear-gradient(to top, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.3) 45%, transparent 75%)"
+                  : "rgba(0,0,0,0.65)",
               }}
             />
-          ))}
-        </div>
+            {/* Hover lightening on inactive */}
+            {!isActive && (
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/-20 transition-all duration-300" />
+            )}
 
-        {/* Premium badge */}
-        <div
-          className="flex items-center gap-2 px-4 py-1.5 rounded-full text-white/80 text-xs font-semibold tracking-widest uppercase backdrop-blur-sm"
-          style={{ background: "rgba(0,0,0,0.35)", border: "1px solid rgba(184,148,60,0.4)" }}
-        >
-          <span style={{ color: "#D4A843" }}>✦</span>
-          <span>Premium</span>
-        </div>
+            {/* Gold separator between columns */}
+            {i > 0 && (
+              <div
+                className="absolute start-0 top-0 bottom-0 w-px z-10"
+                style={{ background: "rgba(184,148,60,0.35)" }}
+              />
+            )}
+
+            {/* INACTIVE — vertical collection number */}
+            {!isActive && (
+              <div className="absolute inset-0 flex items-center justify-center z-10">
+                <span
+                  className="text-white/50 group-hover:text-white/90 transition-colors duration-300 font-light select-none"
+                  style={{
+                    transform: "rotate(-90deg)",
+                    letterSpacing: isArabic ? 0 : "0.35em",
+                    fontSize: "0.75rem",
+                    fontFamily: "var(--font-primary)",
+                  }}
+                >
+                  0{i + 1}
+                </span>
+              </div>
+            )}
+
+            {/* ACTIVE — text card slides up from bottom */}
+            {isActive && (
+              <div
+                className="absolute bottom-8 left-8 right-8 z-20"
+                style={{
+                  transform: isActive ? "translateY(0)" : "translateY(50px)",
+                  opacity: isActive ? 1 : 0,
+                  transition: isActive
+                    ? "transform 0.65s cubic-bezier(0.2, 0.8, 0.3, 1) 0.35s, opacity 0.55s ease 0.35s"
+                    : "transform 0.25s ease, opacity 0.2s ease",
+                  pointerEvents: isActive ? "auto" : "none",
+                }}
+              >
+                {/* Brand name */}
+                <h1
+                  className="text-white mb-3"
+                  style={{
+                    fontFamily: titleFont,
+                    fontSize: isArabic ? "clamp(2.4rem, 4vw, 3.8rem)" : "clamp(2.2rem, 4vw, 3.5rem)",
+                    fontWeight: 700,
+                    letterSpacing: isArabic ? 0 : "0.18em",
+                    lineHeight: 1,
+                    textShadow: "0 2px 20px rgba(0,0,0,0.4)",
+                  }}
+                >
+                  {isArabic ? "ديناريز" : "DINARYS"}
+                </h1>
+
+                {/* Gold line */}
+                <div
+                  className="mb-3"
+                  style={{ width: "2.5rem", height: "1px", background: "#D4A843" }}
+                />
+
+                {/* Cycling word */}
+                <p
+                  className="mb-4"
+                  style={{
+                    fontFamily: "var(--font-cormorant,'Montserrat',sans-serif)",
+                    fontSize: "clamp(0.9rem, 1.4vw, 1.15rem)",
+                    fontWeight: 300,
+                    letterSpacing: isArabic ? 0 : "0.2em",
+                    color: "rgba(255,255,255,0.82)",
+                    fontStyle: "italic",
+                    minWidth: "8ch",
+                    opacity: wordVisible ? 1 : 0,
+                    transform: wordVisible ? "translateY(0)" : "translateY(5px)",
+                    transition: "opacity 0.38s ease, transform 0.38s ease",
+                  }}
+                >
+                  {words[wordIndex]}
+                </p>
+
+                {/* Made in Algeria */}
+                <p
+                  className="mb-5 flex items-center gap-1.5"
+                  style={{
+                    fontSize: "0.65rem",
+                    letterSpacing: isArabic ? 0 : "0.25em",
+                    color: "rgba(255,255,255,0.55)",
+                    textTransform: "uppercase",
+                    fontFamily: "var(--font-primary)",
+                  }}
+                >
+                  <span>🇩🇿</span>
+                  <span>{t("madeInAlgeria")}</span>
+                </p>
+
+                {/* CTA button */}
+                <button
+                  onClick={(e) => e.stopPropagation()}
+                  className="group/btn inline-flex items-center gap-3 px-6 py-2.5 text-white transition-all duration-300"
+                  style={{
+                    border: "1px solid rgba(212,168,67,0.7)",
+                    fontSize: "0.72rem",
+                    letterSpacing: isArabic ? 0 : "0.2em",
+                    textTransform: "uppercase",
+                    fontFamily: "var(--font-primary)",
+                    background: "transparent",
+                    cursor: "pointer",
+                  }}
+                  onMouseEnter={(e) => {
+                    ; (e.currentTarget as HTMLButtonElement).style.background = "rgba(212,168,67,0.18)"
+                      ; (e.currentTarget as HTMLButtonElement).style.borderColor = "#D4A843"
+                  }}
+                  onMouseLeave={(e) => {
+                    ; (e.currentTarget as HTMLButtonElement).style.background = "transparent"
+                      ; (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(212,168,67,0.7)"
+                  }}
+                >
+                  <span>{t("discover")}</span>
+                  <span
+                    className="transition-transform duration-300 group-hover/btn:translate-x-1"
+                    style={{ color: "#D4A843" }}
+                  >
+                    ——→
+                  </span>
+                </button>
+              </div>
+            )}
+          </div>
+        )
+      })}
+
+      {/* Slide counter — top right */}
+      <div
+        className="absolute top-6 end-10 z-20 font-light"
+        style={{
+          fontSize: "0.7rem",
+          letterSpacing: isArabic ? 0 : "0.25em",
+          color: "rgba(255,255,255,0.45)",
+          fontFamily: "var(--font-primary)",
+        }}
+      >
+        {String(current + 1).padStart(2, "0")} / {String(slides.length).padStart(2, "0")}
       </div>
     </div>
   )

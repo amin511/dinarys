@@ -1,14 +1,17 @@
 "use client"
 
-import { useRouter, useSearchParams } from "next/navigation"
 import { useEffect, useState } from "react"
+import { useSearchParams } from "next/navigation"
 import { Search } from "lucide-react"
+import { useTranslations } from "next-intl"
+import { useRouter } from "@/i18n/navigation"
 
 interface ProductSearchProps {
   initialQuery?: string
 }
 
 export default function ProductSearch({ initialQuery = "" }: ProductSearchProps) {
+  const t = useTranslations("products")
   const [query, setQuery] = useState(initialQuery)
   const router = useRouter()
   const searchParams = useSearchParams()
@@ -21,15 +24,9 @@ export default function ProductSearch({ initialQuery = "" }: ProductSearchProps)
     e.preventDefault()
 
     const params = new URLSearchParams()
-
-    // Preserve category if present
     const category = searchParams.get("category")
     if (category) params.set("category", category)
-
-    // Set search param (reset page to 1)
-    if (query.trim()) {
-      params.set("search", query.trim())
-    }
+    if (query.trim()) params.set("search", query.trim())
 
     const queryString = params.toString()
     router.push(`/products${queryString ? `?${queryString}` : ""}`)
@@ -52,7 +49,7 @@ export default function ProductSearch({ initialQuery = "" }: ProductSearchProps)
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="Rechercher des produits..."
+          placeholder={t("searchPlaceholder")}
           className="w-full pl-11 pr-24 py-3 border border-[#E5DDD3] text-sm text-[#2D2D2D] placeholder:text-[#999] focus:outline-none focus:border-[#2D2D2D] transition-colors rounded-sm"
         />
         {query && (
@@ -61,14 +58,14 @@ export default function ProductSearch({ initialQuery = "" }: ProductSearchProps)
             onClick={handleClear}
             className="absolute right-20 top-1/2 -translate-y-1/2 text-xs text-[#999] hover:text-[#2D2D2D] transition-colors"
           >
-            Effacer
+            {t("searchClear")}
           </button>
         )}
         <button
           type="submit"
           className="absolute right-2 top-1/2 -translate-y-1/2 bg-[#2D2D2D] text-white text-xs font-semibold tracking-wider uppercase px-4 py-2 hover:bg-secondary transition-colors"
         >
-          Chercher
+          {t("searchSubmit")}
         </button>
       </div>
     </form>

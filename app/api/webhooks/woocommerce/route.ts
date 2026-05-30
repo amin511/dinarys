@@ -169,62 +169,56 @@ async function handleProductWebhook(event: string, payload: any) {
     const productId = payload.id
     const productName = payload.name || "Unknown"
     const productSlug = payload.slug || productId
+    const locales = ["fr", "ar"]
 
     console.log(`[WooCommerce Webhook] Product ${event}: ${productName} (ID: ${productId}, Slug: ${productSlug})`)
 
     switch (event) {
         case "created":
-            // IMPORTANT: Pour les nouveaux produits, on doit invalider le layout de la route dynamique
-            // Cela permet à Next.js de générer la nouvelle page à la demande
-            revalidatePath("/product/[id]", "layout")
-
-            // Aussi revalider la page spécifique pour la pré-générer
-            revalidatePath(`/product/${productId}`)
-
-            // Revalider les listings pour afficher le nouveau produit
-            revalidatePath("/products")
-            revalidatePath("/")
+            for (const locale of locales) {
+                revalidatePath(`/${locale}/product/[id]`, "layout")
+                revalidatePath(`/${locale}/product/${productId}`)
+                revalidatePath(`/${locale}/products`)
+                revalidatePath(`/${locale}`)
+            }
             await triggerFullSsgRebuild("product.created", { event, productId })
-
             console.log(`[WooCommerce Webhook] ✅ New product ${productId} - Revalidated route layout and listings`)
             break
 
         case "updated":
-            // Invalider les tags de cache pour le produit et ses variations
-            revalidateTag(`product-${productId}`, "max")
-            revalidateTag(`variations-${productId}`, "max")
-
-            // Revalider la page produit spécifique et les listings
-            revalidatePath(`/product/${productId}`)
-            revalidatePath("/products")
-            revalidatePath("/")
+            revalidateTag(`product-${productId}`)
+            revalidateTag(`variations-${productId}`)
+            for (const locale of locales) {
+                revalidatePath(`/${locale}/product/${productId}`)
+                revalidatePath(`/${locale}/products`)
+                revalidatePath(`/${locale}`)
+            }
             await triggerFullSsgRebuild("product.updated", { event, productId })
             console.log(`[WooCommerce Webhook] ✅ Updated product ${productId} - Revalidated tags and paths`)
             break
 
         case "deleted":
         case "trashed":
-            // Invalider les tags de cache
-            revalidateTag(`product-${productId}`, "max")
-            revalidateTag(`variations-${productId}`, "max")
-
-            // Invalider le layout de la route pour supprimer le cache de la page
-            revalidatePath("/product/[id]", "layout")
-            revalidatePath("/products")
-            revalidatePath("/")
+            revalidateTag(`product-${productId}`)
+            revalidateTag(`variations-${productId}`)
+            for (const locale of locales) {
+                revalidatePath(`/${locale}/product/[id]`, "layout")
+                revalidatePath(`/${locale}/products`)
+                revalidatePath(`/${locale}`)
+            }
             await triggerFullSsgRebuild("product.deleted", { event, productId })
             console.log(`[WooCommerce Webhook] ✅ Product ${productId} deleted - Revalidated all routes`)
             break
 
         case "restored":
-            // Produit restauré depuis la corbeille - traiter comme un nouveau produit
-            revalidateTag(`product-${productId}`, "max")
-            revalidateTag(`variations-${productId}`, "max")
-
-            revalidatePath("/product/[id]", "layout")
-            revalidatePath(`/product/${productId}`)
-            revalidatePath("/products")
-            revalidatePath("/")
+            revalidateTag(`product-${productId}`)
+            revalidateTag(`variations-${productId}`)
+            for (const locale of locales) {
+                revalidatePath(`/${locale}/product/[id]`, "layout")
+                revalidatePath(`/${locale}/product/${productId}`)
+                revalidatePath(`/${locale}/products`)
+                revalidatePath(`/${locale}`)
+            }
             await triggerFullSsgRebuild("product.restored", { event, productId })
             console.log(`[WooCommerce Webhook] ✅ Product ${productId} restored - Revalidated all routes`)
             break

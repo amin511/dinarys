@@ -1,8 +1,9 @@
 "use client"
 
 import { useState } from "react"
-import Link from "next/link"
 import { SlidersHorizontal, X } from "lucide-react"
+import { useTranslations } from "next-intl"
+import { Link } from "@/i18n/navigation"
 
 interface Category {
   id: number
@@ -17,11 +18,11 @@ interface ProductsFilterProps {
 }
 
 export default function ProductsFilter({ categories, currentCategory }: ProductsFilterProps) {
+  const t = useTranslations("products")
   const [isOpen, setIsOpen] = useState(false)
 
   return (
     <div className="mb-6">
-      {/* Filter toggle button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="inline-flex items-center gap-2.5 text-[#2D2D2D] font-medium text-sm hover:text-secondary transition-colors pb-4 border-b border-[#E5DDD3] w-full"
@@ -31,17 +32,15 @@ export default function ProductsFilter({ categories, currentCategory }: Products
         ) : (
           <SlidersHorizontal className="w-5 h-5" />
         )}
-        <span className="text-base font-semibold">Filtrer</span>
+        <span className="text-base font-semibold">{t("filter")}</span>
       </button>
 
-      {/* Filter panel */}
       {isOpen && (
         <div className="py-6 border-b border-[#E5DDD3] animate-in slide-in-from-top-2 duration-200">
           <h3 className="text-xs font-semibold uppercase tracking-widest text-[#8B8B8B] mb-4">
-            Catégories
+            {t("categories")}
           </h3>
           <div className="flex flex-wrap gap-2">
-            {/* All products link */}
             <Link
               href="/products"
               className={`px-4 py-2 rounded-full text-sm border transition-all duration-200 ${
@@ -51,7 +50,7 @@ export default function ProductsFilter({ categories, currentCategory }: Products
               }`}
               onClick={() => setIsOpen(false)}
             >
-              Tous
+              {t("all")}
             </Link>
 
             {categories.map((cat) => (

@@ -1,11 +1,14 @@
 "use client"
 
+export const dynamic = "force-static"
+
 import { Suspense, useEffect, useState } from "react"
 import { useSearchParams } from "next/navigation"
 import { CheckCircle, Package, MapPin, Phone, User, Truck, CreditCard, Sparkles } from "lucide-react"
-import Link from "next/link"
+import { Link } from "@/i18n/navigation"
 import Image from "next/image"
 import { fbEvent } from "@/components/facebook-pixel"
+import { useTranslations } from "next-intl"
 
 interface OrderDetails {
   product: {
@@ -54,16 +57,8 @@ function ConfettiAnimation() {
           animation: confetti-fall 4s ease-in-out forwards;
         }
         @keyframes confetti-fall {
-          0% {
-            opacity: 1;
-            top: -10px;
-            transform: rotate(0deg) translateX(0);
-          }
-          100% {
-            opacity: 0;
-            top: 100vh;
-            transform: rotate(720deg) translateX(100px);
-          }
+          0% { opacity: 1; top: -10px; transform: rotate(0deg) translateX(0); }
+          100% { opacity: 0; top: 100vh; transform: rotate(720deg) translateX(100px); }
         }
       `}</style>
     </div>
@@ -73,20 +68,15 @@ function ConfettiAnimation() {
 function SuccessAnimation() {
   return (
     <div className="relative mb-8">
-      {/* Cercles animés */}
       <div className="absolute inset-0 flex items-center justify-center">
         <div className="w-32 h-32 rounded-full bg-green-100 animate-ping opacity-20" />
       </div>
       <div className="absolute inset-0 flex items-center justify-center">
         <div className="w-28 h-28 rounded-full bg-green-200 animate-pulse" />
       </div>
-
-      {/* Icône principale */}
       <div className="relative w-24 h-24 mx-auto bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center shadow-lg animate-bounce">
         <CheckCircle className="w-14 h-14 text-white" strokeWidth={2.5} />
       </div>
-
-      {/* Sparkles */}
       <Sparkles className="absolute top-0 right-1/4 w-6 h-6 text-yellow-400 animate-pulse" />
       <Sparkles className="absolute bottom-2 left-1/4 w-5 h-5 text-yellow-500 animate-pulse" style={{ animationDelay: '0.3s' }} />
     </div>
@@ -99,18 +89,16 @@ function ThankYouContent() {
   const [orderDetails, setOrderDetails] = useState<OrderDetails | null>(null)
   const [showConfetti, setShowConfetti] = useState(true)
   const [isVisible, setIsVisible] = useState(false)
+  const t = useTranslations("thankYou")
 
   useEffect(() => {
-    // Récupérer les détails de la commande depuis localStorage
     const savedOrder = localStorage.getItem("lastOrder")
     if (savedOrder) {
       const orderData = JSON.parse(savedOrder)
       setOrderDetails(orderData)
 
-      // Eviter le double tracking en cas de refresh
       const purchaseTracked = sessionStorage.getItem("purchase_tracked")
       if (!purchaseTracked) {
-        // Track Purchase event avec value et currency (obligatoires pour Facebook)
         fbEvent("Purchase", {
           value: orderData.total || 0,
           currency: "DZD",
@@ -123,10 +111,7 @@ function ThankYouContent() {
       }
     }
 
-    // Animation d'entrée
     setTimeout(() => setIsVisible(true), 100)
-
-    // Arrêter les confettis après 4 secondes
     setTimeout(() => setShowConfetti(false), 4000)
   }, [])
 
@@ -135,99 +120,78 @@ function ThankYouContent() {
       {showConfetti && <ConfettiAnimation />}
 
       <div className={`max-w-2xl mx-auto transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-        {/* Header de succès */}
         <div className="bg-white rounded-2xl shadow-xl p-8 mb-6 text-center">
           <SuccessAnimation />
-
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            🎉 Félicitations !
-          </h1>
-          <p className="text-xl text-green-600 font-semibold mb-4">
-            Votre commande a été envoyée avec succès
-          </p>
-
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">{t("congratulations")}</h1>
+          <p className="text-xl text-green-600 font-semibold mb-4">{t("orderSent")}</p>
           {orderNumber && (
             <div className="inline-flex items-center gap-2 bg-blue-50 text-[#0B5A8A] px-6 py-3 rounded-full font-medium">
               <Package className="w-5 h-5" />
-              Commande N° {orderNumber}
+              {t("orderNumber")} {orderNumber}
             </div>
           )}
         </div>
 
-        {/* Détails du produit */}
         {orderDetails?.product && (
           <div className={`bg-white rounded-2xl shadow-xl p-6 mb-6 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} style={{ transitionDelay: '200ms' }}>
             <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
               <Package className="w-5 h-5 text-[#0B5A8A]" />
-              Votre commande
+              {t("yourOrder")}
             </h2>
-
             <div className="flex gap-4 p-4 bg-gray-50 rounded-xl">
               {orderDetails.product.image && (
                 <div className="relative w-24 h-24 flex-shrink-0 rounded-lg overflow-hidden">
-                  <Image
-                    src={orderDetails.product.image}
-                    alt={orderDetails.product.name}
-                    fill
-                    className="object-cover"
-                  />
+                  <Image src={orderDetails.product.image} alt={orderDetails.product.name} fill className="object-cover" />
                 </div>
               )}
               <div className="flex-1">
                 <h3 className="font-semibold text-gray-900">{orderDetails.product.name}</h3>
                 {orderDetails.product.size && (
-                  <p className="text-sm text-gray-600">Taille: {orderDetails.product.size}</p>
+                  <p className="text-sm text-gray-600">{t("size")} {orderDetails.product.size}</p>
                 )}
-                <p className="text-sm text-gray-600">Quantité: {orderDetails.quantity}</p>
-                <p className="text-lg font-bold text-[#0B5A8A] mt-2">
-                  {orderDetails.product.price} DA
-                </p>
+                <p className="text-sm text-gray-600">{t("quantity")} {orderDetails.quantity}</p>
+                <p className="text-lg font-bold text-[#0B5A8A] mt-2">{orderDetails.product.price} DA</p>
               </div>
             </div>
           </div>
         )}
 
-        {/* Informations de livraison */}
         {orderDetails?.billing && (
           <div className={`bg-white rounded-2xl shadow-xl p-6 mb-6 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} style={{ transitionDelay: '300ms' }}>
             <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
               <MapPin className="w-5 h-5 text-[#0B5A8A]" />
-              Informations de livraison
+              {t("deliveryInfo")}
             </h2>
-
             <div className="grid gap-4">
               <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
                 <User className="w-5 h-5 text-gray-500" />
                 <div>
-                  <p className="text-xs text-gray-500">Nom</p>
+                  <p className="text-xs text-gray-500">{t("name")}</p>
                   <p className="font-medium text-gray-900">{orderDetails.billing.prenom}</p>
                 </div>
               </div>
-
               <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
                 <Phone className="w-5 h-5 text-gray-500" />
                 <div>
-                  <p className="text-xs text-gray-500">Téléphone</p>
+                  <p className="text-xs text-gray-500">{t("phone")}</p>
                   <p className="font-medium text-gray-900">{orderDetails.billing.telephone}</p>
                 </div>
               </div>
-
               <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
                 <MapPin className="w-5 h-5 text-gray-500" />
                 <div>
-                  <p className="text-xs text-gray-500">Adresse</p>
+                  <p className="text-xs text-gray-500">{t("address")}</p>
                   <p className="font-medium text-gray-900">
                     {orderDetails.billing.adresse}, {orderDetails.billing.commune}, {orderDetails.billing.wilaya}
                   </p>
                 </div>
               </div>
-
               <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
                 <Truck className="w-5 h-5 text-gray-500" />
                 <div>
-                  <p className="text-xs text-gray-500">Mode de livraison</p>
+                  <p className="text-xs text-gray-500">{t("deliveryMethod")}</p>
                   <p className="font-medium text-gray-900">
-                    {orderDetails.delivery_method === "domicile" ? "🏠 Livraison à domicile" : "📦 Stop Desk"}
+                    {orderDetails.delivery_method === "domicile" ? t("domicile") : t("stopdesk")}
                   </p>
                 </div>
               </div>
@@ -235,87 +199,74 @@ function ThankYouContent() {
           </div>
         )}
 
-        {/* Récapitulatif des prix */}
         {orderDetails && (
           <div className={`bg-white rounded-2xl shadow-xl p-6 mb-6 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} style={{ transitionDelay: '400ms' }}>
             <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
               <CreditCard className="w-5 h-5 text-[#0B5A8A]" />
-              Récapitulatif
+              {t("summary")}
             </h2>
-
             <div className="space-y-3">
               <div className="flex justify-between text-gray-600">
-                <span>Sous-total</span>
+                <span>{t("subtotal")}</span>
                 <span>{orderDetails.subtotal?.toLocaleString()} DA</span>
               </div>
               <div className="flex justify-between text-gray-600">
-                <span>Livraison</span>
-                <span>{orderDetails.shipping_cost === 0 ? "Gratuit" : `${orderDetails.shipping_cost?.toLocaleString()} DA`}</span>
+                <span>{t("shipping")}</span>
+                <span>{orderDetails.shipping_cost === 0 ? t("free") : `${orderDetails.shipping_cost?.toLocaleString()} DA`}</span>
               </div>
               <div className="border-t pt-3 flex justify-between text-lg font-bold text-gray-900">
-                <span>Total</span>
+                <span>{t("total")}</span>
                 <span className="text-[#0B5A8A]">{orderDetails.total?.toLocaleString()} DA</span>
               </div>
             </div>
-
             <div className="mt-4 p-3 bg-yellow-50 rounded-lg flex items-center gap-2 text-yellow-800">
               <CreditCard className="w-5 h-5" />
-              <span className="text-sm font-medium">Paiement à la livraison</span>
+              <span className="text-sm font-medium">{t("cod")}</span>
             </div>
           </div>
         )}
 
-        {/* Étapes suivantes */}
         <div className={`bg-white rounded-2xl shadow-xl p-6 mb-6 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} style={{ transitionDelay: '500ms' }}>
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">
-            📋 Prochaines étapes
-          </h2>
-
+          <h2 className="text-lg font-semibold text-gray-900 mb-4">{t("nextSteps")}</h2>
           <div className="space-y-4">
             <div className="flex items-start gap-3">
               <div className="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
                 <span className="text-green-600 font-bold text-sm">1</span>
               </div>
               <div>
-                <p className="font-medium text-gray-900">Confirmation par téléphone</p>
-                <p className="text-sm text-gray-600">Vous recevrez un appel pour confirmer votre commande</p>
+                <p className="font-medium text-gray-900">{t("step1Title")}</p>
+                <p className="text-sm text-gray-600">{t("step1Desc")}</p>
               </div>
             </div>
-
             <div className="flex items-start gap-3">
               <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0">
                 <span className="text-blue-600 font-bold text-sm">2</span>
               </div>
               <div>
-                <p className="font-medium text-gray-900">Préparation de votre colis</p>
-                <p className="text-sm text-gray-600">Votre commande sera préparée avec soin</p>
+                <p className="font-medium text-gray-900">{t("step2Title")}</p>
+                <p className="text-sm text-gray-600">{t("step2Desc")}</p>
               </div>
             </div>
-
             <div className="flex items-start gap-3">
               <div className="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center flex-shrink-0">
                 <span className="text-purple-600 font-bold text-sm">3</span>
               </div>
               <div>
-                <p className="font-medium text-gray-900">Livraison à votre adresse</p>
-                <p className="text-sm text-gray-600">Votre colis sera livré à l'adresse indiquée</p>
+                <p className="font-medium text-gray-900">{t("step3Title")}</p>
+                <p className="text-sm text-gray-600">{t("step3Desc")}</p>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Bouton retour */}
         <div className={`transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} style={{ transitionDelay: '600ms' }}>
           <Link
             href="/"
             className="block w-full bg-gradient-to-r from-[#0B5A8A] to-[#0a4d75] hover:from-[#094A73] hover:to-[#083d5f] text-white py-4 rounded-xl font-semibold text-center transition-all shadow-lg hover:shadow-xl"
           >
-            Continuer mes achats
+            {t("continueShopping")}
           </Link>
-
-          <p className="text-center text-sm text-gray-500 mt-4">
-            Merci de votre confiance ! 💙
-          </p>
+          <p className="text-center text-sm text-gray-500 mt-4">{t("thanks")}</p>
         </div>
       </div>
     </div>

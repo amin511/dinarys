@@ -32,18 +32,21 @@ export { colorMap, getColorValue, isKnownColor, extendColorMap, type ColorMap } 
  */
 import { siteConfig } from "./site"
 
-export function formatPrice(price: number): string {
-    const { symbol, code, position } = siteConfig.currency
+export function formatPrice(price: number, locale?: string): string {
+    const { code } = siteConfig.currency
+    const isArabic = locale === "ar"
+    const symbol = isArabic ? "دج" : siteConfig.currency.symbol
 
     const formatted = price.toLocaleString("en-US", {
         minimumFractionDigits: 2,
         maximumFractionDigits: 2,
     })
 
-    if (position === "before") {
-        return `${symbol} ${formatted} ${code}`
+    // Arabic: symbol goes after the number
+    if (isArabic) {
+        return `${formatted} ${symbol}`
     }
-    return `${formatted} ${symbol} ${code}`
+    return `${symbol} ${formatted} ${code}`
 }
 
 /**

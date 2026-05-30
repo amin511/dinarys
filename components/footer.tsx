@@ -1,17 +1,21 @@
-import Link from "next/link"
+"use client"
+
+import { Link } from "@/i18n/navigation"
 import Image from "next/image"
 import { Mail, Phone, MapPin, Instagram } from "lucide-react"
 import { siteConfig } from "@/lib/config"
+import { useTranslations } from "next-intl"
 
 export default function Footer() {
-  const { contact, social, logo, copyright, name, description } = siteConfig
+  const { contact, social, logo, copyright, name } = siteConfig
+  const t = useTranslations("footer")
 
   return (
     <footer className="bg-white border-t border-[#E5DDD3]">
       {/* ── Brand Section ─────────────────────────────── */}
       <div className="max-w-3xl mx-auto px-6 pt-16 pb-10 text-center">
         {/* Logo */}
-        <Link href="/" className="inline-block mb-6 group" aria-label="Accueil">
+        <Link href="/" className="inline-block mb-6 group" aria-label={t("home")}>
           <Image
             src={logo.src}
             alt={logo.alt}
@@ -28,17 +32,17 @@ export default function Footer() {
 
         {/* Description */}
         <p className="text-[#5A5A5A] leading-relaxed text-sm md:text-base max-w-xl mx-auto mb-4">
-          {description}
+          {t("description")}
         </p>
 
         {/* Algerian Flag */}
-        <span className="text-2xl" role="img" aria-label="Drapeau algérien">🇩🇿</span>
+        <span className="text-2xl" role="img" aria-label={t("algeriaflag")}>🇩🇿</span>
       </div>
 
       {/* ── Contact Section ───────────────────────────── */}
       <div className="max-w-3xl mx-auto px-6 pb-10">
         <h3 className="font-playfair text-xl md:text-2xl font-semibold text-[#2D2D2D] text-center mb-8 tracking-wide">
-          CONTACT
+          {t("contact").toUpperCase()}
         </h3>
 
         <ul className="space-y-5 max-w-md mx-auto">
@@ -51,7 +55,7 @@ export default function Footer() {
               <span className="flex-shrink-0 w-10 h-10 rounded-full bg-[#F8F6F3] flex items-center justify-center group-hover:bg-[#EDEAE5] transition-colors duration-200">
                 <Mail className="w-[18px] h-[18px] text-[#6B6B6B] group-hover:text-[#2D2D2D] transition-colors duration-200" />
               </span>
-              <span className="text-sm md:text-base">mail:{contact.email}</span>
+              <span className="text-sm md:text-base">{t("mail")}{contact.email}</span>
             </a>
           </li>
 
@@ -83,7 +87,7 @@ export default function Footer() {
               <span className="flex-shrink-0 w-10 h-10 rounded-full bg-[#F8F6F3] flex items-center justify-center group-hover:bg-[#EDEAE5] transition-colors duration-200">
                 <MapPin className="w-[18px] h-[18px] text-[#6B6B6B] group-hover:text-[#2D2D2D] transition-colors duration-200" />
               </span>
-              <span className="text-sm md:text-base">Adresse : {contact.address}</span>
+              <span className="text-sm md:text-base">{t("address")} {contact.address}</span>
             </a>
           </li>
 
@@ -96,7 +100,7 @@ export default function Footer() {
               <span className="flex-shrink-0 w-10 h-10 rounded-full bg-[#F8F6F3] flex items-center justify-center group-hover:bg-[#EDEAE5] transition-colors duration-200">
                 <Phone className="w-[18px] h-[18px] text-[#6B6B6B] group-hover:text-[#2D2D2D] transition-colors duration-200" />
               </span>
-              <span className="text-sm md:text-base">tel:{contact.phoneDisplay}</span>
+              <span className="text-sm md:text-base">{t("tel")}{contact.phoneDisplay}</span>
             </a>
           </li>
         </ul>
@@ -173,15 +177,13 @@ export default function Footer() {
 
       {/* ── Copyright Bar ─────────────────────────────── */}
       <div className="max-w-3xl mx-auto px-6 py-8">
-        <p className="text-center text-sm text-[#6B6B6B] mb-2">
-          © Copyright {name} {copyright.year} — Développé par
-        </p>
-        <p className="text-center">
+        <p className="text-center text-sm text-[#6B6B6B] whitespace-nowrap overflow-hidden text-ellipsis">
+          ©️ Copyright {name} {copyright.year} — {t("developedBy")}{" "}
           <a
             href="https://navigi.taplink.site/"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm font-semibold text-[#2D2D2D] hover:text-[#4A4A4A] transition-colors duration-200"
+            className="font-semibold text-[#2D2D2D] hover:text-[#4A4A4A] transition-colors duration-200"
           >
             Navigi Agency
           </a>

@@ -3,9 +3,10 @@
 import type React from "react"
 import { useState, useMemo } from "react"
 import { User, Phone, Minus, Plus, ShoppingBag, Truck, Loader2 } from "lucide-react"
-import { useRouter } from "next/navigation"
+import { useRouter } from "@/i18n/navigation"
+import { useTranslations } from "next-intl"
+import { useFormatPrice } from "@/lib/hooks/useFormatPrice"
 import {
-  formatPrice,
   shippingConfig,
   isFreeShipping,
   ALGERIA_WILAYAS,
@@ -27,14 +28,14 @@ interface ProductCheckoutFormProps {
 }
 
 function validatePhoneNumber(phone: string): boolean {
-  // Remove spaces and dashes
   const cleaned = phone.replace(/[\s-]/g, '')
-  // Algerian phone: 0612345678 (10 digits) or +213612345678 (13 chars)
   const phoneRegex = /^(0|\+213)\d{9}$/
   return phoneRegex.test(cleaned)
 }
 
 export default function ProductCheckoutForm({ product }: ProductCheckoutFormProps) {
+  const t = useTranslations("checkout")
+  const formatPrice = useFormatPrice()
   const [quantity, setQuantity] = useState(1)
   const [wilaya, setWilaya] = useState("")
   const [commune, setCommune] = useState("")
@@ -47,30 +48,23 @@ export default function ProductCheckoutForm({ product }: ProductCheckoutFormProp
   const router = useRouter()
   const [isSubmitting, setIsSubmitting] = useState(false)
 
-  // Vérifier si le shipping est activé dans la configuration
   const isShippingEnabled = shippingConfig.enabled
 
-  // Récupérer les données de livraison depuis WooCommerce API
   const { shippingData, loading: shippingLoading } = useWilayaShipping(wilaya || null)
 
   const productPrice = Number.parseFloat(product.price) || 0
   const sousTotal = productPrice * quantity
 
-  // Méthodes de livraison dynamiques depuis WooCommerce
   const dynamicDeliveryMethods = useMemo((): WilayaShippingMethod[] => {
     if (!shippingData) return []
     return shippingData.methods.filter(m => m.deliveryType !== "other")
   }, [shippingData])
 
-  // Calcul dynamique des frais de livraison depuis WooCommerce
   const livraison = useMemo(() => {
-    // Si shipping désactivé, retourner 0
     if (!isShippingEnabled) return 0
     if (!wilaya || !shippingData) return 0
-    // Vérifier si la livraison est gratuite
     if (isFreeShipping(sousTotal)) return 0
 
-    // Utiliser les prix dynamiques de WooCommerce
     if (deliveryMethod === "domicile") {
       return shippingData.domicilePrice
     } else if (deliveryMethod === "stopdesk") {
@@ -85,17 +79,16 @@ export default function ProductCheckoutForm({ product }: ProductCheckoutFormProp
     e.preventDefault()
 
     if (!formData.prenom || !formData.telephone || !wilaya || !commune) {
-      alert("Veuillez remplir tous les champs obligatoires")
+      alert(t("fillRequired"))
       return
     }
 
     if (!validatePhoneNumber(formData.telephone)) {
-      setPhoneError("Numéro de téléphone invalide. Format: 0XXXXXXXXX ou +213XXXXXXXXX")
+      setPhoneError(t("phoneError"))
       return
     }
 
     setPhoneError("")
-
     setIsSubmitting(true)
 
     try {
@@ -125,7 +118,6 @@ export default function ProductCheckoutForm({ product }: ProductCheckoutFormProp
 
       const result = await response.json()
 
-      // Sauvegarder les détails de la commande pour la page de remerciement
       const orderDetailsForThankYou = {
         product: {
           id: product.id,
@@ -150,7 +142,7 @@ export default function ProductCheckoutForm({ product }: ProductCheckoutFormProp
           telephone: formData.telephone,
           wilaya,
           commune,
-          adresse: formData.adresse || "",
+          adresse: "",
         },
         delivery_method: deliveryMethod,
         shipping_cost: livraison,
@@ -159,13 +151,12 @@ export default function ProductCheckoutForm({ product }: ProductCheckoutFormProp
       }
       localStorage.setItem("lastOrder", JSON.stringify(orderDetailsForThankYou))
 
-      // Reset purchase tracking flag pour permettre le tracking de cette nouvelle commande
       sessionStorage.removeItem("purchase_tracked")
 
       router.push(`/thank-you?order=${result.order_number || result.order_id}`)
     } catch (error) {
       console.error("Order submission error:", error)
-      alert("Erreur lors de la création de la commande. Veuillez réessayer.")
+      alert(t("orderError"))
     } finally {
       setIsSubmitting(false)
     }
@@ -177,7 +168,7 @@ export default function ProductCheckoutForm({ product }: ProductCheckoutFormProp
         {/* Quantity Selector */}
         <div className="pb-4 border-b border-gray-200">
           <label className="text-xs font-semibold uppercase tracking-wider text-gray-500 mb-3 block">
-            Quantité
+            {t("quantity")}
           </label>
           <div className="inline-flex items-center border-2 border-black rounded-xl overflow-hidden">
             <button
@@ -203,31 +194,31 @@ export default function ProductCheckoutForm({ product }: ProductCheckoutFormProp
         {/* Delivery Info */}
         <div className="space-y-4">
           <label className="text-xs font-semibold uppercase tracking-wider text-gray-500 block">
-            Informations de livraison
+            {t("deliveryInfoSection")}
           </label>
 
           {/* Name */}
           <div className="relative group">
-            <label className="absolute -top-2.5 left-3 px-2 bg-white text-xs font-medium text-gray-500 group-focus-within:text-black transition-colors duration-200">
-              Nom <span className="text-red-500">*</span>
+            <label className="absolute -top-2.5 start-3 px-2 bg-white text-xs font-medium text-gray-500 group-focus-within:text-black transition-colors duration-200">
+              {t("firstName")} <span className="text-red-500">*</span>
             </label>
-            <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-black transition-colors duration-200" />
+            <User className="absolute start-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-black transition-colors duration-200" />
             <input
               type="text"
-              placeholder="Entrez votre nom"
+              placeholder={t("namePlaceholder")}
               required
               value={formData.prenom}
               onChange={(e) => setFormData({ ...formData, prenom: e.target.value })}
-              className="w-full pl-12 pr-4 py-4 border-2 border-gray-200 rounded-xl text-sm font-medium placeholder:text-gray-400 focus:outline-none focus:border-black hover:border-gray-400 transition-all duration-200 ease-out"
+              className="w-full ps-12 pe-4 py-4 border-2 border-gray-200 rounded-xl text-sm font-medium placeholder:text-gray-400 focus:outline-none focus:border-black hover:border-gray-400 transition-all duration-200 ease-out text-start"
             />
           </div>
 
           {/* Phone */}
           <div className="relative group">
-            <label className="absolute -top-2.5 left-3 px-2 bg-white text-xs font-medium text-gray-500 group-focus-within:text-black transition-colors duration-200">
-              Téléphone <span className="text-red-500">*</span>
+            <label className="absolute -top-2.5 start-3 px-2 bg-white text-xs font-medium text-gray-500 group-focus-within:text-black transition-colors duration-200">
+              {t("phone")} <span className="text-red-500">*</span>
             </label>
-            <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-black transition-colors duration-200" />
+            <Phone className="absolute start-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-black transition-colors duration-200" />
             <input
               type="tel"
               placeholder="0XXXXXXXXX ou +213XXXXXXXXX"
@@ -237,60 +228,59 @@ export default function ProductCheckoutForm({ product }: ProductCheckoutFormProp
                 setFormData({ ...formData, telephone: e.target.value })
                 if (phoneError) setPhoneError("")
               }}
-              className={`w-full pl-12 pr-4 py-4 border-2 rounded-xl text-sm font-medium placeholder:text-gray-400 focus:outline-none hover:border-gray-400 transition-all duration-200 ease-out ${phoneError
+              className={`w-full ps-12 pe-4 py-4 border-2 rounded-xl text-sm font-medium placeholder:text-gray-400 focus:outline-none hover:border-gray-400 transition-all duration-200 ease-out text-start ${phoneError
                   ? "border-red-500 focus:border-red-500"
                   : "border-gray-200 focus:border-black"
                 }`}
             />
-            {phoneError && <p className="text-red-500 text-xs mt-1 ml-1">{phoneError}</p>}
+            {phoneError && <p className="text-red-500 text-xs mt-1 ms-1">{phoneError}</p>}
           </div>
 
           {/* Wilaya */}
           <div className="relative group">
-            <label className="absolute -top-2.5 left-3 px-2 bg-white text-xs font-medium text-gray-500 group-focus-within:text-black transition-colors duration-200 z-10">
-              Wilaya <span className="text-red-500">*</span>
+            <label className="absolute -top-2.5 start-3 px-2 bg-white text-xs font-medium text-gray-500 group-focus-within:text-black transition-colors duration-200 z-10">
+              {t("wilaya")} <span className="text-red-500">*</span>
             </label>
             <select
               value={wilaya}
               required
               onChange={(e) => { setWilaya(e.target.value); setCommune("") }}
-              className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl text-sm font-medium focus:outline-none focus:border-black hover:border-gray-400 transition-all duration-200 ease-out appearance-none bg-white bg-[url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23666%22%20stroke-width%3D%222%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%2F%3E%3C%2Fsvg%3E')] bg-no-repeat bg-[center_right_1rem] cursor-pointer"
+              className="w-full ps-4 pe-12 py-4 border-2 border-gray-200 rounded-xl text-sm font-medium focus:outline-none focus:border-black hover:border-gray-400 transition-all duration-200 ease-out appearance-none bg-white bg-[url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23666%22%20stroke-width%3D%222%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%2F%3E%3C%2Fsvg%3E')] bg-[center_right_1rem] rtl:bg-[center_left_1rem] bg-no-repeat cursor-pointer text-start"
             >
-              <option value="" className="text-gray-400">Sélectionner votre wilaya</option>
+              <option value="" className="text-gray-400">{t("selectWilayaOption")}</option>
               {ALGERIA_WILAYAS.map((w) => <option key={w} value={w}>{w}</option>)}
             </select>
           </div>
 
           {/* Commune */}
           <div className="relative group">
-            <label className="absolute -top-2.5 left-3 px-2 bg-white text-xs font-medium text-gray-500 group-focus-within:text-black transition-colors duration-200 z-10">
-              Commune <span className="text-red-500">*</span>
+            <label className="absolute -top-2.5 start-3 px-2 bg-white text-xs font-medium text-gray-500 group-focus-within:text-black transition-colors duration-200 z-10">
+              {t("commune")} <span className="text-red-500">*</span>
             </label>
             <select
               value={commune}
               required
               onChange={(e) => setCommune(e.target.value)}
               disabled={!wilaya}
-              className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl text-sm font-medium focus:outline-none focus:border-black hover:border-gray-400 transition-all duration-200 ease-out appearance-none bg-white bg-[url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23666%22%20stroke-width%3D%222%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%2F%3E%3C%2Fsvg%3E')] bg-no-repeat bg-[center_right_1rem] cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed disabled:bg-gray-50"
+              className="w-full ps-4 pe-12 py-4 border-2 border-gray-200 rounded-xl text-sm font-medium focus:outline-none focus:border-black hover:border-gray-400 transition-all duration-200 ease-out appearance-none bg-white bg-[url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23666%22%20stroke-width%3D%222%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%2F%3E%3C%2Fsvg%3E')] bg-[center_right_1rem] rtl:bg-[center_left_1rem] bg-no-repeat cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed disabled:bg-gray-50 text-start"
             >
-              <option value="" className="text-gray-400">Sélectionner votre commune</option>
+              <option value="" className="text-gray-400">{t("selectCommuneOption")}</option>
               {wilaya && ALGERIA_COMMUNES[wilaya]?.map((c) => <option key={c} value={c}>{c}</option>)}
             </select>
           </div>
         </div>
 
-        {/* Delivery Method Selection - Only show if shipping is enabled */}
+        {/* Delivery Method Selection */}
         {isShippingEnabled && shippingConfig.allowMethodSelection && (
           <div className="space-y-3">
             <div className="flex items-center gap-2">
               <Truck className="w-4 h-4 text-gray-500" />
               <label className="text-xs font-semibold uppercase tracking-wider text-gray-500">
-                Mode de livraison
+                {t("deliveryMethod")}
               </label>
               {shippingLoading && <Loader2 className="w-4 h-4 animate-spin text-gray-400" />}
             </div>
 
-            {/* Afficher les méthodes de WooCommerce si disponibles */}
             {shippingData && dynamicDeliveryMethods.length > 0 ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {dynamicDeliveryMethods.map((method) => {
@@ -302,14 +292,13 @@ export default function ProductCheckoutForm({ product }: ProductCheckoutFormProp
                       key={method.id}
                       type="button"
                       onClick={() => setDeliveryMethod(method.deliveryType as DeliveryMethod)}
-                      className={`relative p-4 rounded-xl border-2 text-left transition-all duration-200 ${isSelected
+                      className={`relative p-4 rounded-xl border-2 text-start transition-all duration-200 ${isSelected
                         ? 'border-black bg-gray-50'
                         : 'border-gray-200 hover:border-gray-400'
                         }`}
                     >
-                      {/* Selected indicator */}
                       {isSelected && (
-                        <div className="absolute top-3 right-3 w-5 h-5 bg-black rounded-full flex items-center justify-center">
+                        <div className="absolute top-3 end-3 w-5 h-5 bg-black rounded-full flex items-center justify-center">
                           <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                           </svg>
@@ -320,17 +309,10 @@ export default function ProductCheckoutForm({ product }: ProductCheckoutFormProp
                         <span className="text-xl">{method.deliveryType === 'stopdesk' ? '📦' : '🏠'}</span>
                         <div className="flex-1 min-w-0">
                           <div className="font-semibold text-sm">{method.title}</div>
-                          <p className="text-xs text-gray-500 mt-0.5 line-clamp-2">
-                            {/* {method.description || (method.deliveryType === 'stopdesk' ? 'Récupérez votre colis au point relais' : 'Livraison à votre adresse')} */}
-                          </p>
-
-                          {/* Price from WooCommerce */}
                           <div className="flex items-center justify-between mt-2 pt-2 border-t border-gray-100">
-                            <span className="text-xs text-gray-400">
-                              {/* {method.deliveryType === 'stopdesk' ? '2-4 jours' : '3-5 jours'} */}
-                            </span>
+                            <span className="text-xs text-gray-400" />
                             <span className={`font-bold text-sm ${isFree ? 'text-green-600' : 'text-black'}`}>
-                              {isFree ? 'Gratuit' : formatPrice(method.cost)}
+                              {isFree ? t("free") : formatPrice(method.cost)}
                             </span>
                           </div>
                         </div>
@@ -342,22 +324,21 @@ export default function ProductCheckoutForm({ product }: ProductCheckoutFormProp
             ) : wilaya && shippingLoading ? (
               <div className="text-center py-4">
                 <Loader2 className="w-6 h-6 animate-spin text-gray-400 mx-auto" />
-                <p className="text-xs text-gray-400 mt-2">Chargement des tarifs...</p>
+                <p className="text-xs text-gray-400 mt-2">{t("loadingRates")}</p>
               </div>
             ) : wilaya && !shippingData ? (
               <div className="text-center py-4 text-xs text-gray-500">
-                <p>Tarifs non disponibles pour cette wilaya</p>
+                <p>{t("ratesUnavailable")}</p>
               </div>
             ) : (
               <div className="text-center py-4 text-xs text-gray-400">
-                <p>Sélectionnez une wilaya pour voir les options de livraison</p>
+                <p>{t("selectWilayaPrompt")}</p>
               </div>
             )}
 
-            {/* Show shipping info if wilaya is selected */}
             {wilaya && shippingData && (
               <p className="text-xs text-gray-400 text-center">
-                Livraison vers {wilaya} ({shippingData.zoneName}) • {deliveryMethod === 'stopdesk' ? 'Point relais' : 'Domicile'}
+                {t("deliveryTo", { wilaya, zone: shippingData.zoneName })} • {deliveryMethod === 'stopdesk' ? t("stopdesk") : t("domicile")}
               </p>
             )}
           </div>
@@ -366,35 +347,37 @@ export default function ProductCheckoutForm({ product }: ProductCheckoutFormProp
         {/* Order Summary */}
         <div className="bg-gray-50 rounded-xl p-5 space-y-3 border border-gray-100">
           <div className="flex justify-between text-sm">
-            <span className="text-gray-500">Sous-total ({quantity} article{quantity > 1 ? 's' : ''})</span>
+            <span className="text-gray-500">
+              {t("subtotal")} ({quantity} {quantity > 1 ? t("articles") : t("article")})
+            </span>
             <span className="font-medium">{formatPrice(sousTotal)}</span>
           </div>
           <div className="flex justify-between text-sm items-center">
-            <span className="text-gray-500">Livraison</span>
+            <span className="text-gray-500">{t("shipping")}</span>
             {isShippingEnabled ? (
               wilaya ? (
                 isFreeShipping(sousTotal) ? (
-                  <span className="text-green-600 font-medium">Gratuit</span>
+                  <span className="text-green-600 font-medium">{t("free")}</span>
                 ) : (
                   <span className="font-medium">{formatPrice(livraison)}</span>
                 )
               ) : (
-                <span className="text-gray-400 text-xs">Sélectionner une wilaya</span>
+                <span className="text-gray-400 text-xs">{t("selectWilayaForShipping")}</span>
               )
             ) : (
               <span className="text-gray-400 text-xs">{shippingConfig.disabledMessage}</span>
             )}
           </div>
           <div className="text-xs text-gray-400">
-            💵 Paiement à la livraison
+            💵 {t("cod")}
           </div>
           <div className="flex justify-between font-bold text-lg pt-3 border-t border-gray-200">
-            <span>Total</span>
+            <span>{t("total")}</span>
             <span>{formatPrice(total)}</span>
           </div>
         </div>
 
-        {/* Animated Submit Button */}
+        {/* Submit Button */}
         <button
           type="submit"
           disabled={isSubmitting}
@@ -408,17 +391,14 @@ export default function ProductCheckoutForm({ product }: ProductCheckoutFormProp
                   <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
                   <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
                 </svg>
-                Traitement...
+                {t("submitting")}
               </span>
             ) : (
-              <span>Commander maintenant</span>
+              <span>{t("orderNow")}</span>
             )}
           </span>
           <div className="absolute inset-0 bg-gradient-to-r from-gray-800 to-black opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
         </button>
-
-        {/* Trust Badge */}
-
       </form>
     </div>
   )

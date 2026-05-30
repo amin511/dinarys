@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\dell\\\\Desktop\\\\nour-confection\" -Force)",
+      "Bash(Get-ChildItem -Path \"c:\\\\Users\\\\dell\\\\Desktop\\\\nour-confection\" -Force)",
+      "Bash(Select-Object Name, PSIsContainer)"
+    ]
+  }
+}

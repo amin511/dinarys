@@ -6,15 +6,14 @@ import AboutBrandSection from "@/components/about-brand-section"
 import Footer from "@/components/footer"
 import { Suspense } from "react"
 
-// Full SSG: No revalidation, static content only
-export const revalidate = false
+export const dynamic = "force-static"
 
 function ProductsLoading() {
   return (
     <section id="products" className="max-w-7xl mx-auto border-t border-border text-3xl py-16 px-4 scroll-mt-20">
       <div className="flex items-center justify-between mb-8">
-        <h2 className="font-light text-foreground mt-0 text-xl">Nos Produits</h2>
-        <span className="text-sm text-muted-foreground underline underline-offset-4">VOIR TOUT</span>
+        <div className="h-6 bg-muted rounded w-32 animate-pulse" />
+        <div className="h-4 bg-muted rounded w-16 animate-pulse" />
       </div>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
         {[...Array(8)].map((_, i) => (
@@ -29,18 +28,17 @@ function ProductsLoading() {
   )
 }
 
-export default function Home() {
+export default async function Home({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
   return (
     <main className="min-h-screen bg-background">
       <Header />
       <HeroSection />
       <AboutBrandSection />
       <Suspense fallback={<ProductsLoading />}>
-        <ProductsSectionServer />
+        <ProductsSectionServer locale={locale} />
       </Suspense>
-
       <IngredientsSection />
-
       <Footer />
     </main>
   )

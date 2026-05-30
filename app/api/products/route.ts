@@ -1,11 +1,12 @@
+import { type NextRequest } from "next/server"
 import { getWooCredentials, wooConfig } from "@/lib/config"
 
 // ISR: Revalidate every 5 minutes
 export const revalidate = 300
 
-export async function GET(request: Request) {
+export async function GET(request: NextRequest) {
   try {
-    const { searchParams } = new URL(request.url)
+    const { searchParams } = request.nextUrl
     const per_page = searchParams.get("per_page") || String(wooConfig.products.perPage)
     const page = searchParams.get("page") || "1"
     const orderby = searchParams.get("orderby") || wooConfig.products.defaultOrderBy

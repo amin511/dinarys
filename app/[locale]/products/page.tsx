@@ -25,7 +25,6 @@ interface ProductsResult {
   totalPages: number
 }
 
-// Full SSG: build once, no ISR.
 export const dynamic = "force-static"
 export const revalidate = false
 
@@ -33,38 +32,25 @@ async function getProductsPage(page: number): Promise<ProductsResult> {
   try {
     const { storeUrl, authHeader } = getWooCredentials()
     const apiUrl = `${storeUrl}/wp-json/wc/v3/products?per_page=100&page=${page}&status=publish`
-
     const response = await fetch(apiUrl, {
       headers: { Authorization: authHeader },
       cache: "force-cache",
     })
-
-    if (!response.ok) {
-      console.error("[Products] API Error:", response.status)
-      return { products: [], totalPages: 0 }
-    }
-
+    if (!response.ok) return { products: [], totalPages: 0 }
     const products = await response.json()
     const totalPages = parseInt(response.headers.get("X-WP-TotalPages") || "1", 10)
-
     return { products, totalPages }
-  } catch (error) {
-    console.error("[Products] Error fetching products:", error)
+  } catch {
     return { products: [], totalPages: 0 }
   }
 }
 
 async function getAllProducts(): Promise<Product[]> {
   const firstPage = await getProductsPage(1)
-
-  if (firstPage.totalPages <= 1) {
-    return firstPage.products
-  }
-
-  const remainingPages = Array.from({ length: firstPage.totalPages - 1 }, (_, index) => index + 2)
+  if (firstPage.totalPages <= 1) return firstPage.products
+  const remainingPages = Array.from({ length: firstPage.totalPages - 1 }, (_, i) => i + 2)
   const remainingResults = await Promise.all(remainingPages.map((page) => getProductsPage(page)))
-
-  return firstPage.products.concat(remainingResults.flatMap((result) => result.products))
+  return firstPage.products.concat(remainingResults.flatMap((r) => r.products))
 }
 
 async function getCategories(): Promise<Category[]> {
@@ -72,31 +58,21 @@ async function getCategories(): Promise<Category[]> {
     const { storeUrl, authHeader } = getWooCredentials()
     const response = await fetch(
       `${storeUrl}/wp-json/wc/v3/products/categories?per_page=100&hide_empty=true`,
-      {
-        headers: { Authorization: authHeader },
-        cache: "force-cache",
-      }
+      { headers: { Authorization: authHeader }, cache: "force-cache" }
     )
-
     if (!response.ok) return []
     return await response.json()
-  } catch (error) {
-    console.error("[Products] Error fetching categories:", error)
+  } catch {
     return []
   }
 }
 
 export default async function ProductsPage() {
-  const [products, categories] = await Promise.all([
-    getAllProducts(),
-    getCategories(),
-  ])
-
+  const [products, categories] = await Promise.all([getAllProducts(), getCategories()])
   return (
     <main className="min-h-screen bg-background">
       <Header />
       <ProductsPageClient products={products} categories={categories} />
-
       <Footer />
     </main>
   )

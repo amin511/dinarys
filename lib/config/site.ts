@@ -25,7 +25,7 @@ export const siteConfig = {
     contact: {
         email: "dinarys.cosmetics@gmail.com",
         phone: "+213696949326",
-        phoneDisplay: "+213 696 94 93 26",
+        phoneDisplay: "+213 (0) 696 94 93 26",
         address: "Algérie",
         mapUrl: "",
     },
@@ -82,7 +82,7 @@ export const siteConfig = {
         search: true,
         cart: true,
         newsletter: false,
-        multiLanguage: false,
+        multiLanguage: true,
     },
 
     // Analytics & Tracking

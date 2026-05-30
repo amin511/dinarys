@@ -1,12 +1,12 @@
 "use client"
 
-import Link from "next/link"
 import { ChevronLeft, ChevronRight } from "lucide-react"
+import { useTranslations } from "next-intl"
+import { Link } from "@/i18n/navigation"
 
 interface PaginationProps {
   currentPage: number
   totalPages: number
-  /** Serializable params to preserve when building page URLs */
   params?: Record<string, string>
 }
 
@@ -22,9 +22,10 @@ function buildPageUrl(page: number, params: Record<string, string> = {}): string
 }
 
 export default function Pagination({ currentPage, totalPages, params = {} }: PaginationProps) {
+  const t = useTranslations("products")
+
   if (totalPages <= 1) return null
 
-  // Generate page numbers with ellipsis for large ranges
   const getPageNumbers = (): (number | "...")[] => {
     const pages: (number | "...")[] = []
     const delta = 1
@@ -51,12 +52,11 @@ export default function Pagination({ currentPage, totalPages, params = {} }: Pag
 
   return (
     <nav aria-label="Pagination" className="flex items-center justify-center gap-1 mt-12 mb-8">
-      {/* Previous */}
       {currentPage > 1 ? (
         <Link
           href={buildPageUrl(currentPage - 1, params)}
           className="flex items-center justify-center w-10 h-10 rounded-sm border border-[#E5DDD3] text-[#4A4A4A] hover:border-[#2D2D2D] hover:text-[#2D2D2D] transition-colors"
-          aria-label="Page précédente"
+          aria-label={t("prevPage")}
         >
           <ChevronLeft className="w-4 h-4" />
         </Link>
@@ -66,7 +66,6 @@ export default function Pagination({ currentPage, totalPages, params = {} }: Pag
         </span>
       )}
 
-      {/* Page numbers */}
       {pageNumbers.map((page, idx) =>
         page === "..." ? (
           <span
@@ -91,12 +90,11 @@ export default function Pagination({ currentPage, totalPages, params = {} }: Pag
         )
       )}
 
-      {/* Next */}
       {currentPage < totalPages ? (
         <Link
           href={buildPageUrl(currentPage + 1, params)}
           className="flex items-center justify-center w-10 h-10 rounded-sm border border-[#E5DDD3] text-[#4A4A4A] hover:border-[#2D2D2D] hover:text-[#2D2D2D] transition-colors"
-          aria-label="Page suivante"
+          aria-label={t("nextPage")}
         >
           <ChevronRight className="w-4 h-4" />
         </Link>

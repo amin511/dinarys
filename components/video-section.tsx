@@ -3,12 +3,14 @@
 import { useState, useRef, useEffect } from "react"
 import { Play, Pause, Volume2, VolumeX } from "lucide-react"
 import { siteConfig } from "@/lib/config/site"
+import { useTranslations } from "next-intl"
 
 interface VideoSectionProps {
   embedded?: boolean
 }
 
 export default function VideoSection({ embedded = false }: VideoSectionProps) {
+  const t = useTranslations("videoSection")
   const [isPlaying, setIsPlaying] = useState(false)
   const [isMuted, setIsMuted] = useState(true)
   const [showOverlay, setShowOverlay] = useState(true)
@@ -102,8 +104,8 @@ export default function VideoSection({ embedded = false }: VideoSectionProps) {
       {/* Mute/unmute button - always visible */}
       <button
         onClick={toggleMute}
-        className="absolute top-4 right-4 w-10 h-10 rounded-full bg-black/30 backdrop-blur-sm flex items-center justify-center text-white hover:bg-black/50 transition-all duration-200 z-10"
-        aria-label={isMuted ? "Activer le son" : "Couper le son"}
+        className="absolute top-4 end-4 w-10 h-10 rounded-full bg-black/30 backdrop-blur-sm flex items-center justify-center text-white hover:bg-black/50 transition-all duration-200 z-10"
+        aria-label={isMuted ? t("unmute") : t("mute")}
       >
         {isMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
       </button>
@@ -141,44 +143,42 @@ export default function VideoSection({ embedded = false }: VideoSectionProps) {
   return (
     <section className="w-full py-16 md:py-24 bg-white relative overflow-hidden">
       {/* Subtle decorative elements with brand colors */}
-      <div className="absolute top-0 left-0 w-72 h-72 rounded-full opacity-[0.04] -translate-x-1/2 -translate-y-1/2" style={{ background: "radial-gradient(circle, var(--secondary), transparent)" }} />
-      <div className="absolute bottom-0 right-0 w-96 h-96 rounded-full opacity-[0.04] translate-x-1/3 translate-y-1/3" style={{ background: "radial-gradient(circle, var(--secondary), transparent)" }} />
+      <div className="absolute top-0 start-0 w-72 h-72 rounded-full opacity-[0.04] -translate-x-1/2 -translate-y-1/2" style={{ background: "radial-gradient(circle, var(--secondary), transparent)" }} />
+      <div className="absolute bottom-0 end-0 w-96 h-96 rounded-full opacity-[0.04] translate-x-1/3 translate-y-1/3" style={{ background: "radial-gradient(circle, var(--secondary), transparent)" }} />
 
       <div className="max-w-6xl mx-auto px-6">
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
           {/* Text content */}
-          <div className="flex-1 text-center lg:text-left space-y-6 max-w-lg">
+          <div className="flex-1 text-center lg:text-start space-y-6 max-w-lg">
             {/* Decorative line */}
             <div className="flex items-center gap-3 justify-center lg:justify-start">
               <span className="w-10 h-[2px] bg-secondary" />
               <span className="text-xs font-semibold tracking-[0.25em] uppercase text-secondary">
-                Découvrez notre univers
+                {t("badge")}
               </span>
             </div>
 
-            <h2 className="font-playfair text-3xl md:text-4xl lg:text-5xl font-semibold text-[#2D2D2D] leading-tight">
-              L&apos;Art de la <br />
-              <span className="text-secondary">Confection</span>
+            <h2 className="font-playfair text-3xl md:text-4xl lg:text-5xl font-semibold text-[#2D2D2D] leading-tight text-start">
+              {t("title1")} <br />
+              <span className="text-secondary">{t("title2")}</span>
             </h2>
 
-            <p className="text-[#5A5A5A] leading-relaxed text-sm md:text-base">
-              Plongez dans l&apos;univers de Nour Confection et découvrez notre savoir-faire artisanal. 
-              Chaque pièce est confectionnée avec passion, alliant tradition algérienne et élégance moderne 
-              pour sublimer vos moments les plus précieux.
+            <p className="text-[#5A5A5A] leading-relaxed text-sm md:text-base text-start">
+              {t("description")}
             </p>
 
             <div className="flex items-center gap-4 justify-center lg:justify-start pt-2">
               <div className="flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-secondary" />
-                <span className="text-xs text-[#6B6B6B] font-medium">Fait main</span>
+                <span className="text-xs text-[#6B6B6B] font-medium">{t("handmade")}</span>
               </div>
               <div className="flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-secondary" />
-                <span className="text-xs text-[#6B6B6B] font-medium">Tissu premium</span>
+                <span className="text-xs text-[#6B6B6B] font-medium">{t("premiumFabric")}</span>
               </div>
               <div className="flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-secondary" />
-                <span className="text-xs text-[#6B6B6B] font-medium">Broderie fine</span>
+                <span className="text-xs text-[#6B6B6B] font-medium">{t("fineEmbroidery")}</span>
               </div>
             </div>
           </div>

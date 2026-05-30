@@ -2,11 +2,12 @@
 
 import { useState, useRef, TouchEvent, useEffect } from "react"
 import Image from "next/image"
-import Link from "next/link"
-import { useRouter } from "next/navigation"
+import { useTranslations } from "next-intl"
+import { Link, useRouter } from "@/i18n/navigation"
 import { Ruler, ChevronLeft, ChevronRight, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { formatPrice, siteConfig } from "@/lib/config"
+import { siteConfig } from "@/lib/config"
+import { useFormatPrice } from "@/lib/hooks/useFormatPrice"
 import ProductCheckoutForm from "@/components/product-checkout-form"
 import { fbEvent } from "@/components/facebook-pixel"
 import { useAttributeSelection } from "@/lib/hooks/useAttributeSelection"
@@ -76,6 +77,8 @@ interface ProductDetailClientProps {
 }
 
 export default function ProductDetailClient({ product, relatedProducts = [], categories = [], variations = [] }: ProductDetailClientProps) {
+  const t = useTranslations("products")
+  const formatPrice = useFormatPrice()
   const [showSizeGuide, setShowSizeGuide] = useState(false)
   const [selectedImageIndex, setSelectedImageIndex] = useState(0)
   const [showLightbox, setShowLightbox] = useState(false)
@@ -153,7 +156,7 @@ export default function ProductDetailClient({ product, relatedProducts = [], cat
   const handleAddToCart = () => {
     if (missingRequiredAttributes.length > 0) {
       const names = missingRequiredAttributes.map((attribute) => attribute.name).join(", ")
-      alert(`Veuillez sélectionner: ${names}`)
+      alert(t("pleaseSelect", { attrs: names }))
       return
     }
 
@@ -297,7 +300,7 @@ export default function ProductDetailClient({ product, relatedProducts = [], cat
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8">
+    <div className="max-w-7xl mx-auto  mt-10 px-4 py-8">
       <div className="flex gap-8">
         {/* Categories Sidebar */}
         {categories.length > 0 && (
@@ -307,7 +310,7 @@ export default function ProductDetailClient({ product, relatedProducts = [], cat
                 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-4 opacity-0 animate-fade-in-rise"
                 style={{ animationDelay: '100ms', animationFillMode: 'forwards' }}
               >
-                Catégories
+                {t("categories")}
               </h3>
               <nav className="space-y-1">
                 {categories.map((category, index) => (
@@ -374,14 +377,14 @@ export default function ProductDetailClient({ product, relatedProducts = [], cat
                     <button
                       onClick={(e) => { e.stopPropagation(); goToPrevious(); }}
                       className="absolute left-3 top-1/2 -translate-y-1/2 p-3 bg-white/90 hover:bg-white rounded-full shadow-lg transition-all hover:scale-105"
-                      aria-label="Image précédente"
+                      aria-label={t("prevImage")}
                     >
                       <ChevronLeft className="w-6 h-6 text-gray-800" />
                     </button>
                     <button
                       onClick={(e) => { e.stopPropagation(); goToNext(); }}
                       className="absolute right-3 top-1/2 -translate-y-1/2 p-3 bg-white/90 hover:bg-white rounded-full shadow-lg transition-all hover:scale-105"
-                      aria-label="Image suivante"
+                      aria-label={t("nextImage")}
                     >
                       <ChevronRight className="w-6 h-6 text-gray-800" />
                     </button>
@@ -485,13 +488,13 @@ export default function ProductDetailClient({ product, relatedProducts = [], cat
               ))}
 
               {/* Size Guide */}
-              <button
+              {/* <button
                 onClick={() => setShowSizeGuide(!showSizeGuide)}
                 className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors self-start"
               >
                 <Ruler className="w-4 h-4" />
-                Guides des tailles
-              </button>
+                {t("sizeGuide")}
+              </button> */}
 
               {/* Validation messages */}
               {hasRequiredAttributes || combinationError ? (
@@ -499,7 +502,7 @@ export default function ProductDetailClient({ product, relatedProducts = [], cat
                   className="text-sm text-muted-foreground bg-muted/50 p-4 rounded-lg text-center opacity-0 animate-fade-in-rise"
                   style={{ animationDelay: '500ms', animationFillMode: 'forwards' }}
                 >
-                  {combinationError || `Veuillez sélectionner: ${missingRequiredAttributes.map((a) => a.name).join(", ")}`}
+                  {combinationError || t("pleaseSelect", { attrs: missingRequiredAttributes.map((a) => a.name).join(", ") })}
                 </div>
               ) : null}
 
@@ -517,7 +520,7 @@ export default function ProductDetailClient({ product, relatedProducts = [], cat
                       return (
                         <div className="flex items-center gap-2 text-sm text-green-600 dark:text-green-400">
                           <span className="w-2 h-2 bg-green-500 rounded-full"></span>
-                          En stock {stockQty !== null && stockQty !== undefined && `(${stockQty} disponibles)`}
+                          {t("inStock")} {stockQty !== null && stockQty !== undefined && t("stockQty", { qty: stockQty })}
                         </div>
                       )
                     }
@@ -525,7 +528,7 @@ export default function ProductDetailClient({ product, relatedProducts = [], cat
                       return (
                         <div className="flex items-center gap-2 text-sm text-red-600 dark:text-red-400">
                           <span className="w-2 h-2 bg-red-500 rounded-full"></span>
-                          Rupture de stock
+                          {t("outOfStockStatus")}
                         </div>
                       )
                     }
@@ -533,7 +536,7 @@ export default function ProductDetailClient({ product, relatedProducts = [], cat
                       return (
                         <div className="flex items-center gap-2 text-sm text-yellow-600 dark:text-yellow-400">
                           <span className="w-2 h-2 bg-yellow-500 rounded-full"></span>
-                          Sur commande
+                          {t("onBackorder")}
                         </div>
                       )
                     }
@@ -560,12 +563,12 @@ export default function ProductDetailClient({ product, relatedProducts = [], cat
                       >
                         {addedToCart ? (
                           <>
-                            <span className="text-green-600">✓</span> Ajouté au panier
+                            <span className="text-green-600">✓</span> {t("addedToCart")}
                           </>
                         ) : (selectedVariation?.stock_status || product.stock_status) === "outofstock" ? (
-                          "Rupture de stock"
+                          t("outOfStockStatus")
                         ) : (
-                          "Ajouter au panier"
+                          t("addToCart")
                         )}
                       </Button>
                       {addedToCart && (
@@ -574,7 +577,7 @@ export default function ProductDetailClient({ product, relatedProducts = [], cat
                             href="/cart"
                             className="text-sm text-muted-foreground hover:text-foreground underline"
                           >
-                            Voir le panier →
+                            {t("viewCart")}
                           </Link>
                         </div>
                       )}
@@ -585,7 +588,7 @@ export default function ProductDetailClient({ product, relatedProducts = [], cat
                   {checkoutMode === "both" && (
                     <div className="flex items-center gap-4">
                       <div className="flex-1 h-px bg-border" />
-                      <span className="text-xs text-muted-foreground uppercase">ou commander directement</span>
+                      <span className="text-xs text-muted-foreground uppercase">{t("orOrderDirect")}</span>
                       <div className="flex-1 h-px bg-border" />
                     </div>
                   )}
@@ -626,13 +629,13 @@ export default function ProductDetailClient({ product, relatedProducts = [], cat
             className="text-2xl font-light mb-8 text-center opacity-0 animate-fade-in-rise"
             style={{ animationDelay: '600ms', animationFillMode: 'forwards' }}
           >
-            Vous aimerez aussi
+            {t("youMightAlsoLike")}
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
             {relatedProducts.slice(0, 4).map((relatedProduct, index) => (
               <Link
                 key={relatedProduct.id}
-                href={`/product/${relatedProduct.id}`}
+                href={`/product/${relatedProduct.id}` as `/product/${string}`}
                 className="group opacity-0 animate-fade-in-rise"
                 style={{ animationDelay: `${700 + index * 100}ms`, animationFillMode: 'forwards' }}
               >
@@ -671,7 +674,7 @@ export default function ProductDetailClient({ product, relatedProducts = [], cat
           <button
             onClick={() => setShowLightbox(false)}
             className="absolute top-4 right-4 z-10 p-2 text-white/80 hover:text-white transition-colors"
-            aria-label="Fermer"
+            aria-label={t("close")}
           >
             <X className="w-8 h-8" />
           </button>
@@ -685,7 +688,7 @@ export default function ProductDetailClient({ product, relatedProducts = [], cat
           <button
             onClick={(e) => { e.stopPropagation(); goToPrevious(); }}
             className="absolute left-4 z-10 p-3 text-white hover:text-white transition-colors bg-white/20 hover:bg-white/30 rounded-full"
-            aria-label="Image précédente"
+            aria-label={t("prevImage")}
           >
             <ChevronLeft className="w-8 h-8" />
           </button>
@@ -719,7 +722,7 @@ export default function ProductDetailClient({ product, relatedProducts = [], cat
           <button
             onClick={(e) => { e.stopPropagation(); goToNext(); }}
             className="absolute right-4 z-10 p-3 text-white hover:text-white transition-colors bg-white/20 hover:bg-white/30 rounded-full"
-            aria-label="Image suivante"
+            aria-label={t("nextImage")}
           >
             <ChevronRight className="w-8 h-8" />
           </button>

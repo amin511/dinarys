@@ -77,6 +77,8 @@
 @theme inline {
   --font-sans: 'Geist', 'Geist Fallback';
   --font-mono: 'Geist Mono', 'Geist Mono Fallback';
+  --font-amiri: var(--font-amiri);
+  --font-arabic: var(--font-arabic);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -123,4 +125,65 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* ─── Arabic / RTL Typography Overrides ─────────────────────────────────────
+   When the page is served in Arabic (lang="ar" / dir="rtl"), replace the
+   Latin serif (Playfair Display / Cinzel) with Amiri — a luxury Arabic
+   serif that pairs beautifully with Almarai for body text.
+   Sizes are nudged up slightly because Arabic glyphs render optically
+   smaller at the same pixel size.
+──────────────────────────────────────────────────────────────────────────── */
+
+[lang="ar"] .font-playfair,
+[lang="ar"] [class*="font-playfair"] {
+  font-family: var(--font-amiri), 'Amiri', 'Scheherazade New', serif !important;
+  font-weight: 700;
+  line-height: 1.45;
+  letter-spacing: 0.01em;
+}
+
+/* Hero / biggest headings — h1 inside font-playfair */
+[lang="ar"] h1.font-playfair,
+[lang="ar"] h1[class*="font-playfair"] {
+  font-size: clamp(2.4rem, 8vw, 5.5rem);
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+/* Section headings — h2 */
+[lang="ar"] h2.font-playfair,
+[lang="ar"] h2[class*="font-playfair"] {
+  font-size: clamp(1.9rem, 5vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+/* Sub-headings — h3 */
+[lang="ar"] h3.font-playfair,
+[lang="ar"] h3[class*="font-playfair"] {
+  font-size: clamp(1.3rem, 3.5vw, 2rem);
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+/* Brand banner — the large decorative display heading */
+[lang="ar"] .font-playfair.text-5xl,
+[lang="ar"] .font-playfair.text-7xl,
+[lang="ar"] .font-playfair.text-8xl {
+  letter-spacing: 0.03em;
+}
+
+/* Body text in Arabic: Almarai is already set via --font-arabic variable.
+   Ensure it applies to the whole page body when RTL. */
+[lang="ar"] body,
+[lang="ar"] p,
+[lang="ar"] span:not(.font-playfair):not([class*="font-playfair"]),
+[lang="ar"] li,
+[lang="ar"] label,
+[lang="ar"] input,
+[lang="ar"] textarea,
+[lang="ar"] select,
+[lang="ar"] button {
+  font-family: var(--font-arabic), 'Almarai', sans-serif;
 }

@@ -1,4 +1,7 @@
-import Link from "next/link"
+"use client"
+
+import { Link } from "@/i18n/navigation"
+import { useFormatPrice } from "@/lib/hooks/useFormatPrice"
 
 interface ProductCardProps {
   id: number
@@ -7,23 +10,16 @@ interface ProductCardProps {
   image: string
   isOutOfStock?: boolean
   stockStatus?: string
+  outOfStockLabel?: string
   index?: number
 }
 
-// Format price with comma as thousands separator and 2 decimal places
-function formatPrice(price: number): string {
-  const formatted = price.toLocaleString("en-US", {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  })
-  return `DA ${formatted} DZD`
-}
-
-export default function ProductCard({ id, name, price, image, isOutOfStock, stockStatus, index = 0 }: ProductCardProps) {
-  const delay = 100 + (index * 80) // Staggered delay: 100ms, 180ms, 260ms, etc.
+export default function ProductCard({ id, name, price, image, isOutOfStock, stockStatus, outOfStockLabel = "Épuisé", index = 0 }: ProductCardProps) {
+  const formatPrice = useFormatPrice()
+  const delay = 100 + (index * 80)
 
   return (
-    <Link href={`/product/${id}`}>
+    <Link href={`/product/${id}` as `/product/${string}`}>
       <div
         className="group cursor-pointer opacity-0 animate-fade-in-rise"
         style={{ animationDelay: `${delay}ms`, animationFillMode: 'forwards' }}
@@ -38,8 +34,8 @@ export default function ProductCard({ id, name, price, image, isOutOfStock, stoc
 
           {/* Out of stock badge */}
           {isOutOfStock || stockStatus === "outofstock" ? (
-            <div className="absolute top-3 left-3 bg-primary text-primary-foreground px-3 py-1 text-xs font-medium">
-              Épuisé
+            <div className="absolute top-3 start-3 bg-primary text-primary-foreground px-3 py-1 text-xs font-medium">
+              {outOfStockLabel}
             </div>
           ) : null}
         </div>
