@@ -48,6 +48,7 @@ interface Product {
   name: string
   price: string
   regular_price: string
+  short_description?: string
   description: string
   images: ProductImage[]
   attributes: ProductAttribute[]
@@ -333,6 +334,16 @@ export default function ProductDetailClient({ product, relatedProducts = [], cat
 
         {/* Main Content */}
         <div className="flex-1 min-w-0">
+          <div className="pt-6 border-t border-border">
+               
+              </div>
+             {product.short_description && (
+                <div
+                  className="prose prose-sm max-w-none text-muted-foreground opacity-0 animate-fade-in-rise"
+                  style={{ animationDelay: '250ms', animationFillMode: 'forwards' }}
+                  dangerouslySetInnerHTML={{ __html: product.short_description }}
+                />
+              )}
           <div className="grid md:grid-cols-2 gap-8">
             {/* Product Images */}
             <div
@@ -451,6 +462,14 @@ export default function ProductDetailClient({ product, relatedProducts = [], cat
               >
                 {product.name}
               </h1>
+
+              {product.short_description && (
+                <div
+                  className="prose prose-sm max-w-none text-muted-foreground opacity-0 animate-fade-in-rise"
+                  style={{ animationDelay: '250ms', animationFillMode: 'forwards' }}
+                  dangerouslySetInnerHTML={{ __html: product.short_description }}
+                />
+              )}
 
               {/* Price */}
               <div
