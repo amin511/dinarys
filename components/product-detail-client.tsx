@@ -300,8 +300,13 @@ export default function ProductDetailClient({ product, relatedProducts = [], cat
     if (e.key === "Escape") setShowLightbox(false)
   }
 
+  const handleOrderNowClick = () => {
+    const target = document.getElementById("product-order-form")
+    target?.scrollIntoView({ behavior: "smooth", block: "start" })
+  }
+
   return (
-    <div className="max-w-7xl mx-auto  mt-10 px-4 py-8">
+    <div className="max-w-7xl mx-auto mt-10 px-4 py-8 pb-28 md:pb-8">
       <div className="flex gap-8">
         {/* Categories Sidebar */}
         {categories.length > 0 && (
@@ -334,16 +339,14 @@ export default function ProductDetailClient({ product, relatedProducts = [], cat
 
         {/* Main Content */}
         <div className="flex-1 min-w-0">
-          <div className="pt-6 border-t border-border">
-               
-              </div>
-             {product.short_description && (
-                <div
-                  className="prose prose-sm max-w-none text-muted-foreground opacity-0 animate-fade-in-rise"
-                  style={{ animationDelay: '250ms', animationFillMode: 'forwards' }}
-                  dangerouslySetInnerHTML={{ __html: product.short_description }}
-                />
-              )}
+          {product.short_description && (
+            <div
+              className="prose prose-sm max-w-2xl text-muted-foreground mb-8 opacity-0 animate-fade-in-rise"
+              style={{ animationDelay: '150ms', animationFillMode: 'forwards' }}
+              dangerouslySetInnerHTML={{ __html: product.short_description }}
+            />
+          )}
+
           <div className="grid md:grid-cols-2 gap-8">
             {/* Product Images */}
             <div
@@ -463,14 +466,6 @@ export default function ProductDetailClient({ product, relatedProducts = [], cat
                 {product.name}
               </h1>
 
-              {product.short_description && (
-                <div
-                  className="prose prose-sm max-w-none text-muted-foreground opacity-0 animate-fade-in-rise"
-                  style={{ animationDelay: '250ms', animationFillMode: 'forwards' }}
-                  dangerouslySetInnerHTML={{ __html: product.short_description }}
-                />
-              )}
-
               {/* Price */}
               <div
                 className="flex items-baseline gap-3 opacity-0 animate-fade-in-rise"
@@ -515,119 +510,121 @@ export default function ProductDetailClient({ product, relatedProducts = [], cat
                 {t("sizeGuide")}
               </button> */}
 
-              {/* Validation messages */}
-              {hasRequiredAttributes || combinationError ? (
-                <div
-                  className="text-sm text-muted-foreground bg-muted/50 p-4 rounded-lg text-center opacity-0 animate-fade-in-rise"
-                  style={{ animationDelay: '500ms', animationFillMode: 'forwards' }}
-                >
-                  {combinationError || t("pleaseSelect", { attrs: missingRequiredAttributes.map((a) => a.name).join(", ") })}
-                </div>
-              ) : null}
+              <div id="product-order-form" className="scroll-mt-24 space-y-4">
+                {/* Validation messages */}
+                {hasRequiredAttributes || combinationError ? (
+                  <div
+                    className="text-sm text-muted-foreground bg-muted/50 p-4 rounded-lg text-center opacity-0 animate-fade-in-rise"
+                    style={{ animationDelay: '500ms', animationFillMode: 'forwards' }}
+                  >
+                    {combinationError || t("pleaseSelect", { attrs: missingRequiredAttributes.map((a) => a.name).join(", ") })}
+                  </div>
+                ) : null}
 
-              {/* Stock Status - Affiché après sélection des attributs */}
-              {!hasRequiredAttributes && (
-                <div
-                  className="opacity-0 animate-fade-in-rise"
-                  style={{ animationDelay: '450ms', animationFillMode: 'forwards' }}
-                >
-                  {(() => {
-                    const stockStatus = selectedVariation?.stock_status || product.stock_status
-                    const stockQty = selectedVariation?.stock_quantity
+                {/* Stock Status - Affiché après sélection des attributs */}
+                {!hasRequiredAttributes && (
+                  <div
+                    className="opacity-0 animate-fade-in-rise"
+                    style={{ animationDelay: '450ms', animationFillMode: 'forwards' }}
+                  >
+                    {(() => {
+                      const stockStatus = selectedVariation?.stock_status || product.stock_status
+                      const stockQty = selectedVariation?.stock_quantity
 
-                    if (stockStatus === "instock") {
-                      return (
-                        <div className="flex items-center gap-2 text-sm text-green-600 dark:text-green-400">
-                          <span className="w-2 h-2 bg-green-500 rounded-full"></span>
-                          {t("inStock")} {stockQty !== null && stockQty !== undefined && t("stockQty", { qty: stockQty })}
-                        </div>
-                      )
-                    }
-                    if (stockStatus === "outofstock") {
-                      return (
-                        <div className="flex items-center gap-2 text-sm text-red-600 dark:text-red-400">
-                          <span className="w-2 h-2 bg-red-500 rounded-full"></span>
-                          {t("outOfStockStatus")}
-                        </div>
-                      )
-                    }
-                    if (stockStatus === "onbackorder") {
-                      return (
-                        <div className="flex items-center gap-2 text-sm text-yellow-600 dark:text-yellow-400">
-                          <span className="w-2 h-2 bg-yellow-500 rounded-full"></span>
-                          {t("onBackorder")}
-                        </div>
-                      )
-                    }
-                    return null
-                  })()}
-                </div>
-              )}
+                      if (stockStatus === "instock") {
+                        return (
+                          <div className="flex items-center gap-2 text-sm text-green-600 dark:text-green-400">
+                            <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+                            {t("inStock")} {stockQty !== null && stockQty !== undefined && t("stockQty", { qty: stockQty })}
+                          </div>
+                        )
+                      }
+                      if (stockStatus === "outofstock") {
+                        return (
+                          <div className="flex items-center gap-2 text-sm text-red-600 dark:text-red-400">
+                            <span className="w-2 h-2 bg-red-500 rounded-full"></span>
+                            {t("outOfStockStatus")}
+                          </div>
+                        )
+                      }
+                      if (stockStatus === "onbackorder") {
+                        return (
+                          <div className="flex items-center gap-2 text-sm text-yellow-600 dark:text-yellow-400">
+                            <span className="w-2 h-2 bg-yellow-500 rounded-full"></span>
+                            {t("onBackorder")}
+                          </div>
+                        )
+                      }
+                      return null
+                    })()}
+                  </div>
+                )}
 
-              {/* Checkout Section - Based on checkoutMode config */}
-              {!hasRequiredAttributes && (
-                <div
-                  className="space-y-4 opacity-0 animate-fade-in-rise"
-                  style={{ animationDelay: '500ms', animationFillMode: 'forwards' }}
-                >
-                  {/* Add to Cart Button - shown for "cart" and "both" modes */}
-                  {showCart && (
-                    <div className="space-y-2">
-                      <Button
-                        size="lg"
-                        variant={checkoutMode === "both" ? "outline" : "default"}
-                        className="w-full rounded-full py-6 text-base"
-                        onClick={handleAddToCart}
-                        disabled={(selectedVariation?.stock_status || product.stock_status) === "outofstock"}
-                      >
-                        {addedToCart ? (
-                          <>
-                            <span className="text-green-600">✓</span> {t("addedToCart")}
-                          </>
-                        ) : (selectedVariation?.stock_status || product.stock_status) === "outofstock" ? (
-                          t("outOfStockStatus")
-                        ) : (
-                          t("addToCart")
+                {/* Checkout Section - Based on checkoutMode config */}
+                {!hasRequiredAttributes && (
+                  <div
+                    className="space-y-4 opacity-0 animate-fade-in-rise"
+                    style={{ animationDelay: '500ms', animationFillMode: 'forwards' }}
+                  >
+                    {/* Add to Cart Button - shown for "cart" and "both" modes */}
+                    {showCart && (
+                      <div className="space-y-2">
+                        <Button
+                          size="lg"
+                          variant={checkoutMode === "both" ? "outline" : "default"}
+                          className="w-full rounded-full py-6 text-base"
+                          onClick={handleAddToCart}
+                          disabled={(selectedVariation?.stock_status || product.stock_status) === "outofstock"}
+                        >
+                          {addedToCart ? (
+                            <>
+                              <span className="text-green-600">✓</span> {t("addedToCart")}
+                            </>
+                          ) : (selectedVariation?.stock_status || product.stock_status) === "outofstock" ? (
+                            t("outOfStockStatus")
+                          ) : (
+                            t("addToCart")
+                          )}
+                        </Button>
+                        {addedToCart && (
+                          <div className="flex justify-center">
+                            <Link
+                              href="/cart"
+                              className="text-sm text-muted-foreground hover:text-foreground underline"
+                            >
+                              {t("viewCart")}
+                            </Link>
+                          </div>
                         )}
-                      </Button>
-                      {addedToCart && (
-                        <div className="flex justify-center">
-                          <Link
-                            href="/cart"
-                            className="text-sm text-muted-foreground hover:text-foreground underline"
-                          >
-                            {t("viewCart")}
-                          </Link>
-                        </div>
-                      )}
-                    </div>
-                  )}
+                      </div>
+                    )}
 
-                  {/* Separator for "both" mode */}
-                  {checkoutMode === "both" && (
-                    <div className="flex items-center gap-4">
-                      <div className="flex-1 h-px bg-border" />
-                      <span className="text-xs text-muted-foreground uppercase">{t("orOrderDirect")}</span>
-                      <div className="flex-1 h-px bg-border" />
-                    </div>
-                  )}
+                    {/* Separator for "both" mode */}
+                    {checkoutMode === "both" && (
+                      <div className="flex items-center gap-4">
+                        <div className="flex-1 h-px bg-border" />
+                        <span className="text-xs text-muted-foreground uppercase">{t("orOrderDirect")}</span>
+                        <div className="flex-1 h-px bg-border" />
+                      </div>
+                    )}
 
-                  {/* Inline Checkout Form - shown for "form" and "both" modes, hidden when out of stock */}
-                  {showForm && (selectedVariation?.stock_status || product.stock_status) !== "outofstock" && (
-                    <ProductCheckoutForm
-                      product={{
-                        id: product.id,
-                        name: product.name,
-                        price: selectedVariation?.price || product.price,
-                        image: selectedVariation?.image?.src || mainImage,
-                        size: selectedSize,
-                        color: selectedColor,
-                        variationId: selectedVariation?.id,
-                      }}
-                    />
-                  )}
-                </div>
-              )}
+                    {/* Inline Checkout Form - shown for "form" and "both" modes, hidden when out of stock */}
+                    {showForm && (selectedVariation?.stock_status || product.stock_status) !== "outofstock" && (
+                      <ProductCheckoutForm
+                        product={{
+                          id: product.id,
+                          name: product.name,
+                          price: selectedVariation?.price || product.price,
+                          image: selectedVariation?.image?.src || mainImage,
+                          size: selectedSize,
+                          color: selectedColor,
+                          variationId: selectedVariation?.id,
+                        }}
+                      />
+                    )}
+                  </div>
+                )}
+              </div>
 
               {/* Product Description */}
               <div className="pt-6 border-t border-border">
@@ -675,6 +672,18 @@ export default function ProductDetailClient({ product, relatedProducts = [], cat
               </Link>
             ))}
           </div>
+        </div>
+      )}
+
+      {showForm && (
+        <div className="md:hidden fixed bottom-4 left-4 right-4 z-40 animate-cta-enter">
+          <Button
+            size="lg"
+            className="w-full rounded-full py-6 text-base shadow-xl shadow-black/10 transition-all duration-300 active:scale-95 hover:-translate-y-0.5 animate-cta-breathe"
+            onClick={handleOrderNowClick}
+          >
+            {t("orderNow")}
+          </Button>
         </div>
       )}
 
