@@ -33,7 +33,7 @@ export const siteConfig = {
     // Social Media
     social: {
         instagram: {
-            url: "https://www.instagram.com/__dinarys",
+            url: "https://www.instagram.com/dinarys_cosmetique?igsh=MXV0MGlyZG41Y3BtZA%3D%3D&utm_source=qr",
             handle: "@__dinarys",
         },
         facebook: {
@@ -45,7 +45,7 @@ export const siteConfig = {
             handle: "",
         },
         tiktok: {
-            url: "https://www.tiktok.com/@dinarys_cosmetics",
+            url: "https://www.tiktok.com/@__dinarys?_r=1&_t=ZS-96nfhw28v1I",
             handle: "@dinarys_cosmetics",
         },
         whatsapp: {
