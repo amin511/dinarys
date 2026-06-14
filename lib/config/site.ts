@@ -24,8 +24,8 @@ export const siteConfig = {
     // Contact Information
     contact: {
         email: "dinarys.cosmetics@gmail.com",
-        phone: "+213696949326",
-        phoneDisplay: "+213 (0) 696 94 93 26",
+        phone: "+213 550 27 65 68",
+        phoneDisplay: "+213 550 27 65 68",
         address: "Algérie",
         mapUrl: "",
     },
@@ -49,8 +49,8 @@ export const siteConfig = {
             handle: "@dinarys_cosmetics",
         },
         whatsapp: {
-            url: "https://wa.me/213696949326",
-            phone: "+213696949326",
+            url: "https://wa.me/213550276568",
+            phone: "+213 550 27 65 68",
         },
     },
 

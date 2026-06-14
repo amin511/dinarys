@@ -100,7 +100,10 @@ export default function Footer() {
               <span className="flex-shrink-0 w-10 h-10 rounded-full bg-[#F8F6F3] flex items-center justify-center group-hover:bg-[#EDEAE5] transition-colors duration-200">
                 <Phone className="w-[18px] h-[18px] text-[#6B6B6B] group-hover:text-[#2D2D2D] transition-colors duration-200" />
               </span>
-              <span className="text-sm md:text-base">{t("tel")}{contact.phoneDisplay}</span>
+              <span className="text-sm md:text-base">
+                {t("tel")}
+                <span dir="ltr" className="inline-block">{contact.phoneDisplay}</span>
+              </span>
             </a>
           </li>
         </ul>
