@@ -76,7 +76,7 @@ export default async function LocaleLayout({
     >
       <body className="antialiased">
         <NextIntlClientProvider locale={locale} messages={messages}>
-          <ShippingPreloader />
+          {/* <ShippingPreloader /> */}
           {children}
           <LanguageSwitcher variant="floating" />
           <Analytics />
