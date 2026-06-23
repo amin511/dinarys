@@ -1,4 +1,3 @@
-import Header from "@/components/header"
 import HeroSection from "@/components/hero-section"
 import IngredientsSection from "@/components/ingredients-section"
 import ProductsSectionServer from "@/components/products-section-server"
@@ -32,7 +31,6 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
   const { locale } = await params
   return (
     <main className="min-h-screen bg-background">
-      <Header />
       <HeroSection />
       <AboutBrandSection />
       <Suspense fallback={<ProductsLoading />}>

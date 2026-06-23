@@ -4,9 +4,9 @@ import Image from "next/image"
 import { useTranslations } from "next-intl"
 
 const LIFESTYLE_IMAGES = [
-  "/generated/lifestyle-shampoo.jpg",
-  "/generated/lifestyle-mask.jpg",
-  "/generated/lifestyle-spray.jpg",
+  "/generated/prod1.png",
+  "/hero/prod2.jpeg",
+  "/generated/prod3.jpeg",
 ]
 const FALLBACK_IMAGES = ["/generated/prod1.png", "/hero/prod2.jpeg", "/generated/prod3.jpeg"]
 const PRODUCT_VOLUMES = ["250ml", "300g", "100ml"]

@@ -1,6 +1,5 @@
 import type { Metadata } from "next"
 import Image from "next/image"
-import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { siteConfig } from "@/lib/config"
 import { Sparkles, Leaf, Gem, FlaskConical } from "lucide-react"
@@ -30,7 +29,6 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
 
   return (
     <main className="min-h-screen bg-white">
-      <Header />
 
       {/* Hero */}
       <section className="relative overflow-hidden bg-[#0d0d0d] text-white">

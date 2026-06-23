@@ -1,4 +1,3 @@
-import Header from "@/components/header"
 import Footer from "@/components/footer"
 import ProductsPageClient from "@/components/products-page-client"
 import { getWooCredentials } from "@/lib/config"
@@ -71,7 +70,6 @@ export default async function ProductsPage() {
   const [products, categories] = await Promise.all([getAllProducts(), getCategories()])
   return (
     <main className="min-h-screen bg-background">
-      <Header />
       <ProductsPageClient products={products} categories={categories} />
       <Footer />
     </main>

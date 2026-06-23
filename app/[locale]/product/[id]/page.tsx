@@ -1,7 +1,6 @@
 import { notFound } from "next/navigation"
 import type { Metadata } from "next"
 import { getTranslations } from "next-intl/server"
-import Header from "@/components/header"
 import Footer from "@/components/footer"
 import ProductDetailClient from "@/components/product-detail-client"
 import { getWooCredentials, wooConfig, siteConfig } from "@/lib/config"
@@ -156,7 +155,6 @@ export default async function ProductPage({
 
   return (
     <main className="min-h-screen bg-background">
-      <Header />
       <ProductDetailClient
         product={product}
         relatedProducts={relatedProducts}

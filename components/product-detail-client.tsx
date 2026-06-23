@@ -368,16 +368,15 @@ export default function ProductDetailClient({ product, relatedProducts = [], cat
                   {productImages.map((image, index) => (
                     <div
                       key={`slider-${index}-${image.id}`}
-                      className="w-full shrink-0 cursor-zoom-in"
+                      className="relative w-full shrink-0 aspect-square cursor-zoom-in"
                       onClick={() => setShowLightbox(true)}
                     >
                       <Image
                         src={image.src || "/placeholder.svg"}
                         alt={image.alt || product.name}
-                        width={0}
-                        height={0}
-                        sizes="100vw"
-                        className="w-full h-auto select-none pointer-events-none"
+                        fill
+                        sizes="(max-width: 1024px) 100vw, 50vw"
+                        className="object-contain select-none pointer-events-none"
                         priority={index === 0}
                         draggable={false}
                       />
@@ -439,6 +438,7 @@ export default function ProductDetailClient({ product, relatedProducts = [], cat
                         src={image.src}
                         alt={image.alt || `${product.name} - Image ${index + 1}`}
                         fill
+                        sizes="20vw"
                         className="object-cover"
                       />
                     </button>
@@ -660,6 +660,7 @@ export default function ProductDetailClient({ product, relatedProducts = [], cat
                     src={relatedProduct.images?.[0]?.src || "/placeholder.svg"}
                     alt={relatedProduct.name}
                     fill
+                    sizes="(max-width: 768px) 40vw, 200px"
                     className="object-cover transition-transform duration-300 group-hover:scale-105"
                   />
                 </div>
@@ -770,6 +771,7 @@ export default function ProductDetailClient({ product, relatedProducts = [], cat
                   src={image.src}
                   alt={image.alt || `${product.name} - Image ${index + 1}`}
                   fill
+                  sizes="64px"
                   className="object-cover"
                 />
               </button>

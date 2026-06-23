@@ -1,5 +1,5 @@
 import { getWooCredentials, wooConfig } from "@/lib/config"
-import { stat } from "fs"
+import { sendCapiEvent } from "@/lib/facebook-capi"
 
 export async function POST(request: Request) {
   try {
@@ -125,10 +125,42 @@ export async function POST(request: Request) {
     const createdOrder = await response.json()
     console.log("[v0] Order created successfully:", createdOrder.id)
 
+    const eventId = `purchase_${createdOrder.id}`
+    const clientIp =
+      request.headers.get("x-forwarded-for")?.split(",")[0].trim() ||
+      request.headers.get("x-real-ip") ||
+      undefined
+    const clientUserAgent = request.headers.get("user-agent") || undefined
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://dinarys.dz"
+
+    sendCapiEvent(
+      "Purchase",
+      eventId,
+      {
+        phone: orderData.telephone,
+        city: orderData.commune,
+        state: orderData.wilaya,
+        clientIp,
+        clientUserAgent,
+      },
+      {
+        value: orderData.total || 0,
+        currency: "DZD",
+        contentIds: orderData.items
+          ? orderData.items.map((item: any) => String(item.id))
+          : [String(orderData.product_id)],
+        contentType: "product",
+        orderId: String(createdOrder.id),
+        numItems: orderData.quantity || 1,
+      },
+      `${siteUrl}/thank-you`
+    ).catch(() => {})
+
     return Response.json({
       success: true,
       order_id: createdOrder.id,
       order_number: createdOrder.number,
+      event_id: eventId,
     })
   } catch (error) {
     console.error("[v0] Order creation error:", error instanceof Error ? error.message : error)

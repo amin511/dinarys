@@ -1,7 +1,9 @@
 "use client"
 
 import { Link } from "@/i18n/navigation"
+import Image from "next/image"
 import { useFormatPrice } from "@/lib/hooks/useFormatPrice"
+import { BLUR_DATA_URL } from "@/lib/utils/blur"
 
 interface ProductCardProps {
   id: number
@@ -25,11 +27,16 @@ export default function ProductCard({ id, name, price, image, isOutOfStock, stoc
         style={{ animationDelay: `${delay}ms`, animationFillMode: 'forwards' }}
       >
         {/* Image container */}
-        <div className="relative w-full overflow-hidden rounded-sm mb-4">
-          <img
+        <div className="relative w-full aspect-[3/4] overflow-hidden rounded-sm mb-4">
+          <Image
             src={image || "/placeholder.svg?height=400&width=300&query=fashion%20product"}
             alt={name}
-            className="w-full h-auto group-hover:scale-105 transition-transform duration-300"
+            fill
+            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+            className="object-cover group-hover:scale-105 transition-transform duration-300"
+            placeholder="blur"
+            blurDataURL={BLUR_DATA_URL}
+            priority={index < 4}
           />
 
           {/* Out of stock badge */}

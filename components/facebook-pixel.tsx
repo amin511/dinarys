@@ -11,7 +11,8 @@ declare global {
         fbq: (
             type: string,
             eventName: string,
-            params?: Record<string, unknown>
+            params?: Record<string, unknown>,
+            options?: { eventID?: string }
         ) => void
         _fbq: unknown
     }
@@ -87,8 +88,8 @@ export function FacebookPixel() {
  * // Track purchase
  * fbEvent('Purchase', { value: 5000, currency: 'DZD', content_ids: ['123', '456'] })
  */
-export const fbEvent = (eventName: string, params?: Record<string, unknown>) => {
+export const fbEvent = (eventName: string, params?: Record<string, unknown>, eventID?: string) => {
     if (typeof window !== "undefined" && window.fbq) {
-        window.fbq("track", eventName, params)
+        window.fbq("track", eventName, params, eventID ? { eventID } : undefined)
     }
 }

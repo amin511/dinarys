@@ -148,6 +148,7 @@ export default function ProductCheckoutForm({ product }: ProductCheckoutFormProp
         shipping_cost: livraison,
         subtotal: sousTotal,
         total,
+        event_id: result.event_id,
       }
       localStorage.setItem("lastOrder", JSON.stringify(orderDetailsForThankYou))
 

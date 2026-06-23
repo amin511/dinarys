@@ -99,14 +99,18 @@ function ThankYouContent() {
 
       const purchaseTracked = sessionStorage.getItem("purchase_tracked")
       if (!purchaseTracked) {
-        fbEvent("Purchase", {
-          value: orderData.total || 0,
-          currency: "DZD",
-          content_ids: orderData.items?.map((item: any) => item.id.toString()) || [orderData.product?.id?.toString()],
-          content_name: orderData.product?.name || "",
-          content_type: "product",
-          num_items: orderData.quantity || 1,
-        })
+        fbEvent(
+          "Purchase",
+          {
+            value: orderData.total || 0,
+            currency: "DZD",
+            content_ids: orderData.items?.map((item: any) => item.id.toString()) || [orderData.product?.id?.toString()],
+            content_name: orderData.product?.name || "",
+            content_type: "product",
+            num_items: orderData.quantity || 1,
+          },
+          orderData.event_id
+        )
         sessionStorage.setItem("purchase_tracked", "true")
       }
     }

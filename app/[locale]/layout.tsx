@@ -4,11 +4,26 @@ import { Cinzel, Montserrat, Almarai, Amiri, Cairo } from "next/font/google"
 import { notFound } from "next/navigation"
 import { NextIntlClientProvider } from "next-intl"
 import { Analytics } from "@vercel/analytics/next"
-import { siteConfig } from "@/lib/config"
+import { siteConfig, wooConfig, getWooCredentials } from "@/lib/config"
 import { ShippingPreloader } from "@/components/shipping-preloader"
 import { FacebookPixel } from "@/components/facebook-pixel"
 import { routing } from "@/i18n/routing"
 import LanguageSwitcher from "@/components/language-switcher"
+import Header from "@/components/header"
+
+async function getCategories() {
+  try {
+    const { storeUrl } = getWooCredentials()
+    const res = await fetch(
+      `${storeUrl}/wp-json/wc/v3/products/categories?per_page=${wooConfig.categories.perPage}&hide_empty=true`,
+      { cache: "force-cache" }
+    )
+    if (!res.ok) return []
+    return res.json()
+  } catch {
+    return []
+  }
+}
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -67,6 +82,7 @@ export default async function LocaleLayout({
 
   const messages = (await import(`@/messages/${locale}.json`)).default
   const isRTL = locale === "ar"
+  const categories = await getCategories()
 
   return (
     <html
@@ -77,6 +93,7 @@ export default async function LocaleLayout({
       <body className="antialiased">
         <NextIntlClientProvider locale={locale} messages={messages}>
           <ShippingPreloader />
+          <Header initialCategories={categories} />
           {children}
           <LanguageSwitcher variant="floating" />
           <Analytics />

@@ -16,11 +16,11 @@ interface Category {
   count: number
 }
 
-export default function Header() {
+export default function Header({ initialCategories }: { initialCategories?: Category[] }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isSearchOpen, setIsSearchOpen] = useState(false)
   const [cartCount, setCartCount] = useState(0)
-  const [categories, setCategories] = useState<Category[]>([])
+  const [categories, setCategories] = useState<Category[]>(initialCategories ?? [])
   const [loadingCategories, setLoadingCategories] = useState(false)
   const [activeTab, setActiveTab] = useState<"menu" | "categories">("menu")
   const [searchTerm, setSearchTerm] = useState("")
@@ -79,7 +79,7 @@ export default function Header() {
   }, [])
 
   useEffect(() => {
-    if (hasFetchedCategoriesRef.current) return
+    if (hasFetchedCategoriesRef.current || (initialCategories && initialCategories.length > 0)) return
     hasFetchedCategoriesRef.current = true
     const controller = new AbortController()
     const fetchCategories = async () => {
@@ -238,7 +238,8 @@ export default function Header() {
               alt={siteConfig.logo.alt}
               width={siteConfig.logo.width}
               height={siteConfig.logo.height}
-              className={`h-10 lg:h-12 w-auto max-w-[140px] lg:max-w-none object-contain transition-all duration-200 ${isHomePage && !isScrolled ? "brightness-0 invert filter" : "mix-blend-multiply dark:mix-blend-screen dark:invert"}`}
+              style={{ width: "auto" }}
+              className={`h-10 lg:h-12 max-w-[140px] lg:max-w-none object-contain transition-all duration-200 ${isHomePage && !isScrolled ? "brightness-0 invert filter" : "mix-blend-multiply dark:mix-blend-screen dark:invert"}`}
               priority
             />
           </div>

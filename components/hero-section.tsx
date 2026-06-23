@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react"
 import Image from "next/image"
 import { useTranslations, useLocale } from "next-intl"
+import { BLUR_DATA_URL } from "@/lib/utils/blur"
 
 const WORD_INTERVAL = 2200
 
@@ -154,6 +155,8 @@ export default function HeroSection() {
               fill
               priority={i === 0}
               sizes="100vw"
+              placeholder="blur"
+              blurDataURL={BLUR_DATA_URL}
               style={{ objectFit: "cover", objectPosition: "center top" }}
             />
           </div>
@@ -195,6 +198,8 @@ export default function HeroSection() {
               fill
               priority={i === 0}
               sizes="(min-width: 1024px) 60vw, 20vw"
+              placeholder="blur"
+              blurDataURL={BLUR_DATA_URL}
               style={{ objectFit: "cover", objectPosition: "center top" }}
               className={isActive ? "animate-ken-burns" : ""}
             />

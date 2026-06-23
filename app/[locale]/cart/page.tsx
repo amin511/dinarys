@@ -6,7 +6,6 @@ import { useState, useEffect } from "react"
 import Image from "next/image"
 import { useRouter } from "@/i18n/navigation"
 import { Link } from "@/i18n/navigation"
-import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { Minus, Plus, Trash2, ShoppingBag, ArrowRight } from "lucide-react"
 import { useTranslations } from "next-intl"
@@ -73,7 +72,7 @@ export default function CartPage() {
   if (isLoading) {
     return (
       <main className="min-h-screen bg-background">
-        <Header />
+
         <div className="max-w-4xl mx-auto px-4 py-16">
           <div className="animate-pulse space-y-4">
             <div className="h-8 bg-muted rounded w-32"></div>
@@ -87,8 +86,6 @@ export default function CartPage() {
 
   return (
     <main className="min-h-screen bg-background">
-      <Header />
-
       <div className="max-w-4xl mx-auto px-4 py-8 md:py-12">
         <div className="flex items-center gap-3 mb-8 md:mb-12">
           <ShoppingBag className="w-6 h-6 text-accent" />
