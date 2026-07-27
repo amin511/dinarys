@@ -7,7 +7,8 @@
     "dev": "next dev",
     "lint": "eslint .",
     "start": "next start",
-    "export:shipping-zones": "node scripts/fetch-shipping-zones-prices.mjs"
+    "export:shipping-zones": "node scripts/fetch-shipping-zones-prices.mjs",
+    "sync:fees": "node scripts/sync-ecotrack-fees.mjs"
   },
   "dependencies": {
     "@google/genai": "^2.7.0",

@@ -28,6 +28,25 @@ Click **Add New** for each variable and enter the following:
 - **Value:** cs_af4a042c6bfb24c5c162360e1edecb3a3730d3c9
 - **Environment:** Production, Preview, Development (select all)
 
+#### Variable 4: ECOTRACK_API_TOKEN
+- **Name:** ECOTRACK_API_TOKEN
+- **Value:** your Ecotrack / H24 Delivery API token
+- **Environment:** Production, Preview, Development (select all)
+- Delivery prices are read from this carrier. **Never** name it `NEXT_PUBLIC_*` — that
+  would ship the token to every visitor's browser.
+
+#### Variable 5: ECOTRACK_FEES_URL (optional)
+- **Name:** ECOTRACK_FEES_URL
+- **Value:** https://h24delivery.ecotrack.dz/api/v1/get/fees
+- Defaults to the URL above if unset. Only set it if the carrier changes the endpoint.
+
+#### Variable 6: SHIPPING_SYNC_SECRET
+- **Name:** SHIPPING_SYNC_SECRET
+- **Value:** a long random string — generate one with
+  `node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"`
+- Protects the manual price-refresh URL. If it is unset the sync endpoint refuses to run
+  at all, so it is never left open.
+
 ### Step 3: Redeploy
 After adding the variables, click the **Redeploy** button on your Vercel dashboard to apply the changes.
 

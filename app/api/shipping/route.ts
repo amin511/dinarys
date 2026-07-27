@@ -1,9 +1,16 @@
 import { NextResponse } from "next/server"
-import { readFile } from "node:fs/promises"
-import path from "node:path"
 import { getWooCredentials, buildApiUrl } from "@/lib/config"
+import { getEcotrackZones } from "@/lib/shipping/ecotrack"
+import shippingSnapshot from "@/data/shipping-zones-prices.json"
 
 export const runtime = "nodejs"
+
+/**
+ * The handler itself must not be prerendered — caching lives entirely in the tagged
+ * Ecotrack fetch (24h), so that /api/shipping/sync can invalidate it on demand.
+ * Re-running the handler is cheap: it reads the cached fee data, not the network.
+ */
+export const dynamic = "force-dynamic"
 
 export interface ShippingZone {
     id: number
@@ -95,10 +102,16 @@ function toShippingMethod(method: ExportedShippingMethod): ShippingMethod {
     }
 }
 
-async function loadShippingZonesFromJson(): Promise<ShippingZoneWithMethods[]> {
-    const filePath = path.join(process.cwd(), "data", "shipping-zones-prices.json")
-    const fileContent = await readFile(filePath, "utf-8")
-    const parsed = JSON.parse(fileContent) as ExportedShippingDataFile
+/**
+ * Offline fallback, bundled at build time.
+ *
+ * This is a static import rather than a runtime fs read on purpose: the previous
+ * path.join(process.cwd(), ...) read is not reliably file-traced into the serverless
+ * bundle, so the fallback could fail in production and silently hit WooCommerce on
+ * every request instead.
+ */
+function loadShippingZonesFromSnapshot(): ShippingZoneWithMethods[] {
+    const parsed = shippingSnapshot as unknown as ExportedShippingDataFile
 
     return (parsed.zones || []).map((zone) => ({
         id: zone.id,
@@ -170,23 +183,44 @@ async function loadShippingZonesFromWoo(): Promise<{ zones: ShippingZoneWithMeth
 
 /**
  * GET /api/shipping
- * Fetches all shipping zones with their locations and methods from WooCommerce
+ *
+ * Returns every shipping zone with its locations and methods.
+ *
+ * Sources, in order of preference:
+ *   1. Ecotrack (H24 Delivery) live fees — cached for 24h, refreshable on demand
+ *      through /api/shipping/sync
+ *   2. data/shipping-zones-prices.json — bundled snapshot, used if Ecotrack is down
+ *   3. WooCommerce shipping zones — last resort
  */
 export async function GET() {
     try {
         let zonesWithDetails: ShippingZoneWithMethods[] = []
         let totalZones = 0
-        let source: "json" | "woocommerce" = "json"
+        let source: "ecotrack" | "snapshot" | "woocommerce" = "ecotrack"
 
         try {
-            zonesWithDetails = await loadShippingZonesFromJson()
+            const ecotrackZones = await getEcotrackZones()
+            zonesWithDetails = ecotrackZones.map((zone) => ({
+                id: zone.id,
+                name: zone.name,
+                order: zone.order,
+                locations: zone.locations,
+                methods: zone.methods.map(toShippingMethod),
+            }))
             totalZones = zonesWithDetails.length
-        } catch (jsonError) {
-            console.warn("[Shipping API] JSON source unavailable, fallback to WooCommerce:", jsonError)
-            const wooData = await loadShippingZonesFromWoo()
-            zonesWithDetails = wooData.zones
-            totalZones = wooData.totalZones
-            source = "woocommerce"
+        } catch (ecotrackError) {
+            console.warn("[Shipping API] Ecotrack unavailable, falling back to snapshot:", ecotrackError)
+            try {
+                zonesWithDetails = loadShippingZonesFromSnapshot()
+                totalZones = zonesWithDetails.length
+                source = "snapshot"
+            } catch (snapshotError) {
+                console.warn("[Shipping API] Snapshot unavailable, falling back to WooCommerce:", snapshotError)
+                const wooData = await loadShippingZonesFromWoo()
+                zonesWithDetails = wooData.zones
+                totalZones = wooData.totalZones
+                source = "woocommerce"
+            }
         }
 
         const activeZones = zonesWithDetails.filter((z) => z.methods.length > 0)

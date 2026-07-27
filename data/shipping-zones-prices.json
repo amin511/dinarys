@@ -1,939 +1,39 @@
 {
-  "generatedAt": "2026-05-17T03:13:00Z",
-  "storeUrl": "https://mediumturquoise-seal-882397.hostingersite.com",
-  "totalZones": 55,
-  "failedZones": 5,
+  "generatedAt": "2026-07-27T02:19:49.437Z",
+  "source": "ecotrack",
+  "feesUrl": "https://h24delivery.ecotrack.dz/api/v1/get/fees",
+  "totalZones": 58,
   "zones": [
     {
-      "id": 0,
-      "name": "Locations not covered by your other zones",
-      "order": 0,
-      "locations": [],
-      "methods": [],
-      "error": null
-    },
-    {
-      "id": 27,
+      "id": 1,
       "name": "Adrar",
       "order": 1,
       "locations": [
         {
           "code": "DZ:DZ-01",
-          "type": "state",
-          "_links": {
-            "collection": [],
-            "describes": []
-          }
-        }
-      ],
-      "methods": [
-        {
-          "instance_id": 51,
-          "method_id": "flat_rate_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Home Delivery",
-          "title": "التوصيل للمنزل",
-          "enabled": true,
-          "cost": 1200,
-          "rawCost": "1200",
-          "min_amount": null,
-          "requires": null
-        },
-        {
-          "instance_id": 52,
-          "method_id": "local_pickup_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Hub Pickup",
-          "title": "التوصيل للمكتب",
-          "enabled": true,
-          "cost": 650,
-          "rawCost": "650",
-          "min_amount": null,
-          "requires": null
-        }
-      ],
-      "error": null
-    },
-    {
-      "id": 38,
-      "name": "Chlef",
-      "order": 2,
-      "locations": [
-        {
-          "code": "DZ:DZ-02",
-          "type": "state",
-          "_links": {
-            "collection": [],
-            "describes": []
-          }
-        }
-      ],
-      "methods": [
-        {
-          "instance_id": 73,
-          "method_id": "flat_rate_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Home Delivery",
-          "title": "التوصيل للمنزل",
-          "enabled": true,
-          "cost": 680,
-          "rawCost": "680",
-          "min_amount": null,
-          "requires": null
-        },
-        {
-          "instance_id": 74,
-          "method_id": "local_pickup_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Hub Pickup",
-          "title": "التوصيل للمكتب",
-          "enabled": true,
-          "cost": 450,
-          "rawCost": "450",
-          "min_amount": null,
-          "requires": null
-        }
-      ],
-      "error": null
-    },
-    {
-      "id": 31,
-      "name": "Laghouat",
-      "order": 3,
-      "locations": [
-        {
-          "code": "DZ:DZ-03",
-          "type": "state",
-          "_links": {
-            "collection": [],
-            "describes": []
-          }
-        }
-      ],
-      "methods": [
-        {
-          "instance_id": 59,
-          "method_id": "flat_rate_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Home Delivery",
-          "title": "التوصيل للمنزل",
-          "enabled": true,
-          "cost": 900,
-          "rawCost": "900",
-          "min_amount": null,
-          "requires": null
-        },
-        {
-          "instance_id": 60,
-          "method_id": "local_pickup_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Hub Pickup",
-          "title": "التوصيل للمكتب",
-          "enabled": true,
-          "cost": 650,
-          "rawCost": "650",
-          "min_amount": null,
-          "requires": null
-        }
-      ],
-      "error": null
-    },
-    {
-      "id": 41,
-      "name": "Oum bouaghi",
-      "order": 4,
-      "locations": [
-        {
-          "code": "DZ:DZ-04",
-          "type": "state",
-          "_links": {
-            "collection": [],
-            "describes": []
-          }
-        }
-      ],
-      "methods": [
-        {
-          "instance_id": 79,
-          "method_id": "flat_rate_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Home Delivery",
-          "title": "التوصيل للمنزل",
-          "enabled": true,
-          "cost": 700,
-          "rawCost": "700",
-          "min_amount": null,
-          "requires": null
-        },
-        {
-          "instance_id": 80,
-          "method_id": "local_pickup_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Hub Pickup",
-          "title": "التوصيل للمكتب",
-          "enabled": true,
-          "cost": 450,
-          "rawCost": "450",
-          "min_amount": null,
-          "requires": null
-        }
-      ],
-      "error": null
-    },
-    {
-      "id": 17,
-      "name": "Batna",
-      "order": 5,
-      "locations": [
-        {
-          "code": "DZ:DZ-05",
-          "type": "state",
-          "_links": {
-            "collection": [],
-            "describes": []
-          }
-        }
-      ],
-      "methods": [
-        {
-          "instance_id": 31,
-          "method_id": "flat_rate_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Home Delivery",
-          "title": "التوصيل للمنزل",
-          "enabled": true,
-          "cost": 700,
-          "rawCost": "700",
-          "min_amount": null,
-          "requires": null
-        },
-        {
-          "instance_id": 32,
-          "method_id": "local_pickup_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Hub Pickup",
-          "title": "التوصيل للمكتب",
-          "enabled": true,
-          "cost": 450,
-          "rawCost": "450",
-          "min_amount": null,
-          "requires": null
-        }
-      ],
-      "error": null
-    },
-    {
-      "id": 40,
-      "name": "Bejaia",
-      "order": 6,
-      "locations": [
-        {
-          "code": "DZ:DZ-06",
-          "type": "state",
-          "_links": {
-            "collection": [],
-            "describes": []
-          }
-        }
-      ],
-      "methods": [
-        {
-          "instance_id": 77,
-          "method_id": "flat_rate_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Home Delivery",
-          "title": "التوصيل للمنزل",
-          "enabled": true,
-          "cost": 700,
-          "rawCost": "700",
-          "min_amount": null,
-          "requires": null
-        },
-        {
-          "instance_id": 78,
-          "method_id": "local_pickup_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Hub Pickup",
-          "title": "التوصيل للمكتب",
-          "enabled": true,
-          "cost": 450,
-          "rawCost": "450",
-          "min_amount": null,
-          "requires": null
-        }
-      ],
-      "error": null
-    },
-    {
-      "id": 9,
-      "name": "Biskra",
-      "order": 7,
-      "locations": [
-        {
-          "code": "DZ:DZ-07",
-          "type": "state",
-          "_links": {
-            "collection": [],
-            "describes": []
-          }
-        }
-      ],
-      "methods": [
-        {
-          "instance_id": 17,
-          "method_id": "flat_rate_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Home Delivery",
-          "title": "التوصيل للمنزل",
-          "enabled": true,
-          "cost": 900,
-          "rawCost": "900",
-          "min_amount": null,
-          "requires": null
-        },
-        {
-          "instance_id": 18,
-          "method_id": "local_pickup_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Hub Pickup",
-          "title": "التوصيل للمكتب",
-          "enabled": true,
-          "cost": 650,
-          "rawCost": "650",
-          "min_amount": null,
-          "requires": null
-        }
-      ],
-      "error": null
-    },
-    {
-      "id": 12,
-      "name": "Bechar",
-      "order": 8,
-      "locations": [
-        {
-          "code": "DZ:DZ-08",
-          "type": "state",
-          "_links": {
-            "collection": [],
-            "describes": []
-          }
-        }
-      ],
-      "methods": [
-        {
-          "instance_id": 23,
-          "method_id": "flat_rate_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Home Delivery",
-          "title": "التوصيل للمنزل",
-          "enabled": true,
-          "cost": 1100,
-          "rawCost": "1100",
-          "min_amount": null,
-          "requires": null
-        },
-        {
-          "instance_id": 24,
-          "method_id": "local_pickup_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Hub Pickup",
-          "title": "التوصيل للمكتب",
-          "enabled": true,
-          "cost": 650,
-          "rawCost": "650",
-          "min_amount": null,
-          "requires": null
-        }
-      ],
-      "error": null
-    },
-    {
-      "id": 1,
-      "name": "Blida",
-      "order": 9,
-      "locations": [
-        {
-          "code": "DZ:DZ-09",
-          "type": "state",
-          "_links": {
-            "collection": [],
-            "describes": []
-          }
+          "type": "state"
         }
       ],
       "methods": [
         {
           "instance_id": 1,
-          "method_id": "flat_rate_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Home Delivery",
+          "method_id": "flat_rate_ecotrack",
+          "method_title": "Ecotrack Home Delivery",
           "title": "التوصيل للمنزل",
           "enabled": true,
-          "cost": 450,
-          "rawCost": "450",
+          "cost": 1150,
+          "rawCost": "1150",
           "min_amount": null,
           "requires": null
         },
         {
           "instance_id": 2,
-          "method_id": "local_pickup_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Hub Pickup",
-          "title": "التوصيل للمكتب",
-          "enabled": true,
-          "cost": 350,
-          "rawCost": "350",
-          "min_amount": null,
-          "requires": null
-        }
-      ],
-      "error": null
-    },
-    {
-      "id": 53,
-      "name": "Bouira",
-      "order": 10,
-      "locations": [
-        {
-          "code": "DZ:DZ-10",
-          "type": "state",
-          "_links": {
-            "collection": [],
-            "describes": []
-          }
-        }
-      ],
-      "methods": [
-        {
-          "instance_id": 103,
-          "method_id": "flat_rate_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Home Delivery",
-          "title": "التوصيل للمنزل",
-          "enabled": true,
-          "cost": 650,
-          "rawCost": "650",
-          "min_amount": null,
-          "requires": null
-        },
-        {
-          "instance_id": 104,
-          "method_id": "local_pickup_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Hub Pickup",
-          "title": "التوصيل للمكتب",
-          "enabled": true,
-          "cost": 450,
-          "rawCost": "450",
-          "min_amount": null,
-          "requires": null
-        }
-      ],
-      "error": null
-    },
-    {
-      "id": 42,
-      "name": "Tamanrasset",
-      "order": 11,
-      "locations": [
-        {
-          "code": "DZ:DZ-11",
-          "type": "state",
-          "_links": {
-            "collection": [],
-            "describes": []
-          }
-        }
-      ],
-      "methods": [
-        {
-          "instance_id": 81,
-          "method_id": "flat_rate_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Home Delivery",
-          "title": "التوصيل للمنزل",
-          "enabled": true,
-          "cost": 1500,
-          "rawCost": "1500",
-          "min_amount": null,
-          "requires": null
-        },
-        {
-          "instance_id": 82,
-          "method_id": "local_pickup_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Hub Pickup",
-          "title": "التوصيل للمكتب",
-          "enabled": true,
-          "cost": 950,
-          "rawCost": "950",
-          "min_amount": null,
-          "requires": null
-        }
-      ],
-      "error": null
-    },
-    {
-      "id": 25,
-      "name": "Tebessa",
-      "order": 12,
-      "locations": [
-        {
-          "code": "DZ:DZ-12",
-          "type": "state",
-          "_links": {
-            "collection": [],
-            "describes": []
-          }
-        }
-      ],
-      "methods": [
-        {
-          "instance_id": 47,
-          "method_id": "flat_rate_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Home Delivery",
-          "title": "التوصيل للمنزل",
-          "enabled": true,
-          "cost": 680,
-          "rawCost": "680",
-          "min_amount": null,
-          "requires": null
-        },
-        {
-          "instance_id": 48,
-          "method_id": "local_pickup_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Hub Pickup",
-          "title": "التوصيل للمكتب",
-          "enabled": true,
-          "cost": 450,
-          "rawCost": "450",
-          "min_amount": null,
-          "requires": null
-        }
-      ],
-      "error": null
-    },
-    {
-      "id": 21,
-      "name": "Tlemcen",
-      "order": 13,
-      "locations": [
-        {
-          "code": "DZ:DZ-13",
-          "type": "state",
-          "_links": {
-            "collection": [],
-            "describes": []
-          }
-        }
-      ],
-      "methods": [
-        {
-          "instance_id": 39,
-          "method_id": "flat_rate_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Home Delivery",
-          "title": "التوصيل للمنزل",
-          "enabled": true,
-          "cost": 780,
-          "rawCost": "780",
-          "min_amount": null,
-          "requires": null
-        },
-        {
-          "instance_id": 40,
-          "method_id": "local_pickup_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Hub Pickup",
-          "title": "التوصيل للمكتب",
-          "enabled": true,
-          "cost": 450,
-          "rawCost": "450",
-          "min_amount": null,
-          "requires": null
-        }
-      ],
-      "error": null
-    },
-    {
-      "id": 13,
-      "name": "Tiaret",
-      "order": 14,
-      "locations": [
-        {
-          "code": "DZ:DZ-14",
-          "type": "state",
-          "_links": {
-            "collection": [],
-            "describes": []
-          }
-        }
-      ],
-      "methods": [
-        {
-          "instance_id": 25,
-          "method_id": "flat_rate_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Home Delivery",
-          "title": "التوصيل للمنزل",
-          "enabled": true,
-          "cost": 780,
-          "rawCost": "780",
-          "min_amount": null,
-          "requires": null
-        },
-        {
-          "instance_id": 26,
-          "method_id": "local_pickup_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Hub Pickup",
-          "title": "التوصيل للمكتب",
-          "enabled": true,
-          "cost": 450,
-          "rawCost": "450",
-          "min_amount": null,
-          "requires": null
-        }
-      ],
-      "error": null
-    },
-    {
-      "id": 37,
-      "name": "Tizi ouzou",
-      "order": 15,
-      "locations": [
-        {
-          "code": "DZ:DZ-15",
-          "type": "state",
-          "_links": {
-            "collection": [],
-            "describes": []
-          }
-        }
-      ],
-      "methods": [
-        {
-          "instance_id": 71,
-          "method_id": "flat_rate_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Home Delivery",
-          "title": "التوصيل للمنزل",
-          "enabled": true,
-          "cost": 600,
-          "rawCost": "600",
-          "min_amount": null,
-          "requires": null
-        },
-        {
-          "instance_id": 72,
-          "method_id": "local_pickup_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Hub Pickup",
-          "title": "التوصيل للمكتب",
-          "enabled": true,
-          "cost": 450,
-          "rawCost": "450",
-          "min_amount": null,
-          "requires": null
-        }
-      ],
-      "error": null
-    },
-    {
-      "id": 44,
-      "name": "Alger",
-      "order": 16,
-      "locations": [
-        {
-          "code": "DZ:DZ-16",
-          "type": "state",
-          "_links": {
-            "collection": [],
-            "describes": []
-          }
-        }
-      ],
-      "methods": [
-        {
-          "instance_id": 85,
-          "method_id": "flat_rate_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Home Delivery",
-          "title": "التوصيل للمنزل",
-          "enabled": true,
-          "cost": 380,
-          "rawCost": "380",
-          "min_amount": null,
-          "requires": null
-        },
-        {
-          "instance_id": 86,
-          "method_id": "local_pickup_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Hub Pickup",
-          "title": "التوصيل للمكتب",
-          "enabled": true,
-          "cost": 150,
-          "rawCost": "150",
-          "min_amount": null,
-          "requires": null
-        }
-      ],
-      "error": null
-    },
-    {
-      "id": 45,
-      "name": "Djelfa",
-      "order": 17,
-      "locations": [
-        {
-          "code": "DZ:DZ-17",
-          "type": "state",
-          "_links": {
-            "collection": [],
-            "describes": []
-          }
-        }
-      ],
-      "methods": [
-        {
-          "instance_id": 87,
-          "method_id": "flat_rate_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Home Delivery",
-          "title": "التوصيل للمنزل",
-          "enabled": true,
-          "cost": 900,
-          "rawCost": "900",
-          "min_amount": null,
-          "requires": null
-        },
-        {
-          "instance_id": 88,
-          "method_id": "local_pickup_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Hub Pickup",
+          "method_id": "local_pickup_ecotrack",
+          "method_title": "Ecotrack Hub Pickup",
           "title": "التوصيل للمكتب",
           "enabled": true,
           "cost": 650,
           "rawCost": "650",
-          "min_amount": null,
-          "requires": null
-        }
-      ],
-      "error": null
-    },
-    {
-      "id": 32,
-      "name": "Jijel",
-      "order": 18,
-      "locations": [
-        {
-          "code": "DZ:DZ-18",
-          "type": "state",
-          "_links": {
-            "collection": [],
-            "describes": []
-          }
-        }
-      ],
-      "methods": [
-        {
-          "instance_id": 61,
-          "method_id": "flat_rate_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Home Delivery",
-          "title": "التوصيل للمنزل",
-          "enabled": true,
-          "cost": 680,
-          "rawCost": "680",
-          "min_amount": null,
-          "requires": null
-        },
-        {
-          "instance_id": 62,
-          "method_id": "local_pickup_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Hub Pickup",
-          "title": "التوصيل للمكتب",
-          "enabled": true,
-          "cost": 450,
-          "rawCost": "450",
-          "min_amount": null,
-          "requires": null
-        }
-      ],
-      "error": null
-    },
-    {
-      "id": 15,
-      "name": "Setif",
-      "order": 19,
-      "locations": [
-        {
-          "code": "DZ:DZ-19",
-          "type": "state",
-          "_links": {
-            "collection": [],
-            "describes": []
-          }
-        }
-      ],
-      "methods": [
-        {
-          "instance_id": 28,
-          "method_id": "flat_rate_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Home Delivery",
-          "title": "التوصيل للمنزل",
-          "enabled": true,
-          "cost": 680,
-          "rawCost": "680",
-          "min_amount": null,
-          "requires": null
-        },
-        {
-          "instance_id": 29,
-          "method_id": "local_pickup_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Hub Pickup",
-          "title": "التوصيل للمكتب",
-          "enabled": true,
-          "cost": 450,
-          "rawCost": "450",
-          "min_amount": null,
-          "requires": null
-        }
-      ],
-      "error": null
-    },
-    {
-      "id": 26,
-      "name": "Saida",
-      "order": 20,
-      "locations": [
-        {
-          "code": "DZ:DZ-20",
-          "type": "state",
-          "_links": {
-            "collection": [],
-            "describes": []
-          }
-        }
-      ],
-      "methods": [
-        {
-          "instance_id": 49,
-          "method_id": "flat_rate_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Home Delivery",
-          "title": "التوصيل للمنزل",
-          "enabled": true,
-          "cost": 800,
-          "rawCost": "800",
-          "min_amount": null,
-          "requires": null
-        },
-        {
-          "instance_id": 50,
-          "method_id": "local_pickup_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Hub Pickup",
-          "title": "التوصيل للمكتب",
-          "enabled": true,
-          "cost": 450,
-          "rawCost": "450",
-          "min_amount": null,
-          "requires": null
-        }
-      ],
-      "error": null
-    },
-    {
-      "id": 5,
-      "name": "Skikda",
-      "order": 21,
-      "locations": [],
-      "methods": [],
-      "error": "Request failed (500) ..."
-    },
-    {
-      "id": 23,
-      "name": "Sidi babbes",
-      "order": 22,
-      "locations": [
-        {
-          "code": "DZ:DZ-22",
-          "type": "state",
-          "_links": {
-            "collection": [],
-            "describes": []
-          }
-        }
-      ],
-      "methods": [
-        {
-          "instance_id": 43,
-          "method_id": "flat_rate_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Home Delivery",
-          "title": "التوصيل للمنزل",
-          "enabled": true,
-          "cost": 750,
-          "rawCost": "750",
-          "min_amount": null,
-          "requires": null
-        },
-        {
-          "instance_id": 44,
-          "method_id": "local_pickup_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Hub Pickup",
-          "title": "التوصيل للمكتب",
-          "enabled": true,
-          "cost": 450,
-          "rawCost": "450",
-          "min_amount": null,
-          "requires": null
-        }
-      ],
-      "error": null
-    },
-    {
-      "id": 7,
-      "name": "Annaba",
-      "order": 23,
-      "locations": [
-        {
-          "code": "DZ:DZ-23",
-          "type": "state",
-          "_links": {
-            "collection": [],
-            "describes": []
-          }
-        }
-      ],
-      "methods": [
-        {
-          "instance_id": 13,
-          "method_id": "flat_rate_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Home Delivery",
-          "title": "التوصيل للمنزل",
-          "enabled": true,
-          "cost": 700,
-          "rawCost": "700",
-          "min_amount": null,
-          "requires": null
-        },
-        {
-          "instance_id": 14,
-          "method_id": "local_pickup_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Hub Pickup",
-          "title": "التوصيل للمكتب",
-          "enabled": true,
-          "cost": 450,
-          "rawCost": "450",
-          "min_amount": null,
-          "requires": null
-        }
-      ],
-      "error": null
-    },
-    {
-      "id": 3,
-      "name": "Guelma",
-      "order": 24,
-      "locations": [
-        {
-          "code": "DZ:DZ-24",
-          "type": "state",
-          "_links": {
-            "collection": [],
-            "describes": []
-          }
-        }
-      ],
-      "methods": [
-        {
-          "instance_id": 5,
-          "method_id": "flat_rate_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Home Delivery",
-          "title": "التوصيل للمنزل",
-          "enabled": true,
-          "cost": 680,
-          "rawCost": "680",
-          "min_amount": null,
-          "requires": null
-        },
-        {
-          "instance_id": 6,
-          "method_id": "local_pickup_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Hub Pickup",
-          "title": "التوصيل للمكتب",
-          "enabled": true,
-          "cost": 450,
-          "rawCost": "450",
           "min_amount": null,
           "requires": null
         }
@@ -942,23 +42,19 @@
     },
     {
       "id": 2,
-      "name": "Constantine",
-      "order": 25,
+      "name": "Chlef",
+      "order": 2,
       "locations": [
         {
-          "code": "DZ:DZ-25",
-          "type": "state",
-          "_links": {
-            "collection": [],
-            "describes": []
-          }
+          "code": "DZ:DZ-02",
+          "type": "state"
         }
       ],
       "methods": [
         {
           "instance_id": 3,
-          "method_id": "flat_rate_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Home Delivery",
+          "method_id": "flat_rate_ecotrack",
+          "method_title": "Ecotrack Home Delivery",
           "title": "التوصيل للمنزل",
           "enabled": true,
           "cost": 680,
@@ -968,12 +64,48 @@
         },
         {
           "instance_id": 4,
-          "method_id": "local_pickup_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Hub Pickup",
+          "method_id": "local_pickup_ecotrack",
+          "method_title": "Ecotrack Hub Pickup",
           "title": "التوصيل للمكتب",
           "enabled": true,
-          "cost": 450,
-          "rawCost": "450",
+          "cost": 500,
+          "rawCost": "500",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 3,
+      "name": "Laghouat",
+      "order": 3,
+      "locations": [
+        {
+          "code": "DZ:DZ-03",
+          "type": "state"
+        }
+      ],
+      "methods": [
+        {
+          "instance_id": 5,
+          "method_id": "flat_rate_ecotrack",
+          "method_title": "Ecotrack Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 890,
+          "rawCost": "890",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 6,
+          "method_id": "local_pickup_ecotrack",
+          "method_title": "Ecotrack Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 650,
+          "rawCost": "650",
           "min_amount": null,
           "requires": null
         }
@@ -982,46 +114,34 @@
     },
     {
       "id": 4,
-      "name": "Medea",
-      "order": 26,
-      "locations": [],
-      "methods": [],
-      "error": "Request failed (500) ..."
-    },
-    {
-      "id": 47,
-      "name": "Mostaganem",
-      "order": 27,
+      "name": "Oum El Bouaghi",
+      "order": 4,
       "locations": [
         {
-          "code": "DZ:DZ-27",
-          "type": "state",
-          "_links": {
-            "collection": [],
-            "describes": []
-          }
+          "code": "DZ:DZ-04",
+          "type": "state"
         }
       ],
       "methods": [
         {
-          "instance_id": 91,
-          "method_id": "flat_rate_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Home Delivery",
+          "instance_id": 7,
+          "method_id": "flat_rate_ecotrack",
+          "method_title": "Ecotrack Home Delivery",
           "title": "التوصيل للمنزل",
           "enabled": true,
-          "cost": 700,
-          "rawCost": "700",
+          "cost": 690,
+          "rawCost": "690",
           "min_amount": null,
           "requires": null
         },
         {
-          "instance_id": 92,
-          "method_id": "local_pickup_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Hub Pickup",
+          "instance_id": 8,
+          "method_id": "local_pickup_ecotrack",
+          "method_title": "Ecotrack Hub Pickup",
           "title": "التوصيل للمكتب",
           "enabled": true,
-          "cost": 450,
-          "rawCost": "450",
+          "cost": 500,
+          "rawCost": "500",
           "min_amount": null,
           "requires": null
         }
@@ -1029,39 +149,35 @@
       "error": null
     },
     {
-      "id": 10,
-      "name": "Msila",
-      "order": 28,
+      "id": 5,
+      "name": "Batna",
+      "order": 5,
       "locations": [
         {
-          "code": "DZ:DZ-28",
-          "type": "state",
-          "_links": {
-            "collection": [],
-            "describes": []
-          }
+          "code": "DZ:DZ-05",
+          "type": "state"
         }
       ],
       "methods": [
         {
-          "instance_id": 19,
-          "method_id": "flat_rate_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Home Delivery",
+          "instance_id": 9,
+          "method_id": "flat_rate_ecotrack",
+          "method_title": "Ecotrack Home Delivery",
           "title": "التوصيل للمنزل",
           "enabled": true,
-          "cost": 800,
-          "rawCost": "800",
+          "cost": 690,
+          "rawCost": "690",
           "min_amount": null,
           "requires": null
         },
         {
-          "instance_id": 20,
-          "method_id": "local_pickup_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Hub Pickup",
+          "instance_id": 10,
+          "method_id": "local_pickup_ecotrack",
+          "method_title": "Ecotrack Hub Pickup",
           "title": "التوصيل للمكتب",
           "enabled": true,
-          "cost": 450,
-          "rawCost": "450",
+          "cost": 500,
+          "rawCost": "500",
           "min_amount": null,
           "requires": null
         }
@@ -1069,39 +185,35 @@
       "error": null
     },
     {
-      "id": 36,
-      "name": "Mascara",
-      "order": 29,
+      "id": 6,
+      "name": "Béjaïa",
+      "order": 6,
       "locations": [
         {
-          "code": "DZ:DZ-29",
-          "type": "state",
-          "_links": {
-            "collection": [],
-            "describes": []
-          }
+          "code": "DZ:DZ-06",
+          "type": "state"
         }
       ],
       "methods": [
         {
-          "instance_id": 69,
-          "method_id": "flat_rate_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Home Delivery",
+          "instance_id": 11,
+          "method_id": "flat_rate_ecotrack",
+          "method_title": "Ecotrack Home Delivery",
           "title": "التوصيل للمنزل",
           "enabled": true,
-          "cost": 700,
-          "rawCost": "700",
+          "cost": 690,
+          "rawCost": "690",
           "min_amount": null,
           "requires": null
         },
         {
-          "instance_id": 70,
-          "method_id": "local_pickup_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Hub Pickup",
+          "instance_id": 12,
+          "method_id": "local_pickup_ecotrack",
+          "method_title": "Ecotrack Hub Pickup",
           "title": "التوصيل للمكتب",
           "enabled": true,
-          "cost": 450,
-          "rawCost": "450",
+          "cost": 500,
+          "rawCost": "500",
           "min_amount": null,
           "requires": null
         }
@@ -1109,24 +221,20 @@
       "error": null
     },
     {
-      "id": 54,
-      "name": "Ouargla",
-      "order": 30,
+      "id": 7,
+      "name": "Biskra",
+      "order": 7,
       "locations": [
         {
-          "code": "DZ:DZ-30",
-          "type": "state",
-          "_links": {
-            "collection": [],
-            "describes": []
-          }
+          "code": "DZ:DZ-07",
+          "type": "state"
         }
       ],
       "methods": [
         {
-          "instance_id": 105,
-          "method_id": "flat_rate_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Home Delivery",
+          "instance_id": 13,
+          "method_id": "flat_rate_ecotrack",
+          "method_title": "Ecotrack Home Delivery",
           "title": "التوصيل للمنزل",
           "enabled": true,
           "cost": 900,
@@ -1135,9 +243,369 @@
           "requires": null
         },
         {
-          "instance_id": 106,
-          "method_id": "local_pickup_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Hub Pickup",
+          "instance_id": 14,
+          "method_id": "local_pickup_ecotrack",
+          "method_title": "Ecotrack Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 650,
+          "rawCost": "650",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 8,
+      "name": "Béchar",
+      "order": 8,
+      "locations": [
+        {
+          "code": "DZ:DZ-08",
+          "type": "state"
+        }
+      ],
+      "methods": [
+        {
+          "instance_id": 15,
+          "method_id": "flat_rate_ecotrack",
+          "method_title": "Ecotrack Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 1100,
+          "rawCost": "1100",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 16,
+          "method_id": "local_pickup_ecotrack",
+          "method_title": "Ecotrack Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 650,
+          "rawCost": "650",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 9,
+      "name": "Blida",
+      "order": 9,
+      "locations": [
+        {
+          "code": "DZ:DZ-09",
+          "type": "state"
+        }
+      ],
+      "methods": [
+        {
+          "instance_id": 17,
+          "method_id": "flat_rate_ecotrack",
+          "method_title": "Ecotrack Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 450,
+          "rawCost": "450",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 18,
+          "method_id": "local_pickup_ecotrack",
+          "method_title": "Ecotrack Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 400,
+          "rawCost": "400",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 10,
+      "name": "Bouira",
+      "order": 10,
+      "locations": [
+        {
+          "code": "DZ:DZ-10",
+          "type": "state"
+        }
+      ],
+      "methods": [
+        {
+          "instance_id": 19,
+          "method_id": "flat_rate_ecotrack",
+          "method_title": "Ecotrack Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 650,
+          "rawCost": "650",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 20,
+          "method_id": "local_pickup_ecotrack",
+          "method_title": "Ecotrack Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 500,
+          "rawCost": "500",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 11,
+      "name": "Tamanrasset",
+      "order": 11,
+      "locations": [
+        {
+          "code": "DZ:DZ-11",
+          "type": "state"
+        }
+      ],
+      "methods": [
+        {
+          "instance_id": 21,
+          "method_id": "flat_rate_ecotrack",
+          "method_title": "Ecotrack Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 1100,
+          "rawCost": "1100",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 22,
+          "method_id": "local_pickup_ecotrack",
+          "method_title": "Ecotrack Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 900,
+          "rawCost": "900",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 12,
+      "name": "Tébessa",
+      "order": 12,
+      "locations": [
+        {
+          "code": "DZ:DZ-12",
+          "type": "state"
+        }
+      ],
+      "methods": [
+        {
+          "instance_id": 23,
+          "method_id": "flat_rate_ecotrack",
+          "method_title": "Ecotrack Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 680,
+          "rawCost": "680",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 24,
+          "method_id": "local_pickup_ecotrack",
+          "method_title": "Ecotrack Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 500,
+          "rawCost": "500",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 13,
+      "name": "Tlemcen",
+      "order": 13,
+      "locations": [
+        {
+          "code": "DZ:DZ-13",
+          "type": "state"
+        }
+      ],
+      "methods": [
+        {
+          "instance_id": 25,
+          "method_id": "flat_rate_ecotrack",
+          "method_title": "Ecotrack Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 780,
+          "rawCost": "780",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 26,
+          "method_id": "local_pickup_ecotrack",
+          "method_title": "Ecotrack Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 500,
+          "rawCost": "500",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 14,
+      "name": "Tiaret",
+      "order": 14,
+      "locations": [
+        {
+          "code": "DZ:DZ-14",
+          "type": "state"
+        }
+      ],
+      "methods": [
+        {
+          "instance_id": 27,
+          "method_id": "flat_rate_ecotrack",
+          "method_title": "Ecotrack Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 780,
+          "rawCost": "780",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 28,
+          "method_id": "local_pickup_ecotrack",
+          "method_title": "Ecotrack Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 500,
+          "rawCost": "500",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 15,
+      "name": "Tizi Ouzou",
+      "order": 15,
+      "locations": [
+        {
+          "code": "DZ:DZ-15",
+          "type": "state"
+        }
+      ],
+      "methods": [
+        {
+          "instance_id": 29,
+          "method_id": "flat_rate_ecotrack",
+          "method_title": "Ecotrack Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 600,
+          "rawCost": "600",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 30,
+          "method_id": "local_pickup_ecotrack",
+          "method_title": "Ecotrack Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 450,
+          "rawCost": "450",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 16,
+      "name": "Alger",
+      "order": 16,
+      "locations": [
+        {
+          "code": "DZ:DZ-16",
+          "type": "state"
+        }
+      ],
+      "methods": [
+        {
+          "instance_id": 31,
+          "method_id": "flat_rate_ecotrack",
+          "method_title": "Ecotrack Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 350,
+          "rawCost": "350",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 32,
+          "method_id": "local_pickup_ecotrack",
+          "method_title": "Ecotrack Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 200,
+          "rawCost": "200",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 17,
+      "name": "Djelfa",
+      "order": 17,
+      "locations": [
+        {
+          "code": "DZ:DZ-17",
+          "type": "state"
+        }
+      ],
+      "methods": [
+        {
+          "instance_id": 33,
+          "method_id": "flat_rate_ecotrack",
+          "method_title": "Ecotrack Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 890,
+          "rawCost": "890",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 34,
+          "method_id": "local_pickup_ecotrack",
+          "method_title": "Ecotrack Hub Pickup",
           "title": "التوصيل للمكتب",
           "enabled": true,
           "cost": 650,
@@ -1150,23 +618,19 @@
     },
     {
       "id": 18,
-      "name": "Oran",
-      "order": 31,
+      "name": "Jijel",
+      "order": 18,
       "locations": [
         {
-          "code": "DZ:DZ-31",
-          "type": "state",
-          "_links": {
-            "collection": [],
-            "describes": []
-          }
+          "code": "DZ:DZ-18",
+          "type": "state"
         }
       ],
       "methods": [
         {
-          "instance_id": 33,
-          "method_id": "flat_rate_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Home Delivery",
+          "instance_id": 35,
+          "method_id": "flat_rate_ecotrack",
+          "method_title": "Ecotrack Home Delivery",
           "title": "التوصيل للمنزل",
           "enabled": true,
           "cost": 680,
@@ -1175,9 +639,297 @@
           "requires": null
         },
         {
-          "instance_id": 34,
-          "method_id": "local_pickup_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Hub Pickup",
+          "instance_id": 36,
+          "method_id": "local_pickup_ecotrack",
+          "method_title": "Ecotrack Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 500,
+          "rawCost": "500",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 19,
+      "name": "Sétif",
+      "order": 19,
+      "locations": [
+        {
+          "code": "DZ:DZ-19",
+          "type": "state"
+        }
+      ],
+      "methods": [
+        {
+          "instance_id": 37,
+          "method_id": "flat_rate_ecotrack",
+          "method_title": "Ecotrack Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 680,
+          "rawCost": "680",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 38,
+          "method_id": "local_pickup_ecotrack",
+          "method_title": "Ecotrack Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 500,
+          "rawCost": "500",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 20,
+      "name": "Saïda",
+      "order": 20,
+      "locations": [
+        {
+          "code": "DZ:DZ-20",
+          "type": "state"
+        }
+      ],
+      "methods": [
+        {
+          "instance_id": 39,
+          "method_id": "flat_rate_ecotrack",
+          "method_title": "Ecotrack Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 800,
+          "rawCost": "800",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 40,
+          "method_id": "local_pickup_ecotrack",
+          "method_title": "Ecotrack Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 500,
+          "rawCost": "500",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 21,
+      "name": "Skikda",
+      "order": 21,
+      "locations": [
+        {
+          "code": "DZ:DZ-21",
+          "type": "state"
+        }
+      ],
+      "methods": [
+        {
+          "instance_id": 41,
+          "method_id": "flat_rate_ecotrack",
+          "method_title": "Ecotrack Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 680,
+          "rawCost": "680",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 42,
+          "method_id": "local_pickup_ecotrack",
+          "method_title": "Ecotrack Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 500,
+          "rawCost": "500",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 22,
+      "name": "Sidi Bel Abbès",
+      "order": 22,
+      "locations": [
+        {
+          "code": "DZ:DZ-22",
+          "type": "state"
+        }
+      ],
+      "methods": [
+        {
+          "instance_id": 43,
+          "method_id": "flat_rate_ecotrack",
+          "method_title": "Ecotrack Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 750,
+          "rawCost": "750",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 44,
+          "method_id": "local_pickup_ecotrack",
+          "method_title": "Ecotrack Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 500,
+          "rawCost": "500",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 23,
+      "name": "Annaba",
+      "order": 23,
+      "locations": [
+        {
+          "code": "DZ:DZ-23",
+          "type": "state"
+        }
+      ],
+      "methods": [
+        {
+          "instance_id": 45,
+          "method_id": "flat_rate_ecotrack",
+          "method_title": "Ecotrack Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 690,
+          "rawCost": "690",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 46,
+          "method_id": "local_pickup_ecotrack",
+          "method_title": "Ecotrack Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 500,
+          "rawCost": "500",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 24,
+      "name": "Guelma",
+      "order": 24,
+      "locations": [
+        {
+          "code": "DZ:DZ-24",
+          "type": "state"
+        }
+      ],
+      "methods": [
+        {
+          "instance_id": 47,
+          "method_id": "flat_rate_ecotrack",
+          "method_title": "Ecotrack Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 700,
+          "rawCost": "700",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 48,
+          "method_id": "local_pickup_ecotrack",
+          "method_title": "Ecotrack Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 500,
+          "rawCost": "500",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 25,
+      "name": "Constantine",
+      "order": 25,
+      "locations": [
+        {
+          "code": "DZ:DZ-25",
+          "type": "state"
+        }
+      ],
+      "methods": [
+        {
+          "instance_id": 49,
+          "method_id": "flat_rate_ecotrack",
+          "method_title": "Ecotrack Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 680,
+          "rawCost": "680",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 50,
+          "method_id": "local_pickup_ecotrack",
+          "method_title": "Ecotrack Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 500,
+          "rawCost": "500",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 26,
+      "name": "Médéa",
+      "order": 26,
+      "locations": [
+        {
+          "code": "DZ:DZ-26",
+          "type": "state"
+        }
+      ],
+      "methods": [
+        {
+          "instance_id": 51,
+          "method_id": "flat_rate_ecotrack",
+          "method_title": "Ecotrack Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 600,
+          "rawCost": "600",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 52,
+          "method_id": "local_pickup_ecotrack",
+          "method_title": "Ecotrack Hub Pickup",
           "title": "التوصيل للمكتب",
           "enabled": true,
           "cost": 450,
@@ -1189,35 +941,139 @@
       "error": null
     },
     {
-      "id": 22,
-      "name": "Bayadh",
-      "order": 32,
+      "id": 27,
+      "name": "Mostaganem",
+      "order": 27,
       "locations": [
         {
-          "code": "DZ:DZ-32",
-          "type": "state",
-          "_links": {
-            "collection": [],
-            "describes": []
-          }
+          "code": "DZ:DZ-27",
+          "type": "state"
         }
       ],
       "methods": [
         {
-          "instance_id": 41,
-          "method_id": "flat_rate_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Home Delivery",
+          "instance_id": 53,
+          "method_id": "flat_rate_ecotrack",
+          "method_title": "Ecotrack Home Delivery",
           "title": "التوصيل للمنزل",
           "enabled": true,
-          "cost": 950,
-          "rawCost": "950",
+          "cost": 690,
+          "rawCost": "690",
           "min_amount": null,
           "requires": null
         },
         {
-          "instance_id": 42,
-          "method_id": "local_pickup_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Hub Pickup",
+          "instance_id": 54,
+          "method_id": "local_pickup_ecotrack",
+          "method_title": "Ecotrack Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 500,
+          "rawCost": "500",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 28,
+      "name": "M'Sila",
+      "order": 28,
+      "locations": [
+        {
+          "code": "DZ:DZ-28",
+          "type": "state"
+        }
+      ],
+      "methods": [
+        {
+          "instance_id": 55,
+          "method_id": "flat_rate_ecotrack",
+          "method_title": "Ecotrack Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 790,
+          "rawCost": "790",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 56,
+          "method_id": "local_pickup_ecotrack",
+          "method_title": "Ecotrack Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 550,
+          "rawCost": "550",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 29,
+      "name": "Mascara",
+      "order": 29,
+      "locations": [
+        {
+          "code": "DZ:DZ-29",
+          "type": "state"
+        }
+      ],
+      "methods": [
+        {
+          "instance_id": 57,
+          "method_id": "flat_rate_ecotrack",
+          "method_title": "Ecotrack Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 700,
+          "rawCost": "700",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 58,
+          "method_id": "local_pickup_ecotrack",
+          "method_title": "Ecotrack Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 500,
+          "rawCost": "500",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 30,
+      "name": "Ouargla",
+      "order": 30,
+      "locations": [
+        {
+          "code": "DZ:DZ-30",
+          "type": "state"
+        }
+      ],
+      "methods": [
+        {
+          "instance_id": 59,
+          "method_id": "flat_rate_ecotrack",
+          "method_title": "Ecotrack Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 900,
+          "rawCost": "900",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 60,
+          "method_id": "local_pickup_ecotrack",
+          "method_title": "Ecotrack Hub Pickup",
           "title": "التوصيل للمكتب",
           "enabled": true,
           "cost": 650,
@@ -1229,24 +1085,128 @@
       "error": null
     },
     {
-      "id": 35,
-      "name": "Bordj bou arreridj",
+      "id": 31,
+      "name": "Oran",
+      "order": 31,
+      "locations": [
+        {
+          "code": "DZ:DZ-31",
+          "type": "state"
+        }
+      ],
+      "methods": [
+        {
+          "instance_id": 61,
+          "method_id": "flat_rate_ecotrack",
+          "method_title": "Ecotrack Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 690,
+          "rawCost": "690",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 62,
+          "method_id": "local_pickup_ecotrack",
+          "method_title": "Ecotrack Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 500,
+          "rawCost": "500",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 32,
+      "name": "El Bayadh",
+      "order": 32,
+      "locations": [
+        {
+          "code": "DZ:DZ-32",
+          "type": "state"
+        }
+      ],
+      "methods": [
+        {
+          "instance_id": 63,
+          "method_id": "flat_rate_ecotrack",
+          "method_title": "Ecotrack Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 950,
+          "rawCost": "950",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 64,
+          "method_id": "local_pickup_ecotrack",
+          "method_title": "Ecotrack Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 650,
+          "rawCost": "650",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 33,
+      "name": "Illizi",
+      "order": 33,
+      "locations": [
+        {
+          "code": "DZ:DZ-33",
+          "type": "state"
+        }
+      ],
+      "methods": [
+        {
+          "instance_id": 65,
+          "method_id": "flat_rate_ecotrack",
+          "method_title": "Ecotrack Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 1500,
+          "rawCost": "1500",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 66,
+          "method_id": "local_pickup_ecotrack",
+          "method_title": "Ecotrack Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 950,
+          "rawCost": "950",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 34,
+      "name": "Bordj Bou Arreridj",
       "order": 34,
       "locations": [
         {
           "code": "DZ:DZ-34",
-          "type": "state",
-          "_links": {
-            "collection": [],
-            "describes": []
-          }
+          "type": "state"
         }
       ],
       "methods": [
         {
           "instance_id": 67,
-          "method_id": "flat_rate_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Home Delivery",
+          "method_id": "flat_rate_ecotrack",
+          "method_title": "Ecotrack Home Delivery",
           "title": "التوصيل للمنزل",
           "enabled": true,
           "cost": 700,
@@ -1256,12 +1216,12 @@
         },
         {
           "instance_id": 68,
-          "method_id": "local_pickup_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Hub Pickup",
+          "method_id": "local_pickup_ecotrack",
+          "method_title": "Ecotrack Hub Pickup",
           "title": "التوصيل للمكتب",
           "enabled": true,
-          "cost": 450,
-          "rawCost": "450",
+          "cost": 500,
+          "rawCost": "500",
           "min_amount": null,
           "requires": null
         }
@@ -1269,24 +1229,20 @@
       "error": null
     },
     {
-      "id": 39,
-      "name": "Boumerdes",
+      "id": 35,
+      "name": "Boumerdès",
       "order": 35,
       "locations": [
         {
           "code": "DZ:DZ-35",
-          "type": "state",
-          "_links": {
-            "collection": [],
-            "describes": []
-          }
+          "type": "state"
         }
       ],
       "methods": [
         {
-          "instance_id": 75,
-          "method_id": "flat_rate_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Home Delivery",
+          "instance_id": 69,
+          "method_id": "flat_rate_ecotrack",
+          "method_title": "Ecotrack Home Delivery",
           "title": "التوصيل للمنزل",
           "enabled": true,
           "cost": 500,
@@ -1295,9 +1251,9 @@
           "requires": null
         },
         {
-          "instance_id": 76,
-          "method_id": "local_pickup_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Hub Pickup",
+          "instance_id": 70,
+          "method_id": "local_pickup_ecotrack",
+          "method_title": "Ecotrack Hub Pickup",
           "title": "التوصيل للمكتب",
           "enabled": true,
           "cost": 400,
@@ -1309,24 +1265,20 @@
       "error": null
     },
     {
-      "id": 48,
-      "name": "Tarf",
+      "id": 36,
+      "name": "El Tarf",
       "order": 36,
       "locations": [
         {
           "code": "DZ:DZ-36",
-          "type": "state",
-          "_links": {
-            "collection": [],
-            "describes": []
-          }
+          "type": "state"
         }
       ],
       "methods": [
         {
-          "instance_id": 93,
-          "method_id": "flat_rate_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Home Delivery",
+          "instance_id": 71,
+          "method_id": "flat_rate_ecotrack",
+          "method_title": "Ecotrack Home Delivery",
           "title": "التوصيل للمنزل",
           "enabled": true,
           "cost": 750,
@@ -1335,9 +1287,9 @@
           "requires": null
         },
         {
-          "instance_id": 94,
-          "method_id": "local_pickup_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Hub Pickup",
+          "instance_id": 72,
+          "method_id": "local_pickup_ecotrack",
+          "method_title": "Ecotrack Hub Pickup",
           "title": "التوصيل للمكتب",
           "enabled": true,
           "cost": 500,
@@ -1349,24 +1301,56 @@
       "error": null
     },
     {
-      "id": 33,
+      "id": 37,
+      "name": "Tindouf",
+      "order": 37,
+      "locations": [
+        {
+          "code": "DZ:DZ-37",
+          "type": "state"
+        }
+      ],
+      "methods": [
+        {
+          "instance_id": 73,
+          "method_id": "flat_rate_ecotrack",
+          "method_title": "Ecotrack Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 1150,
+          "rawCost": "1150",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 74,
+          "method_id": "local_pickup_ecotrack",
+          "method_title": "Ecotrack Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 950,
+          "rawCost": "950",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 38,
       "name": "Tissemsilt",
       "order": 38,
       "locations": [
         {
           "code": "DZ:DZ-38",
-          "type": "state",
-          "_links": {
-            "collection": [],
-            "describes": []
-          }
+          "type": "state"
         }
       ],
       "methods": [
         {
-          "instance_id": 63,
-          "method_id": "flat_rate_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Home Delivery",
+          "instance_id": 75,
+          "method_id": "flat_rate_ecotrack",
+          "method_title": "Ecotrack Home Delivery",
           "title": "التوصيل للمنزل",
           "enabled": true,
           "cost": 750,
@@ -1375,13 +1359,13 @@
           "requires": null
         },
         {
-          "instance_id": 64,
-          "method_id": "local_pickup_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Hub Pickup",
+          "instance_id": 76,
+          "method_id": "local_pickup_ecotrack",
+          "method_title": "Ecotrack Hub Pickup",
           "title": "التوصيل للمكتب",
           "enabled": true,
-          "cost": 450,
-          "rawCost": "450",
+          "cost": 500,
+          "rawCost": "500",
           "min_amount": null,
           "requires": null
         }
@@ -1389,24 +1373,20 @@
       "error": null
     },
     {
-      "id": 11,
-      "name": "Oued",
+      "id": 39,
+      "name": "El Oued",
       "order": 39,
       "locations": [
         {
           "code": "DZ:DZ-39",
-          "type": "state",
-          "_links": {
-            "collection": [],
-            "describes": []
-          }
+          "type": "state"
         }
       ],
       "methods": [
         {
-          "instance_id": 21,
-          "method_id": "flat_rate_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Home Delivery",
+          "instance_id": 77,
+          "method_id": "flat_rate_ecotrack",
+          "method_title": "Ecotrack Home Delivery",
           "title": "التوصيل للمنزل",
           "enabled": true,
           "cost": 900,
@@ -1415,9 +1395,9 @@
           "requires": null
         },
         {
-          "instance_id": 22,
-          "method_id": "local_pickup_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Hub Pickup",
+          "instance_id": 78,
+          "method_id": "local_pickup_ecotrack",
+          "method_title": "Ecotrack Hub Pickup",
           "title": "التوصيل للمكتب",
           "enabled": true,
           "cost": 650,
@@ -1429,32 +1409,20 @@
       "error": null
     },
     {
-      "id": 24,
+      "id": 40,
       "name": "Khenchela",
       "order": 40,
-      "locations": [],
-      "methods": [],
-      "error": "Request failed (500) ..."
-    },
-    {
-      "id": 19,
-      "name": "Souk ahras",
-      "order": 41,
       "locations": [
         {
-          "code": "DZ:DZ-41",
-          "type": "state",
-          "_links": {
-            "collection": [],
-            "describes": []
-          }
+          "code": "DZ:DZ-40",
+          "type": "state"
         }
       ],
       "methods": [
         {
-          "instance_id": 35,
-          "method_id": "flat_rate_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Home Delivery",
+          "instance_id": 79,
+          "method_id": "flat_rate_ecotrack",
+          "method_title": "Ecotrack Home Delivery",
           "title": "التوصيل للمنزل",
           "enabled": true,
           "cost": 800,
@@ -1463,13 +1431,13 @@
           "requires": null
         },
         {
-          "instance_id": 36,
-          "method_id": "local_pickup_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Hub Pickup",
+          "instance_id": 80,
+          "method_id": "local_pickup_ecotrack",
+          "method_title": "Ecotrack Hub Pickup",
           "title": "التوصيل للمكتب",
           "enabled": true,
-          "cost": 450,
-          "rawCost": "450",
+          "cost": 500,
+          "rawCost": "500",
           "min_amount": null,
           "requires": null
         }
@@ -1477,24 +1445,56 @@
       "error": null
     },
     {
-      "id": 46,
+      "id": 41,
+      "name": "Souk Ahras",
+      "order": 41,
+      "locations": [
+        {
+          "code": "DZ:DZ-41",
+          "type": "state"
+        }
+      ],
+      "methods": [
+        {
+          "instance_id": 81,
+          "method_id": "flat_rate_ecotrack",
+          "method_title": "Ecotrack Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 800,
+          "rawCost": "800",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 82,
+          "method_id": "local_pickup_ecotrack",
+          "method_title": "Ecotrack Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 500,
+          "rawCost": "500",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 42,
       "name": "Tipaza",
       "order": 42,
       "locations": [
         {
           "code": "DZ:DZ-42",
-          "type": "state",
-          "_links": {
-            "collection": [],
-            "describes": []
-          }
+          "type": "state"
         }
       ],
       "methods": [
         {
-          "instance_id": 89,
-          "method_id": "flat_rate_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Home Delivery",
+          "instance_id": 83,
+          "method_id": "flat_rate_ecotrack",
+          "method_title": "Ecotrack Home Delivery",
           "title": "التوصيل للمنزل",
           "enabled": true,
           "cost": 500,
@@ -1503,226 +1503,9 @@
           "requires": null
         },
         {
-          "instance_id": 90,
-          "method_id": "local_pickup_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Hub Pickup",
-          "title": "التوصيل للمكتب",
-          "enabled": true,
-          "cost": 450,
-          "rawCost": "450",
-          "min_amount": null,
-          "requires": null
-        }
-      ],
-      "error": null
-    },
-    {
-      "id": 29,
-      "name": "Mila",
-      "order": 43,
-      "locations": [
-        {
-          "code": "DZ:DZ-43",
-          "type": "state",
-          "_links": {
-            "collection": [],
-            "describes": []
-          }
-        }
-      ],
-      "methods": [
-        {
-          "instance_id": 55,
-          "method_id": "flat_rate_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Home Delivery",
-          "title": "التوصيل للمنزل",
-          "enabled": true,
-          "cost": 700,
-          "rawCost": "700",
-          "min_amount": null,
-          "requires": null
-        },
-        {
-          "instance_id": 56,
-          "method_id": "local_pickup_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Hub Pickup",
-          "title": "التوصيل للمكتب",
-          "enabled": true,
-          "cost": 450,
-          "rawCost": "450",
-          "min_amount": null,
-          "requires": null
-        }
-      ],
-      "error": null
-    },
-    {
-      "id": 28,
-      "name": "Ain defla",
-      "order": 44,
-      "locations": [
-        {
-          "code": "DZ:DZ-44",
-          "type": "state",
-          "_links": {
-            "collection": [],
-            "describes": []
-          }
-        }
-      ],
-      "methods": [
-        {
-          "instance_id": 53,
-          "method_id": "flat_rate_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Home Delivery",
-          "title": "التوصيل للمنزل",
-          "enabled": true,
-          "cost": 650,
-          "rawCost": "650",
-          "min_amount": null,
-          "requires": null
-        },
-        {
-          "instance_id": 54,
-          "method_id": "local_pickup_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Hub Pickup",
-          "title": "التوصيل للمكتب",
-          "enabled": true,
-          "cost": 450,
-          "rawCost": "450",
-          "min_amount": null,
-          "requires": null
-        }
-      ],
-      "error": null
-    },
-    {
-      "id": 8,
-      "name": "Naama",
-      "order": 45,
-      "locations": [
-        {
-          "code": "DZ:DZ-45",
-          "type": "state",
-          "_links": {
-            "collection": [],
-            "describes": []
-          }
-        }
-      ],
-      "methods": [],
-      "error": "Request failed (500) ..."
-    },
-    {
-      "id": 49,
-      "name": "Ain temouchent",
-      "order": 46,
-      "locations": [
-        {
-          "code": "DZ:DZ-46",
-          "type": "state",
-          "_links": {
-            "collection": [],
-            "describes": []
-          }
-        }
-      ],
-      "methods": [
-        {
-          "instance_id": 95,
-          "method_id": "flat_rate_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Home Delivery",
-          "title": "التوصيل للمنزل",
-          "enabled": true,
-          "cost": 700,
-          "rawCost": "700",
-          "min_amount": null,
-          "requires": null
-        },
-        {
-          "instance_id": 96,
-          "method_id": "local_pickup_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Hub Pickup",
-          "title": "التوصيل للمكتب",
-          "enabled": true,
-          "cost": 450,
-          "rawCost": "450",
-          "min_amount": null,
-          "requires": null
-        }
-      ],
-      "error": null
-    },
-    {
-      "id": 6,
-      "name": "Ghardaia",
-      "order": 47,
-      "locations": [
-        {
-          "code": "DZ:DZ-47",
-          "type": "state",
-          "_links": {
-            "collection": [],
-            "describes": []
-          }
-        }
-      ],
-      "methods": [
-        {
-          "instance_id": 11,
-          "method_id": "flat_rate_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Home Delivery",
-          "title": "التوصيل للمنزل",
-          "enabled": true,
-          "cost": 950,
-          "rawCost": "950",
-          "min_amount": null,
-          "requires": null
-        },
-        {
-          "instance_id": 12,
-          "method_id": "local_pickup_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Hub Pickup",
-          "title": "التوصيل للمكتب",
-          "enabled": true,
-          "cost": 650,
-          "rawCost": "650",
-          "min_amount": null,
-          "requires": null
-        }
-      ],
-      "error": null
-    },
-    {
-      "id": 20,
-      "name": "Relizane",
-      "order": 48,
-      "locations": [
-        {
-          "code": "DZ:DZ-48",
-          "type": "state",
-          "_links": {
-            "collection": [],
-            "describes": []
-          }
-        }
-      ],
-      "methods": [
-        {
-          "instance_id": 37,
-          "method_id": "flat_rate_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Home Delivery",
-          "title": "التوصيل للمنزل",
-          "enabled": true,
-          "cost": 700,
-          "rawCost": "700",
-          "min_amount": null,
-          "requires": null
-        },
-        {
-          "instance_id": 38,
-          "method_id": "local_pickup_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Hub Pickup",
+          "instance_id": 84,
+          "method_id": "local_pickup_ecotrack",
+          "method_title": "Ecotrack Hub Pickup",
           "title": "التوصيل للمكتب",
           "enabled": true,
           "cost": 450,
@@ -1735,34 +1518,282 @@
     },
     {
       "id": 43,
+      "name": "Mila",
+      "order": 43,
+      "locations": [
+        {
+          "code": "DZ:DZ-43",
+          "type": "state"
+        }
+      ],
+      "methods": [
+        {
+          "instance_id": 85,
+          "method_id": "flat_rate_ecotrack",
+          "method_title": "Ecotrack Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 700,
+          "rawCost": "700",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 86,
+          "method_id": "local_pickup_ecotrack",
+          "method_title": "Ecotrack Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 500,
+          "rawCost": "500",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 44,
+      "name": "Aïn Defla",
+      "order": 44,
+      "locations": [
+        {
+          "code": "DZ:DZ-44",
+          "type": "state"
+        }
+      ],
+      "methods": [
+        {
+          "instance_id": 87,
+          "method_id": "flat_rate_ecotrack",
+          "method_title": "Ecotrack Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 680,
+          "rawCost": "680",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 88,
+          "method_id": "local_pickup_ecotrack",
+          "method_title": "Ecotrack Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 500,
+          "rawCost": "500",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 45,
+      "name": "Naâma",
+      "order": 45,
+      "locations": [
+        {
+          "code": "DZ:DZ-45",
+          "type": "state"
+        }
+      ],
+      "methods": [
+        {
+          "instance_id": 89,
+          "method_id": "flat_rate_ecotrack",
+          "method_title": "Ecotrack Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 900,
+          "rawCost": "900",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 90,
+          "method_id": "local_pickup_ecotrack",
+          "method_title": "Ecotrack Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 650,
+          "rawCost": "650",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 46,
+      "name": "Aïn Témouchent",
+      "order": 46,
+      "locations": [
+        {
+          "code": "DZ:DZ-46",
+          "type": "state"
+        }
+      ],
+      "methods": [
+        {
+          "instance_id": 91,
+          "method_id": "flat_rate_ecotrack",
+          "method_title": "Ecotrack Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 750,
+          "rawCost": "750",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 92,
+          "method_id": "local_pickup_ecotrack",
+          "method_title": "Ecotrack Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 500,
+          "rawCost": "500",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 47,
+      "name": "Ghardaïa",
+      "order": 47,
+      "locations": [
+        {
+          "code": "DZ:DZ-47",
+          "type": "state"
+        }
+      ],
+      "methods": [
+        {
+          "instance_id": 93,
+          "method_id": "flat_rate_ecotrack",
+          "method_title": "Ecotrack Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 950,
+          "rawCost": "950",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 94,
+          "method_id": "local_pickup_ecotrack",
+          "method_title": "Ecotrack Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 650,
+          "rawCost": "650",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 48,
+      "name": "Relizane",
+      "order": 48,
+      "locations": [
+        {
+          "code": "DZ:DZ-48",
+          "type": "state"
+        }
+      ],
+      "methods": [
+        {
+          "instance_id": 95,
+          "method_id": "flat_rate_ecotrack",
+          "method_title": "Ecotrack Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 700,
+          "rawCost": "700",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 96,
+          "method_id": "local_pickup_ecotrack",
+          "method_title": "Ecotrack Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 500,
+          "rawCost": "500",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 49,
       "name": "Timimoun",
       "order": 49,
       "locations": [
         {
           "code": "DZ:DZ-49",
-          "type": "state",
-          "_links": {
-            "collection": [],
-            "describes": []
-          }
+          "type": "state"
         }
       ],
       "methods": [
         {
-          "instance_id": 83,
-          "method_id": "flat_rate_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Home Delivery",
+          "instance_id": 97,
+          "method_id": "flat_rate_ecotrack",
+          "method_title": "Ecotrack Home Delivery",
           "title": "التوصيل للمنزل",
           "enabled": true,
-          "cost": 1500,
-          "rawCost": "1500",
+          "cost": 1300,
+          "rawCost": "1300",
           "min_amount": null,
           "requires": null
         },
         {
-          "instance_id": 84,
-          "method_id": "local_pickup_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Hub Pickup",
+          "instance_id": 98,
+          "method_id": "local_pickup_ecotrack",
+          "method_title": "Ecotrack Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 950,
+          "rawCost": "950",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 50,
+      "name": "Bordj Badji Mokhtar",
+      "order": 50,
+      "locations": [
+        {
+          "code": "DZ:DZ-50",
+          "type": "state"
+        }
+      ],
+      "methods": [
+        {
+          "instance_id": 99,
+          "method_id": "flat_rate_ecotrack",
+          "method_title": "Ecotrack Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 1300,
+          "rawCost": "1300",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 100,
+          "method_id": "local_pickup_ecotrack",
+          "method_title": "Ecotrack Hub Pickup",
           "title": "التوصيل للمكتب",
           "enabled": true,
           "cost": 950,
@@ -1775,23 +1806,19 @@
     },
     {
       "id": 51,
-      "name": "Ouled djellal",
+      "name": "Ouled Djellal",
       "order": 51,
       "locations": [
         {
           "code": "DZ:DZ-51",
-          "type": "state",
-          "_links": {
-            "collection": [],
-            "describes": []
-          }
+          "type": "state"
         }
       ],
       "methods": [
         {
-          "instance_id": 99,
-          "method_id": "flat_rate_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Home Delivery",
+          "instance_id": 101,
+          "method_id": "flat_rate_ecotrack",
+          "method_title": "Ecotrack Home Delivery",
           "title": "التوصيل للمنزل",
           "enabled": true,
           "cost": 900,
@@ -1800,9 +1827,9 @@
           "requires": null
         },
         {
-          "instance_id": 100,
-          "method_id": "local_pickup_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Hub Pickup",
+          "instance_id": 102,
+          "method_id": "local_pickup_ecotrack",
+          "method_title": "Ecotrack Hub Pickup",
           "title": "التوصيل للمكتب",
           "enabled": true,
           "cost": 650,
@@ -1814,35 +1841,31 @@
       "error": null
     },
     {
-      "id": 30,
-      "name": "Beni abbes",
+      "id": 52,
+      "name": "Béni Abbès",
       "order": 52,
       "locations": [
         {
           "code": "DZ:DZ-52",
-          "type": "state",
-          "_links": {
-            "collection": [],
-            "describes": []
-          }
+          "type": "state"
         }
       ],
       "methods": [
         {
-          "instance_id": 57,
-          "method_id": "flat_rate_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Home Delivery",
+          "instance_id": 103,
+          "method_id": "flat_rate_ecotrack",
+          "method_title": "Ecotrack Home Delivery",
           "title": "التوصيل للمنزل",
           "enabled": true,
-          "cost": 1500,
-          "rawCost": "1500",
+          "cost": 1100,
+          "rawCost": "1100",
           "min_amount": null,
           "requires": null
         },
         {
-          "instance_id": 58,
-          "method_id": "local_pickup_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Hub Pickup",
+          "instance_id": 104,
+          "method_id": "local_pickup_ecotrack",
+          "method_title": "Ecotrack Hub Pickup",
           "title": "التوصيل للمكتب",
           "enabled": true,
           "cost": 950,
@@ -1854,36 +1877,35 @@
       "error": null
     },
     {
-      "id": 52,
-      "name": "In salah",
+      "id": 53,
+      "name": "In Salah",
       "order": 53,
-      "locations": [],
-      "methods": [],
-      "error": "Request failed (500) ..."
-    },
-    {
-      "id": 14,
-      "name": "In guezzam",
-      "order": 54,
       "locations": [
         {
-          "code": "DZ:DZ-54",
-          "type": "state",
-          "_links": {
-            "collection": [],
-            "describes": []
-          }
+          "code": "DZ:DZ-53",
+          "type": "state"
         }
       ],
       "methods": [
         {
-          "instance_id": 27,
-          "method_id": "flat_rate_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Home Delivery",
+          "instance_id": 105,
+          "method_id": "flat_rate_ecotrack",
+          "method_title": "Ecotrack Home Delivery",
           "title": "التوصيل للمنزل",
           "enabled": true,
-          "cost": 1800,
-          "rawCost": "1800",
+          "cost": 1300,
+          "rawCost": "1300",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 106,
+          "method_id": "local_pickup_ecotrack",
+          "method_title": "Ecotrack Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 1000,
+          "rawCost": "1000",
           "min_amount": null,
           "requires": null
         }
@@ -1891,24 +1913,56 @@
       "error": null
     },
     {
-      "id": 34,
+      "id": 54,
+      "name": "In Guezzam",
+      "order": 54,
+      "locations": [
+        {
+          "code": "DZ:DZ-54",
+          "type": "state"
+        }
+      ],
+      "methods": [
+        {
+          "instance_id": 107,
+          "method_id": "flat_rate_ecotrack",
+          "method_title": "Ecotrack Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 1200,
+          "rawCost": "1200",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 108,
+          "method_id": "local_pickup_ecotrack",
+          "method_title": "Ecotrack Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 1000,
+          "rawCost": "1000",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 55,
       "name": "Touggourt",
       "order": 55,
       "locations": [
         {
           "code": "DZ:DZ-55",
-          "type": "state",
-          "_links": {
-            "collection": [],
-            "describes": []
-          }
+          "type": "state"
         }
       ],
       "methods": [
         {
-          "instance_id": 65,
-          "method_id": "flat_rate_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Home Delivery",
+          "instance_id": 109,
+          "method_id": "flat_rate_ecotrack",
+          "method_title": "Ecotrack Home Delivery",
           "title": "التوصيل للمنزل",
           "enabled": true,
           "cost": 900,
@@ -1917,9 +1971,9 @@
           "requires": null
         },
         {
-          "instance_id": 66,
-          "method_id": "local_pickup_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Hub Pickup",
+          "instance_id": 110,
+          "method_id": "local_pickup_ecotrack",
+          "method_title": "Ecotrack Hub Pickup",
           "title": "التوصيل للمكتب",
           "enabled": true,
           "cost": 750,
@@ -1931,28 +1985,35 @@
       "error": null
     },
     {
-      "id": 16,
-      "name": "Meghaier",
-      "order": 57,
+      "id": 56,
+      "name": "Djanet",
+      "order": 56,
       "locations": [
         {
-          "code": "DZ:DZ-57",
-          "type": "state",
-          "_links": {
-            "collection": [],
-            "describes": []
-          }
+          "code": "DZ:DZ-56",
+          "type": "state"
         }
       ],
       "methods": [
         {
-          "instance_id": 30,
-          "method_id": "flat_rate_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Home Delivery",
+          "instance_id": 111,
+          "method_id": "flat_rate_ecotrack",
+          "method_title": "Ecotrack Home Delivery",
           "title": "التوصيل للمنزل",
           "enabled": true,
-          "cost": 900,
-          "rawCost": "900",
+          "cost": 1200,
+          "rawCost": "1200",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 112,
+          "method_id": "local_pickup_ecotrack",
+          "method_title": "Ecotrack Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 1200,
+          "rawCost": "1200",
           "min_amount": null,
           "requires": null
         }
@@ -1960,39 +2021,71 @@
       "error": null
     },
     {
-      "id": 50,
-      "name": "Menia",
-      "order": 58,
+      "id": 57,
+      "name": "El M'Ghair",
+      "order": 57,
       "locations": [
         {
-          "code": "DZ:DZ-58",
-          "type": "state",
-          "_links": {
-            "collection": [],
-            "describes": []
-          }
+          "code": "DZ:DZ-57",
+          "type": "state"
         }
       ],
       "methods": [
         {
-          "instance_id": 97,
-          "method_id": "flat_rate_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Home Delivery",
+          "instance_id": 113,
+          "method_id": "flat_rate_ecotrack",
+          "method_title": "Ecotrack Home Delivery",
           "title": "التوصيل للمنزل",
           "enabled": true,
-          "cost": 1000,
-          "rawCost": "1000",
+          "cost": 950,
+          "rawCost": "950",
           "min_amount": null,
           "requires": null
         },
         {
-          "instance_id": 98,
-          "method_id": "local_pickup_zrexpress_v2",
-          "method_title": "ZR Express 2.0 Hub Pickup",
+          "instance_id": 114,
+          "method_id": "local_pickup_ecotrack",
+          "method_title": "Ecotrack Hub Pickup",
           "title": "التوصيل للمكتب",
           "enabled": true,
-          "cost": 670,
-          "rawCost": "670",
+          "cost": 750,
+          "rawCost": "750",
+          "min_amount": null,
+          "requires": null
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": 58,
+      "name": "El Menia",
+      "order": 58,
+      "locations": [
+        {
+          "code": "DZ:DZ-58",
+          "type": "state"
+        }
+      ],
+      "methods": [
+        {
+          "instance_id": 115,
+          "method_id": "flat_rate_ecotrack",
+          "method_title": "Ecotrack Home Delivery",
+          "title": "التوصيل للمنزل",
+          "enabled": true,
+          "cost": 1100,
+          "rawCost": "1100",
+          "min_amount": null,
+          "requires": null
+        },
+        {
+          "instance_id": 116,
+          "method_id": "local_pickup_ecotrack",
+          "method_title": "Ecotrack Hub Pickup",
+          "title": "التوصيل للمكتب",
+          "enabled": true,
+          "cost": 750,
+          "rawCost": "750",
           "min_amount": null,
           "requires": null
         }

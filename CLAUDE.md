@@ -38,7 +38,7 @@ This is a **Next.js App Router** e-commerce storefront (Dinarys Cosmetics — Ma
 
 - **Products**: Fetched server-side at `app/api/products/route.ts` and `app/api/categories/route.ts` (ISR, revalidate 300s). Rendered via `ProductsSectionServer` (server component) with `Suspense`.
 - **Orders**: Created via `POST /api/orders` which transforms the checkout form data into WooCommerce order format (COD only, DZ only).
-- **Shipping**: Calculated client-side from static rates in `lib/config/shipping.ts` keyed by wilaya name. The `ShippingPreloader` component warms this data on initial load.
+- **Shipping**: Prices come from the **Ecotrack (H24 Delivery) API**, not from WooCommerce and not from `lib/config/shipping.ts`. See [Delivery Pricing](#delivery-pricing) below.
 - **Webhooks**: `app/api/webhooks/woocommerce/route.ts` handles WooCommerce webhook events.
 
 ### Configuration System
@@ -49,15 +49,51 @@ All site-level settings live in `lib/config/` and are re-exported from `lib/conf
 |------|---------|
 | `site.ts` | Brand name, URLs, currency (DZD), feature flags, checkout mode |
 | `woocommerce.ts` | WooCommerce API credentials helpers, product/order settings |
-| `shipping.ts` | Static wilaya shipping rates (domicile / stopdesk), delivery methods |
+| `shipping.ts` | `shippingConfig` (enable flag, default method, free-shipping threshold). ⚠️ The `shippingRates` table and its helpers in this file are **dead code** — real prices come from Ecotrack |
 | `hero.ts` | Hero slides, images, overlay, auto-rotate settings |
 | `navigation.ts` | Main nav, footer nav, announcement bar |
 | `colors.ts` | Color name → hex mapping for product color swatches |
 | `country/` | Algeria wilaya + commune lists for checkout address fields |
 
-To change shipping prices: edit `shippingRates` in `lib/config/shipping.ts`.  
+To change shipping prices: change them in the **Ecotrack dashboard** — see [Delivery Pricing](#delivery-pricing).  
 To change hero images/text: edit `heroConfig.slides` in `lib/config/hero.ts`.  
 To change site name/branding: edit `siteConfig` in `lib/config/site.ts`.
+
+### Delivery Pricing
+
+Delivery prices are owned by the carrier (**Ecotrack / H24 Delivery**), which returns
+`tarif` (domicile) and `tarif_stopdesk` for all 58 wilayas from a single endpoint.
+
+```
+lib/shipping/ecotrack.ts     fetch + validate + reshape into zone format
+        ↓
+app/api/shipping/route.ts    Ecotrack (24h cache) → data/shipping-zones-prices.json → WooCommerce
+        ↓
+lib/hooks/useShipping.ts     WILAYA_CODE_MAP: "Alger" → "DZ:DZ-16", then splits methods
+        ↓                    into domicile/stopdesk via detectDeliveryType()
+checkout forms → POST /api/orders → WooCommerce shipping_lines[0].total
+```
+
+**Changing prices:** edit them in the Ecotrack dashboard. The site picks them up
+automatically within 24 hours. To apply immediately, visit:
+
+```
+/api/shipping/sync?secret=$SHIPPING_SYNC_SECRET        # apply now
+/api/shipping/sync?secret=...&dry=1                    # preview the diff only
+```
+
+The response lists which wilayas changed and by how much.
+
+**Notes for future work:**
+- Vercel's filesystem is read-only at runtime, so the sync endpoint refreshes a tagged
+  Next data cache (`revalidateTag`); it does *not* rewrite the JSON file. `data/shipping-zones-prices.json`
+  is only the offline fallback — refresh it with `pnpm sync:fees` and commit.
+- `detectDeliveryType()` keys off the `flat_rate_ecotrack` / `local_pickup_ecotrack` method
+  ids that `feesToZones()` emits. Changing either side breaks the domicile/stopdesk split.
+- `ALGERIA_WILAYAS[i]` is wilaya `i + 1`, matching Ecotrack's `wilaya_id` and the
+  `DZ:DZ-NN` codes. The transform relies on this.
+- In Next 16 `revalidateTag(tag)` is deprecated — it needs a cache profile, e.g.
+  `revalidateTag(tag, "max")`.
 
 ### Checkout Modes
 
