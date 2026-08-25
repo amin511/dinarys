@@ -19,6 +19,7 @@ interface CartItem {
   color?: string
   image: string
   quantity: number
+  variationId?: number | null
 }
 
 export default function CartPage() {
@@ -115,7 +116,7 @@ export default function CartPage() {
           <div className="grid lg:grid-cols-3 gap-8 lg:gap-12">
             <div className="lg:col-span-2 space-y-4">
               {cartItems.map((item, index) => (
-                <div key={`${item.id}-${item.size}-${item.color}-${index}`} className="border border-border rounded-sm overflow-hidden bg-card">
+                <div key={`${item.id}-${item.variationId ?? "base"}-${item.size ?? "na"}-${item.color ?? "na"}-${index}`} className="border border-border rounded-sm overflow-hidden bg-card">
                   <div className="p-4 md:p-6">
                     <div className="flex gap-4 md:gap-6">
                       <div className="relative w-24 h-32 md:w-32 md:h-40 flex-shrink-0 bg-secondary rounded-sm overflow-hidden">

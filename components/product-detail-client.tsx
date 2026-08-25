@@ -2,7 +2,7 @@
 
 import { useState, useRef, TouchEvent, useEffect } from "react"
 import Image from "next/image"
-import { useTranslations } from "next-intl"
+import { useLocale, useTranslations } from "next-intl"
 import { Link, useRouter } from "@/i18n/navigation"
 import { Ruler, ChevronLeft, ChevronRight, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -79,6 +79,8 @@ interface ProductDetailClientProps {
 
 export default function ProductDetailClient({ product, relatedProducts = [], categories = [], variations = [] }: ProductDetailClientProps) {
   const t = useTranslations("products")
+  const locale = useLocale()
+  const isRTL = locale === "ar"
   const formatPrice = useFormatPrice()
   const [showSizeGuide, setShowSizeGuide] = useState(false)
   const [selectedImageIndex, setSelectedImageIndex] = useState(0)
@@ -178,10 +180,18 @@ export default function ProductDetailClient({ product, relatedProducts = [], cat
     const existingCart = localStorage.getItem("cartItems")
     let cartItems = existingCart ? JSON.parse(existingCart) : []
 
-    // Check if item with same id, size and color already exists
-    const existingItemIndex = cartItems.findIndex(
-      (item: any) => item.id === newItem.id && item.size === newItem.size && item.color === newItem.color
-    )
+    const isSameCartItem = (item: any, candidate: typeof newItem) => {
+      const sameProduct = item.id === candidate.id
+
+      if (item.variationId != null || candidate.variationId != null) {
+        return sameProduct && (item.variationId ?? null) === (candidate.variationId ?? null)
+      }
+
+      return sameProduct && (item.size ?? "") === (candidate.size ?? "") && (item.color ?? "") === (candidate.color ?? "")
+    }
+
+    // Check if the exact same product variation is already in the cart
+    const existingItemIndex = cartItems.findIndex((item: any) => isSameCartItem(item, newItem))
 
     if (existingItemIndex > -1) {
       // Item exists, increment quantity
@@ -363,7 +373,9 @@ export default function ProductDetailClient({ product, relatedProducts = [], cat
                 {/* Slider container */}
                 <div
                   className="flex transition-all duration-300 ease-out items-start"
-                  style={{ transform: `translateX(-${selectedImageIndex * 100}%)` }}
+                  style={{
+                    transform: isRTL ? `translateX(${selectedImageIndex * 100}%)` : `translateX(-${selectedImageIndex * 100}%)`,
+                  }}
                 >
                   {productImages.map((image, index) => (
                     <div
@@ -388,24 +400,24 @@ export default function ProductDetailClient({ product, relatedProducts = [], cat
                 {productImages.length > 1 && (
                   <>
                     <button
-                      onClick={(e) => { e.stopPropagation(); goToPrevious(); }}
-                      className="absolute left-3 top-1/2 -translate-y-1/2 p-3 bg-white/90 hover:bg-white rounded-full shadow-lg transition-all hover:scale-105"
-                      aria-label={t("prevImage")}
+                      onClick={(e) => { e.stopPropagation(); isRTL ? goToNext() : goToPrevious(); }}
+                      className={`absolute ${isRTL ? "right-3" : "left-3"} top-1/2 -translate-y-1/2 p-3 bg-white/90 hover:bg-white rounded-full shadow-lg transition-all hover:scale-105`}
+                      aria-label={isRTL ? t("nextImage") : t("prevImage")}
                     >
-                      <ChevronLeft className="w-6 h-6 text-gray-800" />
+                      {isRTL ? <ChevronRight className="w-6 h-6 text-gray-800" /> : <ChevronLeft className="w-6 h-6 text-gray-800" />}
                     </button>
                     <button
-                      onClick={(e) => { e.stopPropagation(); goToNext(); }}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 p-3 bg-white/90 hover:bg-white rounded-full shadow-lg transition-all hover:scale-105"
-                      aria-label={t("nextImage")}
+                      onClick={(e) => { e.stopPropagation(); isRTL ? goToPrevious() : goToNext(); }}
+                      className={`absolute ${isRTL ? "left-3" : "right-3"} top-1/2 -translate-y-1/2 p-3 bg-white/90 hover:bg-white rounded-full shadow-lg transition-all hover:scale-105`}
+                      aria-label={isRTL ? t("prevImage") : t("nextImage")}
                     >
-                      <ChevronRight className="w-6 h-6 text-gray-800" />
+                      {isRTL ? <ChevronLeft className="w-6 h-6 text-gray-800" /> : <ChevronRight className="w-6 h-6 text-gray-800" />}
                     </button>
                   </>
                 )}
 
                 {/* Brand logo */}
-                <div className="absolute top-4 left-4">
+                <div className={`absolute top-4 ${isRTL ? "right-4" : "left-4"}`}>
                   <Image
                     src={siteConfig.logo.src}
                     alt={siteConfig.logo.alt}
@@ -416,7 +428,7 @@ export default function ProductDetailClient({ product, relatedProducts = [], cat
                 </div>
                 {/* Image counter badge */}
                 {productImages.length > 1 && (
-                  <div className="absolute bottom-4 right-4 bg-black/60 text-white text-xs px-2 py-1 rounded-full">
+                  <div className={`absolute bottom-4 ${isRTL ? "left-4" : "right-4"} bg-black/60 text-white text-xs px-2 py-1 rounded-full`}>
                     {selectedImageIndex + 1} / {productImages.length}
                   </div>
                 )}
@@ -709,17 +721,17 @@ export default function ProductDetailClient({ product, relatedProducts = [], cat
           </button>
 
           {/* Image counter */}
-          <div className="absolute top-4 left-4 text-white/80 text-sm">
+          <div className={`absolute top-4 ${isRTL ? "right-4" : "left-4"} text-white/80 text-sm`}>
             {selectedImageIndex + 1} / {productImages.length}
           </div>
 
           {/* Previous button */}
           <button
-            onClick={(e) => { e.stopPropagation(); goToPrevious(); }}
-            className="absolute left-4 z-10 p-3 text-white hover:text-white transition-colors bg-white/20 hover:bg-white/30 rounded-full"
-            aria-label={t("prevImage")}
+            onClick={(e) => { e.stopPropagation(); isRTL ? goToNext() : goToPrevious(); }}
+            className={`absolute ${isRTL ? "right-4" : "left-4"} z-10 p-3 text-white hover:text-white transition-colors bg-white/20 hover:bg-white/30 rounded-full`}
+            aria-label={isRTL ? t("nextImage") : t("prevImage")}
           >
-            <ChevronLeft className="w-8 h-8" />
+            {isRTL ? <ChevronRight className="w-8 h-8" /> : <ChevronLeft className="w-8 h-8" />}
           </button>
 
           {/* Main lightbox image slider */}
@@ -729,7 +741,9 @@ export default function ProductDetailClient({ product, relatedProducts = [], cat
           >
             <div
               className="flex transition-transform duration-300 ease-out items-center"
-              style={{ transform: `translateX(-${selectedImageIndex * 100}%)` }}
+              style={{
+                transform: isRTL ? `translateX(${selectedImageIndex * 100}%)` : `translateX(-${selectedImageIndex * 100}%)`,
+              }}
             >
               {productImages.map((image, index) => (
                 <div key={`lightbox-${index}-${image.id}`} className="w-full shrink-0 flex items-center justify-center">
@@ -749,11 +763,11 @@ export default function ProductDetailClient({ product, relatedProducts = [], cat
 
           {/* Next button */}
           <button
-            onClick={(e) => { e.stopPropagation(); goToNext(); }}
-            className="absolute right-4 z-10 p-3 text-white hover:text-white transition-colors bg-white/20 hover:bg-white/30 rounded-full"
-            aria-label={t("nextImage")}
+            onClick={(e) => { e.stopPropagation(); isRTL ? goToPrevious() : goToNext(); }}
+            className={`absolute ${isRTL ? "left-4" : "right-4"} z-10 p-3 text-white hover:text-white transition-colors bg-white/20 hover:bg-white/30 rounded-full`}
+            aria-label={isRTL ? t("prevImage") : t("nextImage")}
           >
-            <ChevronRight className="w-8 h-8" />
+            {isRTL ? <ChevronLeft className="w-8 h-8" /> : <ChevronRight className="w-8 h-8" />}
           </button>
 
           {/* Thumbnail strip at bottom */}
