@@ -1,3 +1,4 @@
+
 import { notFound } from "next/navigation"
 import type { Metadata } from "next"
 import { getTranslations } from "next-intl/server"
@@ -12,31 +13,55 @@ function sleep(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms))
 }
 
-async function fetchJsonWithRetry(url: string, authHeader: string, context: string) {
+async function fetchJsonWithRetry(
+  url: string,
+  authHeader: string,
+  context: string
+) {
   const maxAttempts = 3
+
   for (let attempt = 1; attempt <= maxAttempts; attempt++) {
     try {
       const response = await fetch(url, {
-        headers: { Authorization: authHeader },
+        headers: {
+          Authorization: authHeader,
+        },
         cache: "force-cache",
         signal: AbortSignal.timeout(15000),
       })
-      if (!response.ok) throw new Error(`HTTP ${response.status}`)
+
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`)
+      }
+
       return await response.json()
     } catch (error) {
-      if (attempt === maxAttempts) throw error
-      console.warn(`[SSG] Retry ${attempt}/${maxAttempts - 1} for ${context}`)
+      if (attempt === maxAttempts) {
+        throw error
+      }
+
+      console.warn(
+        `[SSG] Retry ${attempt}/${maxAttempts - 1} for ${context}`
+      )
+
       await sleep(500 * attempt)
     }
   }
+
   return null
 }
 
 async function getProduct(id: string) {
   try {
     const { storeUrl, authHeader } = getWooCredentials()
+
     const apiUrl = `${storeUrl}/wp-json/wc/v3/products/${id}`
-    return await fetchJsonWithRetry(apiUrl, authHeader, `product ${id}`)
+
+    return await fetchJsonWithRetry(
+      apiUrl,
+      authHeader,
+      `product ${id}`
+    )
   } catch {
     return null
   }
@@ -45,9 +70,24 @@ async function getProduct(id: string) {
 async function getRelatedProducts(currentProductId: string) {
   try {
     const { storeUrl, authHeader } = getWooCredentials()
-    const apiUrl = `${storeUrl}/wp-json/wc/v3/products?per_page=5&exclude=${currentProductId}&status=publish`
-    const response = await fetch(apiUrl, { headers: { Authorization: authHeader }, cache: "force-cache" })
-    if (!response.ok) return []
+
+    const apiUrl =
+      `${storeUrl}/wp-json/wc/v3/products` +
+      `?per_page=5` +
+      `&exclude=${currentProductId}` +
+      `&status=publish`
+
+    const response = await fetch(apiUrl, {
+      headers: {
+        Authorization: authHeader,
+      },
+      cache: "force-cache",
+    })
+
+    if (!response.ok) {
+      return []
+    }
+
     return await response.json()
   } catch {
     return []
@@ -57,25 +97,60 @@ async function getRelatedProducts(currentProductId: string) {
 async function getCategories() {
   try {
     const { storeUrl, authHeader } = getWooCredentials()
-    const apiUrl = `${storeUrl}/wp-json/wc/v3/products/categories?per_page=${wooConfig.categories.perPage}&hide_empty=true`
-    const response = await fetch(apiUrl, { headers: { Authorization: authHeader }, cache: "force-cache" })
-    if (!response.ok) return []
+
+    const apiUrl =
+      `${storeUrl}/wp-json/wc/v3/products/categories` +
+      `?per_page=${wooConfig.categories.perPage}` +
+      `&hide_empty=true`
+
+    const response = await fetch(apiUrl, {
+      headers: {
+        Authorization: authHeader,
+      },
+      cache: "force-cache",
+    })
+
+    if (!response.ok) {
+      return []
+    }
+
     return await response.json()
   } catch {
     return []
   }
 }
 
-async function getProductVariations(productId: string, productType?: string) {
-  if (productType !== "variable") return []
+async function getProductVariations(
+  productId: string,
+  productType?: string
+) {
+  if (productType !== "variable") {
+    return []
+  }
+
   try {
     const { storeUrl, authHeader } = getWooCredentials()
-    const apiUrl = `${storeUrl}/wp-json/wc/v3/products/${productId}/variations?per_page=100`
+
+    const apiUrl =
+      `${storeUrl}/wp-json/wc/v3/products/${productId}/variations` +
+      `?per_page=100`
+
     const response = await fetch(apiUrl, {
-      headers: { Authorization: authHeader },
-      next: { tags: [`product-${productId}`, `variations-${productId}`] },
+      headers: {
+        Authorization: authHeader,
+      },
+      next: {
+        tags: [
+          `product-${productId}`,
+          `variations-${productId}`,
+        ],
+      },
     })
-    if (!response.ok) return []
+
+    if (!response.ok) {
+      return []
+    }
+
     return await response.json()
   } catch {
     return []
@@ -85,26 +160,47 @@ async function getProductVariations(productId: string, productType?: string) {
 export async function generateStaticParams() {
   try {
     const { storeUrl, authHeader } = getWooCredentials()
+
     const allProducts: any[] = []
     let page = 1
+
     const perPage = 100
     const maxPages = 10
 
     while (page <= maxPages) {
-      const apiUrl = `${storeUrl}/wp-json/wc/v3/products?per_page=${perPage}&page=${page}&status=publish`
+      const apiUrl =
+        `${storeUrl}/wp-json/wc/v3/products` +
+        `?per_page=${perPage}` +
+        `&page=${page}` +
+        `&status=publish`
+
       let products: any[] | null = null
+
       try {
-        products = await fetchJsonWithRetry(apiUrl, authHeader, `products page ${page}`)
+        products = await fetchJsonWithRetry(
+          apiUrl,
+          authHeader,
+          `products page ${page}`
+        )
       } catch {
         break
       }
-      if (!products || products.length === 0) break
+
+      if (!products || products.length === 0) {
+        break
+      }
+
       allProducts.push(...products)
-      if (products.length < perPage) break
+
+      if (products.length < perPage) {
+        break
+      }
+
       page++
     }
 
     const locales = ["fr", "ar"]
+
     return locales.flatMap((locale) =>
       allProducts.map((product: any) => ({
         locale,
@@ -119,21 +215,62 @@ export async function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ id: string; locale: string }>
+  params: Promise<{
+    id: string
+    locale: string
+  }>
 }): Promise<Metadata> {
   const { id, locale } = await params
-  const t = await getTranslations({ locale, namespace: "products" })
+
+  const t = await getTranslations({
+    locale,
+    namespace: "products",
+  })
+
   const product = await getProduct(id)
-  if (!product) return { title: t("notFound") }
-  const productImage = product.images?.[0]?.src || "/placeholder.jpg"
+
+  if (!product) {
+    return {
+      title: `${t("notFound")} | ${siteConfig.name}`,
+    }
+  }
+
+  const cleanShortDescription =
+    product.short_description
+      ?.replace(/<[^>]*>/g, "")
+      .trim() || ""
+
+  const cleanDescription =
+    product.description
+      ?.replace(/<[^>]*>/g, "")
+      .trim()
+      .slice(0, 160) || ""
+
+  const productImage =
+    product.images?.[0]?.src || "/placeholder.jpg"
+
   return {
     title: `${product.name} | ${siteConfig.name}`,
-    description: product.short_description?.replace(/<[^>]*>/g, "") || product.description?.replace(/<[^>]*>/g, "").slice(0, 160),
+
+    description:
+      cleanShortDescription || cleanDescription,
+
     openGraph: {
-      title: product.name,
-      description: product.short_description?.replace(/<[^>]*>/g, "") || "",
-      images: [productImage],
+      title: `${product.name} | ${siteConfig.name}`,
+
+      description:
+        cleanShortDescription || cleanDescription,
+
+      images: [
+        {
+          url: productImage,
+          alt: product.name,
+        },
+      ],
+
       type: "website",
+
+      siteName: siteConfig.name,
     },
   }
 }
@@ -141,27 +278,75 @@ export async function generateMetadata({
 export default async function ProductPage({
   params,
 }: {
-  params: Promise<{ id: string; locale: string }>
+  params: Promise<{
+    id: string
+    locale: string
+  }>
 }) {
-  const { id } = await params
-  const product = await getProduct(id)
-  if (!product) notFound()
+  const { id, locale } = await params
 
-  const [relatedProducts, categories, variations] = await Promise.all([
+  const product = await getProduct(id)
+
+  if (!product) {
+    notFound()
+  }
+
+  const [
+    relatedProducts,
+    categories,
+    variations,
+  ] = await Promise.all([
     getRelatedProducts(id),
     getCategories(),
     getProductVariations(id, product.type),
   ])
 
+  const isArabic = locale === "ar"
+
   return (
-    <main className="min-h-screen bg-background">
-      <ProductDetailClient
-        product={product}
-        relatedProducts={relatedProducts}
-        categories={categories}
-        variations={variations}
-      />
+    <main
+      dir={isArabic ? "rtl" : "ltr"}
+      className="
+        min-h-screen
+        bg-[#FCFAF6]
+        text-[#29251F]
+      "
+    >
+      {/* Product page */}
+      <section
+        className="
+          relative
+          bg-[#FCFAF6]
+          py-8
+          md:py-12
+        "
+      >
+        {/* Subtle decorative gold line */}
+        <div
+          aria-hidden="true"
+          className="
+            pointer-events-none
+            absolute
+            left-1/2
+            top-0
+            h-px
+            w-24
+            -translate-x-1/2
+            bg-[#D09118]
+            opacity-70
+          "
+        />
+
+        <ProductDetailClient
+          product={product}
+          relatedProducts={relatedProducts}
+          categories={categories}
+          variations={variations}
+        />
+      </section>
+
       <Footer />
     </main>
   )
 }
+

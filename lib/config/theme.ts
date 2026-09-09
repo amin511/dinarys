@@ -1,26 +1,29 @@
+
 /**
  * Theme Configuration
  * Visual styling and design tokens
- * Customize colors, fonts, spacing for different brands
+ * Al Malika — الملكة
  */
 
 export const themeConfig = {
-    // Color Palette (semantic colors)
+    // Color Palette
     colors: {
-        // Primary brand colors
+        // Primary brand color — Al Malika gold
         primary: {
-            light: "#d6a853",
-            dark: "#d6a853",
+            light: "#D09118",
+            dark: "#D09118",
         },
-        // Secondary/accent colors
+
+        // Warm neutral tones
         secondary: {
-            light: "oklch(0.92 0.02 70)",
-            dark: "oklch(0.25 0.02 70)",
+            light: "#F7F3EC",
+            dark: "#29251F",
         },
-        // Accent color (calls to action)
+
+        // Accent color
         accent: {
-            light: "oklch(0.65 0.15 30)",
-            dark: "oklch(0.75 0.15 30)",
+            light: "#E5B95A",
+            dark: "#C58A12",
         },
     },
 
@@ -49,7 +52,7 @@ export const themeConfig = {
             lg: "6rem",
         },
         container: {
-            maxWidth: "80rem", // 1280px
+            maxWidth: "80rem",
             padding: "1rem",
         },
     },
@@ -64,17 +67,19 @@ export const themeConfig = {
     // Component-specific styles
     components: {
         button: {
-            borderRadius: "full", // "full" | "lg" | "md" | "sm" | "none"
+            borderRadius: "full",
             size: {
                 sm: "py-2 px-4 text-sm",
                 md: "py-3 px-6 text-base",
                 lg: "py-4 px-8 text-lg",
             },
         },
+
         card: {
             borderRadius: "sm",
             shadow: false,
         },
+
         input: {
             borderRadius: "sm",
         },
@@ -87,11 +92,13 @@ export const themeConfig = {
             height: "4rem",
             showAnnouncement: true,
         },
+
         footer: {
             columns: 4,
         },
+
         sidebar: {
-            width: "14rem", // 224px
+            width: "14rem",
             showOnProductPage: true,
         },
     },
@@ -99,6 +106,7 @@ export const themeConfig = {
     // Animation settings
     animations: {
         enabled: true,
+
         fadeInRise: {
             duration: "0.6s",
             delay: "0.1s",
@@ -107,3 +115,4 @@ export const themeConfig = {
 } as const
 
 export type ThemeConfig = typeof themeConfig
+

@@ -32,11 +32,11 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
   return (
     <main className="min-h-screen bg-background">
       <HeroSection />
-      <AboutBrandSection />
+      {/* <AboutBrandSection /> */}
       <Suspense fallback={<ProductsLoading />}>
         <ProductsSectionServer locale={locale} />
       </Suspense>
-      <IngredientsSection />
+      {/* <IngredientsSection /> */}
       <Footer />
     </main>
   )

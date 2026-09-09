@@ -1,3 +1,4 @@
+
 /**
  * Site Configuration
  * Central configuration for all site-wide settings
@@ -5,72 +6,81 @@
 
 export const siteConfig = {
     // Brand Information
-    name: "DINARYS",
-    tagline: "Une marque premium Made in Algeria",
-    description: "Dinarys est une marque cosmétique premium née avec une ambition claire : proposer des produits de haute qualité, modernes et performants, conçus pour répondre aux besoins réels des consommateurs algériens.",
+    name: "الملكة",
+    tagline: "متجر كل مسلمة",
+    description:
+        "الملكة للباس الشرعي، متجر لكل مسلمة تبحث عن الأناقة والستر.",
 
     // URLs
-    url: process.env.NEXT_PUBLIC_SITE_URL || "https://dinarys.dz",
+    url: process.env.NEXT_PUBLIC_SITE_URL || "",
 
     // Logo & Branding
     logo: {
-        src: "/dinarys-logo.png",
-        alt: "DINARYS Cosmetics",
+        src: "/images/malikalogo.png",
+        alt: "الملكة - Al Malika",
         width: 120,
         height: 60,
     },
-    favicon: "/dinarys-logo.png",
+    favicon: "/malikalogo.png",
 
     // Contact Information
     contact: {
-        email: "dinarys.cosmetics@gmail.com",
-        phone: "+213 550 27 65 68",
-        phoneDisplay: "+213 550 27 65 68",
-        address: "Algérie",
+        email: "",
+        phone: "",
+        phoneDisplay: "",
+        address: "الجزائر",
         mapUrl: "",
     },
 
     // Social Media
     social: {
         instagram: {
-            url: "https://www.instagram.com/dinarys_cosmetique?igsh=MXV0MGlyZG41Y3BtZA%3D%3D&utm_source=qr",
-            handle: "@__dinarys",
+            // Replace this with the Instagram PROFILE URL when available
+            url: "",
+            handle: "@al.malika.gn",
         },
+
         facebook: {
-            url: "https://www.facebook.com/share/1AybrnVW15/",
-            handle: "Dinarys Cosmetics",
+            url: "https://www.facebook.com/people/%D8%AD%D8%AC%D8%A7%D8%A8-%D8%B4%D8%B1%D8%B9%D9%8A-Al-Malika-Gn/100067391006608/?mibextid=wwXIfr&rdid=tfDv3fpavgxItHle&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1PTzzT5y95%2F%3Fmibextid%3DwwXIfr",
+            handle: "حجاب شرعي Al Malika Gn",
         },
+
         twitter: {
             url: "",
             handle: "",
         },
+
         tiktok: {
-            url: "https://www.tiktok.com/@__dinarys?_r=1&_t=ZS-96nfhw28v1I",
-            handle: "@dinarys_cosmetics",
+            url: "https://www.tiktok.com/@al.malika.gn?_r=1&_t=ZS-91vzT1Fm183",
+            handle: "@al.malika.gn",
         },
+
         whatsapp: {
-            url: "https://wa.me/213550276568",
-            phone: "+213 550 27 65 68",
+            url: "",
+            phone: "",
         },
     },
 
     // Locale & Currency
-    locale: "fr-DZ",
+    locale: "ar-DZ",
+
     currency: {
         code: "DZD",
-        symbol: "DA",
+        symbol: "د.ج",
         position: "before" as const,
     },
+
     country: "DZ",
 
     // SEO
     seo: {
-        titleTemplate: "%s | DINARYS",
-        defaultTitle: "DINARYS — Une marque premium Made in Algeria",
+        titleTemplate: "%s | الملكة",
+        defaultTitle: "الملكة — متجر كل مسلمة",
+
         openGraph: {
             type: "website",
-            locale: "fr_DZ",
-            siteName: "DINARYS",
+            locale: "ar_DZ",
+            siteName: "الملكة",
         },
     },
 
@@ -105,10 +115,11 @@ export const siteConfig = {
     // Copyright
     copyright: {
         year: new Date().getFullYear(),
-        text: "Tous droits réservés.",
+        text: "جميع الحقوق محفوظة.",
     },
 } as const
 
 export type SiteConfig = typeof siteConfig
 export type CheckoutMode = "form" | "cart" | "both"
 export type AddToCartRedirect = "cart" | "checkout" | "stay"
+

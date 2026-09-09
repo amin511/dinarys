@@ -1,3 +1,4 @@
+
 /**
  * Navigation Configuration
  * Define all navigation menus, links, and structure
@@ -14,15 +15,15 @@ export const navigationConfig = {
     // Main navigation (desktop header)
     mainNav: [
         {
-            label: "Accueil",
+            label: "الرئيسية",
             href: "/",
         },
         {
-            label: "Boutique",
+            label: "المتجر",
             href: "/products",
         },
         {
-            label: "À Propos",
+            label: "من نحن",
             href: "/a-propos",
         },
     ] as NavItem[],
@@ -30,26 +31,51 @@ export const navigationConfig = {
     // Footer navigation sections
     footerNav: {
         shop: {
-            title: "Boutique",
+            title: "المتجر",
             links: [
-                { label: "Tous les Produits", href: "/products" },
-                { label: "Nouveautés", href: "/#products" },
+                {
+                    label: "جميع المنتجات",
+                    href: "/products",
+                },
+                {
+                    label: "أحدث المنتجات",
+                    href: "/#products",
+                },
             ],
         },
+
         about: {
-            title: "Dinarys",
+            title: "الملكة",
             links: [
-                { label: "Qui sommes-nous", href: "/a-propos" },
-                { label: "Notre gamme capillaire", href: "/#ingredients" },
+                {
+                    label: "من نحن",
+                    href: "/a-propos",
+                },
+                {
+                    label: "اللباس الشرعي",
+                    href: "/products",
+                },
             ],
         },
+
         support: {
-            title: "Contact",
+            title: "تواصل معنا",
             links: [
-                { label: "Instagram", href: "https://www.instagram.com/__dinarys", external: true },
-                { label: "Facebook", href: "https://www.facebook.com/share/1AybrnVW15/", external: true },
-                { label: "TikTok", href: "https://www.tiktok.com/@dinarys_cosmetics", external: true },
-                { label: "Appelez-nous", href: "tel:+213696949326" },
+                {
+                    label: "Instagram",
+                    href: "https://www.instagram.com/al.malika.gn/",
+                    external: true,
+                },
+                {
+                    label: "Facebook",
+                    href: "https://www.facebook.com/people/%D8%AD%D8%AC%D8%A7%D8%A8-%D8%B4%D8%B1%D8%B9%D9%8A-Al-Malika-Gn/100067391006608/",
+                    external: true,
+                },
+                {
+                    label: "TikTok",
+                    href: "https://www.tiktok.com/@al.malika.gn",
+                    external: true,
+                },
             ],
         },
     },
@@ -57,7 +83,7 @@ export const navigationConfig = {
     // Announcement bar content
     announcement: {
         enabled: true,
-        text: "Livraison partout en Algérie",
+        text: "🚚 توصيل إلى جميع أنحاء الجزائر",
         link: null as string | null,
     },
 
@@ -76,3 +102,4 @@ export const navigationConfig = {
 } as const
 
 export type NavigationConfig = typeof navigationConfig
+
