@@ -70,7 +70,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
             {t("storyTitle")}
           </h2>
           <div className="space-y-6 text-[#4A4A4A] text-base md:text-lg leading-relaxed">
-            <p><strong>Dinarys</strong> {t("storyPara1").replace(/^Dinarys\s+/, "")}</p>
+            <p><strong></strong> {t("storyPara1").replace(/^\s+/, "")}</p>
             <p>{t("storyPara2")}</p>
             <div className="flex items-center gap-3 pt-2">
               <span className="text-2xl">🇩🇿</span>

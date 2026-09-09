@@ -1,8 +1,8 @@
 {
   "generatedAt": "2026-07-27T02:19:49.437Z",
   "source": "ecotrack",
-  "feesUrl": "https://h24delivery.ecotrack.dz/api/v1/get/fees",
-  "totalZones": 58,
+  "feesUrl": "https://packers.ecotrack.dz/api/v1/get/fees",
+  "totalZones": 55,
   "zones": [
     {
       "id": 1,
@@ -1769,42 +1769,6 @@
       "error": null
     },
     {
-      "id": 50,
-      "name": "Bordj Badji Mokhtar",
-      "order": 50,
-      "locations": [
-        {
-          "code": "DZ:DZ-50",
-          "type": "state"
-        }
-      ],
-      "methods": [
-        {
-          "instance_id": 99,
-          "method_id": "flat_rate_ecotrack",
-          "method_title": "Ecotrack Home Delivery",
-          "title": "التوصيل للمنزل",
-          "enabled": true,
-          "cost": 1300,
-          "rawCost": "1300",
-          "min_amount": null,
-          "requires": null
-        },
-        {
-          "instance_id": 100,
-          "method_id": "local_pickup_ecotrack",
-          "method_title": "Ecotrack Hub Pickup",
-          "title": "التوصيل للمكتب",
-          "enabled": true,
-          "cost": 950,
-          "rawCost": "950",
-          "min_amount": null,
-          "requires": null
-        }
-      ],
-      "error": null
-    },
-    {
       "id": 51,
       "name": "Ouled Djellal",
       "order": 51,
@@ -1913,42 +1877,6 @@
       "error": null
     },
     {
-      "id": 54,
-      "name": "In Guezzam",
-      "order": 54,
-      "locations": [
-        {
-          "code": "DZ:DZ-54",
-          "type": "state"
-        }
-      ],
-      "methods": [
-        {
-          "instance_id": 107,
-          "method_id": "flat_rate_ecotrack",
-          "method_title": "Ecotrack Home Delivery",
-          "title": "التوصيل للمنزل",
-          "enabled": true,
-          "cost": 1200,
-          "rawCost": "1200",
-          "min_amount": null,
-          "requires": null
-        },
-        {
-          "instance_id": 108,
-          "method_id": "local_pickup_ecotrack",
-          "method_title": "Ecotrack Hub Pickup",
-          "title": "التوصيل للمكتب",
-          "enabled": true,
-          "cost": 1000,
-          "rawCost": "1000",
-          "min_amount": null,
-          "requires": null
-        }
-      ],
-      "error": null
-    },
-    {
       "id": 55,
       "name": "Touggourt",
       "order": 55,
@@ -1978,42 +1906,6 @@
           "enabled": true,
           "cost": 750,
           "rawCost": "750",
-          "min_amount": null,
-          "requires": null
-        }
-      ],
-      "error": null
-    },
-    {
-      "id": 56,
-      "name": "Djanet",
-      "order": 56,
-      "locations": [
-        {
-          "code": "DZ:DZ-56",
-          "type": "state"
-        }
-      ],
-      "methods": [
-        {
-          "instance_id": 111,
-          "method_id": "flat_rate_ecotrack",
-          "method_title": "Ecotrack Home Delivery",
-          "title": "التوصيل للمنزل",
-          "enabled": true,
-          "cost": 1200,
-          "rawCost": "1200",
-          "min_amount": null,
-          "requires": null
-        },
-        {
-          "instance_id": 112,
-          "method_id": "local_pickup_ecotrack",
-          "method_title": "Ecotrack Hub Pickup",
-          "title": "التوصيل للمكتب",
-          "enabled": true,
-          "cost": 1200,
-          "rawCost": "1200",
           "min_amount": null,
           "requires": null
         }

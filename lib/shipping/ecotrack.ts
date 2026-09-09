@@ -72,10 +72,8 @@ function toPositiveNumber(value: unknown): number | null {
 }
 
 /**
- * Reject a payload that could not produce a complete price list.
- *
- * Falling back to the committed snapshot is always better than serving a partial
- * fee table, because a missing wilaya silently becomes 0 DZD shipping at checkout.
+ * Keep valid fee rows returned by Ecotrack. Missing wilayas are intentionally omitted
+ * because they do not have a current price in the carrier response.
  */
 export function validateFeeRows(rows: unknown): EcotrackFeeRow[] {
     if (!Array.isArray(rows)) {
@@ -94,14 +92,6 @@ export function validateFeeRows(rows: unknown): EcotrackFeeRow[] {
         }
 
         byId.set(id, row as EcotrackFeeRow)
-    }
-
-    const missing: number[] = []
-    for (let id = 1; id <= WILAYA_COUNT; id++) {
-        if (!byId.has(id)) missing.push(id)
-    }
-    if (missing.length > 0) {
-        throw new Error(`Ecotrack response is missing wilaya_id: ${missing.join(", ")}`)
     }
 
     return Array.from(byId.values()).sort((a, b) => Number(a.wilaya_id) - Number(b.wilaya_id))
@@ -135,7 +125,23 @@ export async function fetchEcotrackFees(fresh = false): Promise<EcotrackFeeRow[]
     }
 
     const payload = (await response.json()) as { livraison?: unknown }
-    return validateFeeRows(payload?.livraison)
+    if (!Array.isArray(payload?.livraison)) {
+        throw new Error("Ecotrack response has no 'livraison' array")
+    }
+
+    const liveRows = payload.livraison
+    const liveIds = new Set(liveRows.map((row) => Number((row as EcotrackFeeRow)?.wilaya_id)))
+    const missingIds = Array.from({ length: WILAYA_COUNT }, (_, index) => index + 1).filter(
+        (id) => !liveIds.has(id)
+    )
+
+    if (missingIds.length > 0) {
+        console.warn(
+            `[Ecotrack] Missing wilaya_id ${missingIds.join(", ")}; omitting those wilayas`
+        )
+    }
+
+    return validateFeeRows(liveRows)
 }
 
 /**
