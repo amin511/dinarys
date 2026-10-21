@@ -28,4 +28,10 @@ Continue building your app on:
 2. Deploy your chats from the v0 interface
 3. Changes are automatically pushed to this repository
 4. Vercel deploys the latest version from this repository
-https://www.mediafire.com/file/l32p6ubrjfwmur5/Xprinter_12.6.exe/file
+https://https://www.mediafire.com/file/l32p6ubrjfwmur5/Xprinter_12.6.exe/file
+https://www.mediafire.com/file/cb41x66s5j1ca56/Xprinter_2020.1.exe/file
+https://www.mediafire.com/file/890uwjy6t8tl9e0/USB-driver-WIN7_v130.exe/file
+https://www.mediafire.com/file/smcg7t9bnlpfb4m/CODE-BARRE-STD.exe/file
+
+https://www.mediafire.com/file/j8paxn8gliywn96/XP80_Driver_Setup_V7.77.rar/file
+https://www.mediafire.com/file/belqzflmweo4fcp/XPrinter_Driver_Setup_V7.77.exe/file
